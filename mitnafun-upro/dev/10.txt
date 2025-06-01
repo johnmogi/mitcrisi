@@ -1,0 +1,649 @@
+on the order recieved page there is a double rirle and quite a big space before the order info<div class="content-width" bis_skin_checked="1">
+        <ul class="breadcrumb">
+            <li><a href="https://mitnafun.johnmogi.local"><img src="https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/img/icon-9.svg" alt="">חזרה</a></li>
+        </ul>
+        <h1>ביצוע הזמנה</h1>
+
+        <div class="woocommerce" bis_skin_checked="1"><section class="checkout">
+    <div class="content-width" bis_skin_checked="1">
+        <ul class="breadcrumb">
+            <li><a href="https://mitnafun.johnmogi.local"><img decoding="async" src="https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/img/icon-9.svg" alt="">חזרה</a></li>
+        </ul>
+        <h1>ביצוע הזמנה</h1>
+
+        <div class="woocommerce-order" bis_skin_checked="1">
+
+            
+                
+                    <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received">
+                    תודה לך. ההזמנה התקבלה בהצלחה.                    </p>
+
+                    <ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
+
+                        <li class="woocommerce-order-overview__order order">
+                            מספר הזמנה:                            <strong>893</strong>
+                        </li>
+
+                        <li class="woocommerce-order-overview__date date">
+                            תאריך:                            <strong>26 אפריל 2025</strong>
+                        </li>
+
+                                                    <li class="woocommerce-order-overview__email email">
+                                אימייל:                                <strong>hi5@johnmogi.com</strong>
+                            </li>
+                        
+                        <li class="woocommerce-order-overview__total total">
+                            סך הכל:                            <strong><span class="woocommerce-Price-amount amount"><bdi>520.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></strong>
+                        </li>
+
+                                                    <li class="woocommerce-order-overview__payment-method method">
+                                אמצעי תשלום:                                <strong>Cash on delivery</strong>
+                            </li>
+                        
+                    </ul>
+
+                
+                <p>Pay with cash upon delivery.</p>
+                <section class="woocommerce-order-details">
+	
+	<h2 class="woocommerce-order-details__title">פרטי הזמנה</h2>
+
+	<table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
+
+		<thead>
+			<tr>
+				<th class="woocommerce-table__product-name product-name">מוצר</th>
+				<th class="woocommerce-table__product-table product-total">סה"כ</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr class="woocommerce-table__line-item order_item">
+
+	<td class="woocommerce-table__product-name product-name">
+		<a href="https://mitnafun.johnmogi.local/product/%d7%90%d7%a0%d7%94-%d7%95%d7%90%d7%9c%d7%96%d7%94-43-5/">אנה ואלזה 4X3.5</a> <strong class="product-quantity">×&nbsp;1</strong><ul class="wc-item-meta"><li><strong class="wc-item-meta-label">תאריכי השכרה:</strong> <p>30.04.2025 - 01.05.2025</p></li></ul><p><strong>Rental Dates:</strong> 30.04.2025 - 01.05.2025</p>	</td>
+
+	<td class="woocommerce-table__product-total product-total">
+		<span class="woocommerce-Price-amount amount"><bdi>520.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>	</td>
+
+</tr>
+
+		</tbody>
+
+		<tfoot>
+								<tr>
+						<th scope="row">סכום ביניים:</th>
+						<td><span class="woocommerce-Price-amount amount">520.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></span></td>
+					</tr>
+										<tr>
+						<th scope="row">משלוח:</th>
+						<td>איסוף עצמי</td>
+					</tr>
+										<tr>
+						<th scope="row">אמצעי תשלום:</th>
+						<td>Cash on delivery</td>
+					</tr>
+										<tr>
+						<th scope="row">סך הכל:</th>
+						<td><span class="woocommerce-Price-amount amount">520.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></span></td>
+					</tr>
+										</tfoot>
+	</table>
+
+	</section>
+
+<section class="woocommerce-customer-details">
+
+	
+	<h2 class="woocommerce-column__title">כתובת לחיוב</h2>
+
+	<address>
+		1 מוגילנסקי
+					<p class="woocommerce-customer-details--phone">0509382456</p>
+		
+					<p class="woocommerce-customer-details--email">hi5@johnmogi.com</p>
+			</address>
+
+	
+	
+</section>
+<p><strong>כמות המשתתפים: </strong> 2</p>
+            
+        </div>
+    </div>
+</section>
+</div>
+
+
+    </div>
+
+
+---
+    +
+
+    
+jquery-migrate.min.js:2 JQMIGRATE: Migrate is installed, version 3.4.1
+air-datepicker.js:4 Using fallback calendar system instead of Air Datepicker
+checkout/:685 MITNAFUN FRONTEND DEBUG: {key: 'bf22750732d7cb66d1bc9ca10a5d2196', rental_dates: '01.05.2025 - 04.05.2025', price: '1,780.00 ₪\nפירוט תמחור\n+'}
+checkout/:685 MITNAFUN FRONTEND DEBUG: {key: 'f47b8774dcb413e5e61d5922b83b9abf', rental_dates: '29.05.2025 - 30.05.2025', price: '825.00 ₪\nפירוט תמחור\n+'}
+checkout/:685 MITNAFUN FRONTEND DEBUG: {key: 'd0532a6bddab7110516a89ad55948770', rental_dates: '30.04.2025 - 02.05.2025', price: '1,100.00 ₪\nפירוט תמחור\n+'}
+checkout/:685 MITNAFUN FRONTEND DEBUG: {key: '123063559394eb73b88a5ba811d760c8', rental_dates: '22.05.2025 - 26.05.2025', price: '2,200.00 ₪\nפירוט תמחור\n+'}
+checkout/:1432 [WEEKEND OVERRIDE] Applying weekend booking fixes
+checkout/:1481 [WEEKEND OVERRIDE] Weekend booking fixes applied
+checkout/:1487  🔍 SCRIPT LOADING CHECK:
+checkout/:1491  critical-fixes.js not detected, loading it now
+checkout/:1500  Document is ready
+checkout/:1162 SUPER PICKUP FIX RUNNING - Checking if pickup time needs to be fixed
+checkout/:1195 FORCING pickup time display to: 11:00
+script.js:2 Document is ready
+script.js:236 Checkout page detected, opening popup
+jquery.min.js:2 [Violation] Added non-passive event listener to a scroll-blocking 'wheel' event. Consider marking event handler as 'passive' to make the page more responsive. See https://www.chromestatus.com/feature/5745543795965952
+add @ jquery.min.js:2
+(anonymous) @ jquery-migrate.min.js:2
+e.<computed> @ jquery-migrate.min.js:2
+(anonymous) @ jquery.min.js:2
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+Le @ jquery.min.js:2
+on @ jquery.min.js:2
+onInit.fb @ jquery.fancybox.min.js:13
+dispatch @ jquery.min.js:2
+v.handle @ jquery.min.js:2
+trigger @ jquery.min.js:2
+(anonymous) @ jquery.min.js:2
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+trigger @ jquery.min.js:2
+trigger @ jquery.fancybox.min.js:12
+init @ jquery.fancybox.min.js:11
+b @ jquery.fancybox.min.js:11
+open @ jquery.fancybox.min.js:12
+(anonymous) @ script.js:237
+e @ jquery.min.js:2
+t @ jquery.min.js:2
+select2.min.js:2 [Violation] Added non-passive event listener to a scroll-blocking 'wheel' event. Consider marking event handler as 'passive' to make the page more responsive. See https://www.chromestatus.com/feature/5745543795965952
+setup @ select2.min.js:2
+add @ jquery.min.js:2
+(anonymous) @ jquery-migrate.min.js:2
+e.<computed> @ jquery-migrate.min.js:2
+(anonymous) @ jquery.min.js:2
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+Le @ jquery.min.js:2
+on @ jquery.min.js:2
+onInit.fb @ jquery.fancybox.min.js:13
+dispatch @ jquery.min.js:2
+v.handle @ jquery.min.js:2
+trigger @ jquery.min.js:2
+(anonymous) @ jquery.min.js:2
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+trigger @ jquery.min.js:2
+trigger @ jquery.fancybox.min.js:12
+init @ jquery.fancybox.min.js:11
+b @ jquery.fancybox.min.js:11
+open @ jquery.fancybox.min.js:12
+(anonymous) @ script.js:237
+e @ jquery.min.js:2
+t @ jquery.min.js:2
+jquery.min.js:2 [Violation] Added non-passive event listener to a scroll-blocking 'touchstart' event. Consider marking event handler as 'passive' to make the page more responsive. See https://www.chromestatus.com/feature/5745543795965952
+add @ jquery.min.js:2
+(anonymous) @ jquery-migrate.min.js:2
+e.<computed> @ jquery-migrate.min.js:2
+(anonymous) @ jquery.min.js:2
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+Le @ jquery.min.js:2
+on @ jquery.min.js:2
+d @ jquery.fancybox.min.js:12
+(anonymous) @ jquery.fancybox.min.js:12
+dispatch @ jquery.min.js:2
+v.handle @ jquery.min.js:2
+trigger @ jquery.min.js:2
+(anonymous) @ jquery.min.js:2
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+trigger @ jquery.min.js:2
+trigger @ jquery.fancybox.min.js:12
+activate @ jquery.fancybox.min.js:11
+init @ jquery.fancybox.min.js:11
+b @ jquery.fancybox.min.js:11
+open @ jquery.fancybox.min.js:12
+(anonymous) @ script.js:237
+e @ jquery.min.js:2
+t @ jquery.min.js:2
+jquery.min.js:2 [Violation] 'setTimeout' handler took 62ms
+[Violation] Forced reflow while executing JavaScript took 41ms
+select2.min.js:2 [Violation] Added non-passive event listener to a scroll-blocking 'wheel' event. Consider marking event handler as 'passive' to make the page more responsive. See https://www.chromestatus.com/feature/5745543795965952
+setup @ select2.min.js:2
+add @ jquery.min.js:2
+(anonymous) @ jquery-migrate.min.js:2
+e.<computed> @ jquery-migrate.min.js:2
+(anonymous) @ jquery.min.js:2
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+Le @ jquery.min.js:2
+on @ jquery.min.js:2
+n.bind @ selectWoo.full.min.js:8
+o._bindAdapters @ selectWoo.full.min.js:8
+o @ selectWoo.full.min.js:8
+(anonymous) @ selectWoo.full.min.js:16
+each @ jquery.min.js:2
+each @ jquery.min.js:2
+e.fn.selectWoo @ selectWoo.full.min.js:16
+(anonymous) @ actions.js:84
+e @ jquery.min.js:2
+t @ jquery.min.js:2
+last-minute-booking-check.js:19 LAST-MINUTE CHECK: Script loaded - running initial check
+last-minute-booking-check.js:50 LAST-MINUTE CHECK: Current time is 19:47
+last-minute-booking-check.js:64 LAST-MINUTE CHECK: Pickup hour: 13
+last-minute-booking-check.js:65 LAST-MINUTE CHECK: Cutoff hour: 11
+last-minute-booking-check.js:66 LAST-MINUTE CHECK: Is past cutoff? true
+last-minute-booking-check.js:318 LAST-MINUTE CHECK: Adding hook for date selection
+calendar-initializer.js:6 Calendar initializer running...
+fallback-calendar.js:174 Initializing fallback calendar system
+fallback-calendar.js:178 Received dates for initialization: (3) ['2025-04-29', '2025-05-05', '2025-05-08']
+fallback-calendar.js:182 Using already formatted dates from rental-dates-handler
+fallback-calendar.js:191 Datepicker container not found, creating it
+initializeFallbackCalendar @ fallback-calendar.js:191
+(anonymous) @ calendar-initializer.js:30
+e @ jquery.min.js:2
+t @ jquery.min.js:2
+setTimeout
+(anonymous) @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+fire @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+ready @ jquery.min.js:2
+P @ jquery.min.js:2
+fallback-calendar.js:203 Container cleared, proceeding with initialization
+fallback-calendar.js:232 Disabled dates prepared successfully: (3) ['2025-04-29', '2025-05-05', '2025-05-08']
+fallback-calendar.js:267 Current hour: 19 / Cutoff hour: 11
+fallback-calendar.js:273 PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+fallback-calendar.js:281 Final disabled dates set: (4) ['2025-04-29', '2025-05-05', '2025-05-08', '2025-04-26']
+fallback-calendar.js:292 Generating calendar with month: 3 year: 2025
+fallback-calendar.js:433 Generating month calendar with month: 3 year: 2025
+fallback-calendar.js:483 Calendar successfully generated
+fallback-calendar.js:591 Setting up date selection handlers
+fallback-calendar.js:1743 Pickup time field not found, skipping initialization
+fallback-calendar.js:333 Fallback calendar initialization completed successfully
+calendar-initializer.js:31 Calendar initialized successfully
+calendar-test.js:6 Calendar test script running...
+calendar-test.js:10 Found datepicker container, initializing test...
+pickup-time-handler.js:11 Initializing Unified Pickup Time Handler
+pickup-time-handler.js:44 Pickup override from server: null
+pickup-time-handler.js:45 Default pickup hour: 11
+pickup-time-handler.js:46 Default pickup time: 11:00
+pickup-time-handler.js:151 Neutralizing conflicting pickup time force function
+pickup-time-handler.js:168 Cleared conflicting timeouts: (3) [1, 2, 3]
+pickup-time-handler.js:201 Setting default pickup time option: 11:00
+pickup-time-handler.js:218 After setting value, current pickup time is: 11:00
+checkout-fixes.js:6 Checkout fixes loaded
+last-minute-booking-check.js:76 LAST-MINUTE CHECK: Running check
+last-minute-booking-check.js:80 LAST-MINUTE CHECK: No dates selected, skipping check
+last-minute-booking-check.js:327 LAST-MINUTE CHECK: Past cutoff time, disabling today's cell
+actions.js:9 undefined
+calendar-test.js:15 SUCCESS: Calendar initialization function found!
+calendar-test.js:21 Calendar system is operational - no reinitialization needed
+ [Violation] Avoid using document.write(). https://developers.google.com/web/updates/2016/08/removing-document-write
+uid @ iframe-index.bundle.js:2
+ Pickup override from server: null
+ Default pickup hour: 11
+ Default pickup time: 11:00
+ Neutralizing conflicting pickup time force function
+ Cleared conflicting timeouts: (3) [1, 2, 3]
+ Setting default pickup time option: 11:00
+ After setting value, current pickup time is: 11:00
+ Checkbox clicked
+ [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://mitnafun.johnmogi.local/wp-content/plugins/woocommerce/assets/fonts/WooCommerce.woff2
+
+
+no datepicker with custom time
+(the spiderman product is set to 13.00 so all pickup hour should be in accordance
+
+<form name="checkout" method="post" class="checkout woocommerce-checkout" action="https://mitnafun.johnmogi.local/checkout/" novalidate="novalidate" style="position: static; zoom: 1;"><div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-checkout" bis_skin_checked="1"><div role="alert" bis_skin_checked="1"><ul class="woocommerce-error" tabindex="-1">
+			<li>
+			<strong>כמות המשתתפים</strong> is a required field.		</li>
+			<li>
+			<strong>Need to accept</strong> is a required field.		</li>
+			<li>
+			<strong>Need to accept</strong> is a required field.		</li>
+			<li data-id="billing_first_name"><a href="#billing_first_name">
+			<strong>חיוב שם פרטי</strong> הוא שדה חובה.		</a></li>
+			<li data-id="billing_last_name"><a href="#billing_last_name">
+			<strong>חיוב שם משפחה</strong> הוא שדה חובה.		</a></li>
+			<li data-id="billing_phone"><a href="#billing_phone">
+			<strong>חיוב טלפון</strong> הוא שדה חובה.		</a></li>
+			<li data-id="billing_email"><a href="#billing_email">
+			<strong>חיוב כתובת אימייל</strong> הוא שדה חובה.		</a></li>
+	</ul></div></div>
+            <div class="content" bis_skin_checked="1">
+                <div class="main" bis_skin_checked="1">
+                    <h3 class="title">איסוף עצמי</h3>
+                    <div class="form-wrap form-default" bis_skin_checked="1">
+                        <div class="input-wrap" bis_skin_checked="1">
+                            <input type="text" name="billing_first_name" id="name" placeholder="" required="">
+                            <label for="name">שם פרטי *</label>
+                        <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;" bis_skin_checked="1"></div></div>
+                        <div class="input-wrap" bis_skin_checked="1">
+                            <input type="text" name="billing_last_name" id="surname" placeholder="" required="">
+                            <label for="surname">שם משפחה *</label>
+                        </div>
+                        <div class="input-wrap" bis_skin_checked="1">
+                            <input type="email" name="billing_email" id="email" placeholder="example@gmail.com" required="">
+                            <label for="email">כתובת אימייל *</label>
+                        </div>
+                        <div class="input-wrap" bis_skin_checked="1">
+                            <input type="tel" name="billing_phone" id="tel" placeholder="" required="" class="tel">
+                            <label for="tel">מספר טלפון *</label>
+                        </div>
+                        <div class="input-wrap" bis_skin_checked="1">
+                            <input type="number" name="billing_guests" id="number" placeholder="10" required="">
+                            <label for="number">כמות המשתתפים *</label>
+                        </div>
+
+
+                                                <div class="input-wrap" bis_skin_checked="1">
+                            <label for="pickup_time">שעת איסוף *</label>
+                            <span class="woocommerce-input-wrapper">
+                                <div class="pickup-time-wrapper" bis_skin_checked="1"><select class="select select2-time select2-hidden-accessible" data-placeholder="שעת איסוף" name="order_comments" id="pickup_time" tabindex="-1" aria-hidden="true"><option value="8:00">8:00</option><option value="9:00">9:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="12:00">12:00</option><option value="13:00">13:00</option><option value="14:00">14:00</option><option value="15:00">15:00</option><option value="16:00">16:00</option></select><div class="pickup-time-notice" style="display: none;" bis_skin_checked="1"></div><div class="pickup-time-error" bis_skin_checked="1"></div></div><div class="business-hours-info" bis_skin_checked="1">
+            <strong>שעות פעילות:</strong><br>
+            ימי חול: false<br>
+            יום שישי: false
+        </div><span class="select2 select2-container select2-container--default" dir="rtl" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-pickup_time-container" role="combobox"><span class="select2-selection__rendered" id="select2-pickup_time-container" role="textbox" aria-readonly="true" title="11:00">11:00</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                            </span>
+                        </div>
+                        
+                        <div class="input-wrap-checked" bis_skin_checked="1">
+                            <input type="checkbox" name="billing_check" id="check" value="1">
+                            <label for="check">הנני מאשר כי קיבלתי לידי את התנאים הכלליים המצורפים על נספחיהם, אלה הוסברו לי ואני מסכים לתוכנם</label>
+                        </div>
+
+                        <div class="input-wrap-checked" style="margin-top: 20px;" bis_skin_checked="1">
+                            <input type="checkbox" name="billing_check2" id="check2" value="1">
+                            <label for="check2">החזרת המוצר תעשה עד 10:00 בבוקר למחרת יום ההשכרה, למעט השכרות בסוף השבוע בהן יוחזר המוצר ביום ראשון.</label>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                        <div class="shop_table woocommerce-checkout-review-order-table" bis_skin_checked="1">
+    
+                <div class="cart_item" data-cart_item_key="bf22750732d7cb66d1bc9ca10a5d2196" data-rental_dates="01.05.2025 - 04.05.2025" bis_skin_checked="1">
+                <!-- <div class="mitnafun-debug-dates" style="color:red;background:#fee;padding:5px;margin-bottom:5px;">
+                    Debug rental_dates: <php echo isset( $cart_item['rental_dates'] ) ? esc_html( $cart_item['rental_dates'] ) : 'none'; >
+                </div> -->
+                <div class="product-name" bis_skin_checked="1"><div class="remove-item-wrapper" bis_skin_checked="1"><a href="#" class="remove-item" data-cart_item_key="bf22750732d7cb66d1bc9ca10a5d2196" title="הסר פריט"><span>×</span></a></div>
+                    אנה ואלזה 4X3.5                     <strong class="product-quantity">×&nbsp;1</strong>                    <dl class="variation">
+			<dt class="variation-">תאריכי השכרה:</dt>
+		<dd class="variation-"><p>01.05.2025 - 04.05.2025</p>
+</dd>
+	</dl>
+                                    </div>
+                <div class="product-total" bis_skin_checked="1">
+                    <span class="woocommerce-Price-amount amount"><bdi>1,780.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span><div class="mitnafun-breakdown" bis_skin_checked="1"><div class="breakdown-toggle" bis_skin_checked="1">פירוט תמחור <span class="toggle-icon">+</span></div><div class="breakdown-content" style="display:none;" bis_skin_checked="1"><p><strong>פירוט תמחור לתקופת השכירות:</strong></p><ul><li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>520.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li><li>3 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>1,260.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (100 ₪ הנחה)</li></ul><p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>1,780.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>300.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p></div></div>                </div>
+            </div>
+                        <div class="cart_item" data-cart_item_key="f47b8774dcb413e5e61d5922b83b9abf" data-rental_dates="29.05.2025 - 30.05.2025" bis_skin_checked="1">
+                <!-- <div class="mitnafun-debug-dates" style="color:red;background:#fee;padding:5px;margin-bottom:5px;">
+                    Debug rental_dates: <php echo isset( $cart_item['rental_dates'] ) ? esc_html( $cart_item['rental_dates'] ) : 'none'; >
+                </div> -->
+                <div class="product-name" bis_skin_checked="1"><div class="remove-item-wrapper" bis_skin_checked="1"><a href="#" class="remove-item" data-cart_item_key="f47b8774dcb413e5e61d5922b83b9abf" title="הסר פריט"><span>×</span></a></div>
+                    ספיידרמן                     <strong class="product-quantity">×&nbsp;1</strong>                    <dl class="variation">
+			<dt class="variation-">תאריכי השכרה:</dt>
+		<dd class="variation-"><p>29.05.2025 - 30.05.2025</p>
+</dd>
+	</dl>
+                                    </div>
+                <div class="product-total" bis_skin_checked="1">
+                    <span class="woocommerce-Price-amount amount"><bdi>825.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span><div class="mitnafun-breakdown" bis_skin_checked="1"><div class="breakdown-toggle" bis_skin_checked="1">פירוט תמחור <span class="toggle-icon">+</span></div><div class="breakdown-content" style="display:none;" bis_skin_checked="1"><p><strong>פירוט תמחור לתקופת השכירות:</strong></p><ul><li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li><li>1 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>275.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (50% הנחה)</li></ul><p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>825.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>275.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p></div></div>                </div>
+            </div>
+                        <div class="cart_item" data-cart_item_key="d0532a6bddab7110516a89ad55948770" data-rental_dates="30.04.2025 - 02.05.2025" bis_skin_checked="1">
+                <!-- <div class="mitnafun-debug-dates" style="color:red;background:#fee;padding:5px;margin-bottom:5px;">
+                    Debug rental_dates: <php echo isset( $cart_item['rental_dates'] ) ? esc_html( $cart_item['rental_dates'] ) : 'none'; >
+                </div> -->
+                <div class="product-name" bis_skin_checked="1"><div class="remove-item-wrapper" bis_skin_checked="1"><a href="#" class="remove-item" data-cart_item_key="d0532a6bddab7110516a89ad55948770" title="הסר פריט"><span>×</span></a></div>
+                    ספיידרמן                     <strong class="product-quantity">×&nbsp;1</strong>                    <dl class="variation">
+			<dt class="variation-">תאריכי השכרה:</dt>
+		<dd class="variation-"><p>30.04.2025 - 02.05.2025</p>
+</dd>
+	</dl>
+                                    </div>
+                <div class="product-total" bis_skin_checked="1">
+                    <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span><div class="mitnafun-breakdown" bis_skin_checked="1"><div class="breakdown-toggle" bis_skin_checked="1">פירוט תמחור <span class="toggle-icon">+</span></div><div class="breakdown-content" style="display:none;" bis_skin_checked="1"><p><strong>פירוט תמחור לתקופת השכירות:</strong></p><ul><li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li><li>2 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (50% הנחה)</li></ul><p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p></div></div>                </div>
+            </div>
+                        <div class="cart_item" data-cart_item_key="123063559394eb73b88a5ba811d760c8" data-rental_dates="22.05.2025 - 26.05.2025" bis_skin_checked="1">
+                <!-- <div class="mitnafun-debug-dates" style="color:red;background:#fee;padding:5px;margin-bottom:5px;">
+                    Debug rental_dates: <php echo isset( $cart_item['rental_dates'] ) ? esc_html( $cart_item['rental_dates'] ) : 'none'; >
+                </div> -->
+                <div class="product-name" bis_skin_checked="1"><div class="remove-item-wrapper" bis_skin_checked="1"><a href="#" class="remove-item" data-cart_item_key="123063559394eb73b88a5ba811d760c8" title="הסר פריט"><span>×</span></a></div>
+                    אנה ואלזה 4X3.5                     <strong class="product-quantity">×&nbsp;1</strong>                    <dl class="variation">
+			<dt class="variation-">תאריכי השכרה:</dt>
+		<dd class="variation-"><p>22.05.2025 - 26.05.2025</p>
+</dd>
+	</dl>
+                                    </div>
+                <div class="product-total" bis_skin_checked="1">
+                    <span class="woocommerce-Price-amount amount"><bdi>2,200.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span><div class="mitnafun-breakdown" bis_skin_checked="1"><div class="breakdown-toggle" bis_skin_checked="1">פירוט תמחור <span class="toggle-icon">+</span></div><div class="breakdown-content" style="display:none;" bis_skin_checked="1"><p><strong>פירוט תמחור לתקופת השכירות:</strong></p><ul><li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>520.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li><li>4 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>1,680.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (100 ₪ הנחה)</li></ul><p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>2,200.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>400.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p></div></div>                </div>
+            </div>
+            
+    
+    <div class="cart-subtotal" bis_skin_checked="1">
+        <div bis_skin_checked="1">סכום ביניים</div>
+        <div bis_skin_checked="1"><span class="woocommerce-Price-amount amount"><bdi>5,905.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></div>
+    </div>
+
+    
+                    
+
+	
+					<ul id="shipping_method" class="woocommerce-shipping-methods">
+									<li>
+						<input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0_local_pickup1" value="local_pickup:1" class="shipping_method">					</li>
+							</ul>
+						
+		
+			
+
+            
+    
+    
+    
+    <div class="order-total" bis_skin_checked="1">
+        <div bis_skin_checked="1">סה"כ</div>
+        <div bis_skin_checked="1"><span class="woocommerce-Price-amount amount"><bdi>5,905.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></div>
+    </div>
+
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.woocommerce-checkout-review-order-table .cart_item').forEach(function(el) {
+        console.log('MITNAFUN FRONTEND DEBUG:', {
+            key: el.getAttribute('data-cart_item_key'),
+            rental_dates: el.getAttribute('data-rental_dates'),
+            price: el.querySelector('.product-total').innerText.trim()
+        });
+    });
+});
+</script>
+
+<style>
+.pickup-time-info {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f7f7f7;
+    border-radius: 4px;
+}
+</style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.woocommerce-checkout-review-order-table .cart_item').forEach(function(el) {
+        console.log('MITNAFUN FRONTEND DEBUG:', {
+            key: el.getAttribute('data-cart_item_key'),
+            rental_dates: el.getAttribute('data-rental_dates'),
+            price: el.querySelector('.product-total').innerText.trim()
+        });
+    });
+});
+</script>
+
+<style>
+.pickup-time-info {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f7f7f7;
+    border-radius: 4px;
+}
+</style>
+
+            </div>
+
+
+            <div class="content" bis_skin_checked="1">
+                <div class="main" bis_skin_checked="1">
+
+                    <h3 class="title">אולי תאהב/י גם...</h3>
+                    <div class="category" bis_skin_checked="1">
+	<div class="cross-sells content" bis_skin_checked="1">
+
+            
+
+			
+				
+<div class="item" bis_skin_checked="1">
+    <figure>
+        <a href="https://mitnafun.johnmogi.local/product/%d7%9e%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%a7%d7%98%d7%a0%d7%98%d7%a0%d7%99%d7%9d/">
+            <img fetchpriority="high" decoding="async" width="806" height="473" src="https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-14.png" class="attachment-large size-large" alt="" srcset="https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-14.png 806w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-14-600x352.png 600w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-14-300x176.png 300w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-14-768x451.png 768w" sizes="(max-width: 806px) 100vw, 806px">        </a>
+    </figure>
+    <div class="text" bis_skin_checked="1">
+        <h6 class="title"><a href="https://mitnafun.johnmogi.local/product/%d7%9e%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%a7%d7%98%d7%a0%d7%98%d7%a0%d7%99%d7%9d/">ממלכת הקטנטנים</a></h6>
+        <ul>
+            <li>
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi>380.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></span><div class="rental-dates-label" bis_skin_checked="1">תאריכי השכרה</div><div id="datepicker-container" class="fallback-datepicker-container" bis_skin_checked="1"><div class="fallback-calendar" bis_skin_checked="1"><div class="month-header" bis_skin_checked="1">
+                <div class="month-year" bis_skin_checked="1">אפריל 2025</div>
+                <button id="prevMonthBtn" class="nav-btn">&lt;</button>
+                <button id="nextMonthBtn" class="nav-btn">&gt;</button>
+            </div><div class="calendar-days-header" bis_skin_checked="1"><div class="day-name" bis_skin_checked="1">א</div><div class="day-name" bis_skin_checked="1">ב</div><div class="day-name" bis_skin_checked="1">ג</div><div class="day-name" bis_skin_checked="1">ד</div><div class="day-name" bis_skin_checked="1">ה</div><div class="day-name" bis_skin_checked="1">ו</div><div class="day-name" bis_skin_checked="1">ש</div></div><div class="calendar-days" bis_skin_checked="1"><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell" data-date="2025-04-01" data-selectable="true" bis_skin_checked="1">1</div><div class="day-cell" data-date="2025-04-02" data-selectable="true" bis_skin_checked="1">2</div><div class="day-cell" data-date="2025-04-03" data-selectable="true" bis_skin_checked="1">3</div><div class="day-cell" data-date="2025-04-04" data-selectable="true" bis_skin_checked="1">4</div><div class="day-cell weekend" data-date="2025-04-05" data-selectable="true" bis_skin_checked="1">5</div><div class="day-cell" data-date="2025-04-06" data-selectable="true" bis_skin_checked="1">6</div><div class="day-cell" data-date="2025-04-07" data-selectable="true" bis_skin_checked="1">7</div><div class="day-cell" data-date="2025-04-08" data-selectable="true" bis_skin_checked="1">8</div><div class="day-cell" data-date="2025-04-09" data-selectable="true" bis_skin_checked="1">9</div><div class="day-cell" data-date="2025-04-10" data-selectable="true" bis_skin_checked="1">10</div><div class="day-cell" data-date="2025-04-11" data-selectable="true" bis_skin_checked="1">11</div><div class="day-cell weekend" data-date="2025-04-12" data-selectable="true" bis_skin_checked="1">12</div><div class="day-cell" data-date="2025-04-13" data-selectable="true" bis_skin_checked="1">13</div><div class="day-cell" data-date="2025-04-14" data-selectable="true" bis_skin_checked="1">14</div><div class="day-cell" data-date="2025-04-15" data-selectable="true" bis_skin_checked="1">15</div><div class="day-cell" data-date="2025-04-16" data-selectable="true" bis_skin_checked="1">16</div><div class="day-cell" data-date="2025-04-17" data-selectable="true" bis_skin_checked="1">17</div><div class="day-cell" data-date="2025-04-18" data-selectable="true" bis_skin_checked="1">18</div><div class="day-cell weekend" data-date="2025-04-19" data-selectable="true" bis_skin_checked="1">19</div><div class="day-cell" data-date="2025-04-20" data-selectable="true" bis_skin_checked="1">20</div><div class="day-cell" data-date="2025-04-21" data-selectable="true" bis_skin_checked="1">21</div><div class="day-cell" data-date="2025-04-22" data-selectable="true" bis_skin_checked="1">22</div><div class="day-cell" data-date="2025-04-23" data-selectable="true" bis_skin_checked="1">23</div><div class="day-cell" data-date="2025-04-24" data-selectable="true" bis_skin_checked="1">24</div><div class="day-cell" data-date="2025-04-25" data-selectable="true" bis_skin_checked="1">25</div><div class="day-cell weekend disabled today" data-date="2025-04-26" data-selectable="false" bis_skin_checked="1">26</div><div class="day-cell" data-date="2025-04-27" data-selectable="true" bis_skin_checked="1">27</div><div class="day-cell" data-date="2025-04-28" data-selectable="true" bis_skin_checked="1">28</div><div class="day-cell disabled" data-date="2025-04-29" data-selectable="false" bis_skin_checked="1">29</div><div class="day-cell" data-date="2025-04-30" data-selectable="true" bis_skin_checked="1">30</div></div><div class="calendar-legend" bis_skin_checked="1">
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color available"></span> פנוי</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color disabled"></span> תפוס</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color weekend"></span> שבת (סגור)</div>
+            </div></div></div>
+</li>
+            <li>24 שע'</li>
+        </ul>
+        <div class="btn-wrap" bis_skin_checked="1">
+            <a href="https://mitnafun.johnmogi.local/product/%d7%9e%d7%9e%d7%9c%d7%9b%d7%aa-%d7%94%d7%a7%d7%98%d7%a0%d7%98%d7%a0%d7%99%d7%9d/" class="btn-default btn-blue btn-mini">פרטים נוספים</a>
+        </div>
+    </div>
+</div>
+
+
+
+			
+				
+<div class="item" bis_skin_checked="1">
+    <figure>
+        <a href="https://mitnafun.johnmogi.local/product/%d7%a4%d7%90%d7%a8%d7%a7-%d7%9e%d7%99%d7%9d-%d7%a2%d7%a0%d7%a7/">
+            <img decoding="async" width="610" height="431" src="https://mitnafun.johnmogi.local/wp-content/uploads/2024/03/365f45_868ad3d3393f4675a8b0549532378952mv2.jpg" class="attachment-large size-large" alt="" srcset="https://mitnafun.johnmogi.local/wp-content/uploads/2024/03/365f45_868ad3d3393f4675a8b0549532378952mv2.jpg 610w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/03/365f45_868ad3d3393f4675a8b0549532378952mv2-600x424.jpg 600w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/03/365f45_868ad3d3393f4675a8b0549532378952mv2-300x212.jpg 300w" sizes="(max-width: 610px) 100vw, 610px">        </a>
+    </figure>
+    <div class="text" bis_skin_checked="1">
+        <h6 class="title"><a href="https://mitnafun.johnmogi.local/product/%d7%a4%d7%90%d7%a8%d7%a7-%d7%9e%d7%99%d7%9d-%d7%a2%d7%a0%d7%a7/">פארק מים ענק</a></h6>
+        <ul>
+            <li>
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi>3,400.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></span><div id="datepicker-container" class="fallback-datepicker-container" bis_skin_checked="1"></div>
+</li>
+            <li>24 שע'</li>
+        </ul>
+        <div class="btn-wrap" bis_skin_checked="1">
+            <a href="https://mitnafun.johnmogi.local/product/%d7%a4%d7%90%d7%a8%d7%a7-%d7%9e%d7%99%d7%9d-%d7%a2%d7%a0%d7%a7/" class="btn-default btn-blue btn-mini">פרטים נוספים</a>
+        </div>
+    </div>
+</div>
+
+
+
+			
+				
+<div class="item" bis_skin_checked="1">
+    <figure>
+        <a href="https://mitnafun.johnmogi.local/product/%d7%92%d7%a0%d7%a8%d7%98%d7%95%d7%a8-3500-lu/">
+            <img decoding="async" width="949" height="744" src="https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-32.png" class="attachment-large size-large" alt="" srcset="https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-32.png 949w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-32-600x470.png 600w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-32-300x235.png 300w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-32-768x602.png 768w" sizes="(max-width: 949px) 100vw, 949px">        </a>
+    </figure>
+    <div class="text" bis_skin_checked="1">
+        <h6 class="title"><a href="https://mitnafun.johnmogi.local/product/%d7%92%d7%a0%d7%a8%d7%98%d7%95%d7%a8-3500-lu/">גנרטור 3500 -LU</a></h6>
+        <ul>
+            <li>
+	<span class="price"><span class="woocommerce-Price-amount amount"><bdi>250.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></span><div id="datepicker-container" class="fallback-datepicker-container" bis_skin_checked="1"></div>
+</li>
+            <li>24 שע'</li>
+        </ul>
+        <div class="btn-wrap" bis_skin_checked="1">
+            <a href="https://mitnafun.johnmogi.local/product/%d7%92%d7%a0%d7%a8%d7%98%d7%95%d7%a8-3500-lu/" class="btn-default btn-blue btn-mini">פרטים נוספים</a>
+        </div>
+    </div>
+</div>
+
+
+
+			
+            	</div>
+	</div>
+                </div>
+                <div class="aside" bis_skin_checked="1">
+                    <h3 class="title">תשלום</h3>
+                    <div id="payment" class="woocommerce-checkout-payment" bis_skin_checked="1">
+			<ul class="wc_payment_methods payment_methods methods">
+			<li class="wc_payment_method payment_method_cod">
+	<input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" checked="checked" data-order_button_text="" style="display: none;">
+
+	<label for="payment_method_cod">
+		Cash on delivery 	</label>
+			<div class="payment_box payment_method_cod" bis_skin_checked="1">
+			<p>Pay with cash upon delivery.</p>
+		</div>
+	</li>
+		</ul>
+		<div class="form-row place-order" bis_skin_checked="1">
+		<noscript>
+			הדפדפן אינו תומך ב JavaScript, או שהוא מכובה, נא לוודא שאתה לוחץ על <em>עדכן סכום</em> לפני ביצוע ההזמנה. אתה עשוי להיות מחויב יותר מהסכום האמור לעיל, אם לא תצליח לעשות זאת.			<br/><button type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="עדכן סכום">עדכן סכום</button>
+		</noscript>
+
+			<div class="woocommerce-terms-and-conditions-wrapper" bis_skin_checked="1">
+		<div class="woocommerce-privacy-policy-text" bis_skin_checked="1"><p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="https://mitnafun.johnmogi.local/privacy-policy/" class="woocommerce-privacy-policy-link" target="_blank">מדיניות פרטיות</a>.</p>
+</div>
+			</div>
+	
+		
+		<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="שליחת הזמנה" data-value="שליחת הזמנה">שליחת הזמנה</button>
+		
+		<input type="hidden" id="woocommerce-process-checkout-nonce" name="woocommerce-process-checkout-nonce" value="48a7056e75"><input type="hidden" name="_wp_http_referer" value="/?wc-ajax=update_order_review">	</div>
+</div>
+
+                </div>
+            </div>
+        </form>
+
+        Need to accept is a required field.
+Need to accept is a required field.
+
+fallback-calendar.js:191 Datepicker container not found, creating it
+initializeFallbackCalendar	@	fallback-calendar.js:191
+(anonymous)	@	calendar-initializer.js:30
+e	@	jquery.min.js:2
+t	@	jquery.min.js:2
+setTimeout		
+(anonymous)	@	jquery.min.js:2
+c	@	jquery.min.js:2
+fireWith	@	jquery.min.js:2
+fire	@	jquery.min.js:2
+c	@	jquery.min.js:2
+fireWith	@	jquery.min.js:2
+ready	@	jquery.min.js:2
+P	@	jquery.min.js:2
+

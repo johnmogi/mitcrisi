@@ -1,0 +1,289 @@
+/**
+ * Mitnafun Price Calculator - Discount Functionality
+ * 
+ * This file contains the extracted discount calculation functionality from the
+ * original working implementation. It's implemented as a standalone module
+ * that can be integrated with the existing date picker without disruption.
+ */
+
+(function($) {
+    'use strict';
+
+    // Store our global variables
+    window.mitnafunPriceCalc = {
+        basePrice: 0,
+        discountType: 'percentage',  // Default is percentage
+        discountValue: 50,           // Default is 50%
+        maxRentalDays: 14            // Default max rental days
+    };
+
+    /**
+     * Initialize the price calculator by setting up required event listeners and initialization
+     */
+    function initPriceCalculator() {
+        console.log('🔥 Price Calculator initializing');
+
+        // Get values from global scope if they exist
+        if (typeof window.basePrice !== 'undefined') window.mitnafunPriceCalc.basePrice = window.basePrice;
+        if (typeof window.discountType !== 'undefined') window.mitnafunPriceCalc.discountType = window.discountType;
+        if (typeof window.discountValue !== 'undefined') window.mitnafunPriceCalc.discountValue = window.discountValue;
+        if (typeof window.maxRentalDays !== 'undefined') window.mitnafunPriceCalc.maxRentalDays = window.maxRentalDays;
+
+        console.log('🔥 Price Calculator using values:', {
+            basePrice: window.mitnafunPriceCalc.basePrice,
+            discountType: window.mitnafunPriceCalc.discountType,
+            discountValue: window.mitnafunPriceCalc.discountValue
+        });
+
+        // Listen for date validation message appearing
+        // This is the specific trigger we need from the fallback calendar
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    const displayStyle = $('#date-validation-message').css('display');
+                    if (displayStyle === 'block') {
+                        console.log('🔥 Date validation message is visible, updating price');
+                        updatePriceFromRentalFields();
+                    }
+                }
+            });
+        });
+
+        // Start observing the validation message for display changes
+        const validationMsg = document.getElementById('date-validation-message');
+        if (validationMsg) {
+            observer.observe(validationMsg, { attributes: true });
+            console.log('🔥 Observer attached to validation message');
+        }
+
+        // Listen for the rental_days hidden field change
+        // This is the field the fallback calendar updates with the correct number of billable days
+        $(document).on('change', '#rental_days', function() {
+            console.log('🔥 Rental days changed to:', $(this).val());
+            updatePriceFromRentalFields();
+        });
+
+        // Also listen for direct changes to rental_dates field
+        $('#rental_dates').on('change', function() {
+            console.log('🔥 Rental dates changed to:', $(this).val());
+            updatePriceFromRentalFields();
+        });
+
+        // Listen for calculated_total_price changes (fallback system updates this)
+        $(document).on('change', '#calculated_total_price', function() {
+            console.log('🔥 System calculated price:', $(this).val());
+        });
+
+        // Also listen for the clear date selection link
+        $(document).on('click', '#clear-date-selection', function(e) {
+            console.log('🔥 Date selection cleared');
+            $('.mitnafun-breakdown').remove();
+        });
+
+        // Hook directly into the fallback calendar's date validation code
+        if (typeof window.originalConfirmSelectedDates === 'undefined' && 
+            typeof window.confirmSelectedDates === 'function') {
+            
+            window.originalConfirmSelectedDates = window.confirmSelectedDates;
+            window.confirmSelectedDates = function() {
+                console.log('🔥 Date selection confirmed - intercept');
+                const result = window.originalConfirmSelectedDates.apply(this, arguments);
+                
+                // After the original function runs, trigger our price calculation
+                setTimeout(function() {
+                    updatePriceFromRentalFields();
+                }, 100);
+                
+                return result;
+            };
+            console.log('🔥 Successfully hooked into confirmSelectedDates function');
+        }
+
+        // Try immediate calculation in case dates are already selected
+        setTimeout(function() {
+            if ($('#rental_dates').val()) {
+                console.log('🔥 Initial calculation for existing dates');
+                updatePriceFromRentalFields();
+            }
+        }, 500);
+    }
+    
+    /**
+     * Get data from the rental fields and trigger price breakdown calculation
+     */
+    function updatePriceFromRentalFields() {
+        // Get values directly from the calendar system fields
+        const rentalDays = parseInt($('#rental_days').val(), 10);
+        const basePrice = window.mitnafunPriceCalc.basePrice || parseFloat(window.basePrice) || 0;
+        const discountType = window.mitnafunPriceCalc.discountType || window.discountType || 'percentage';
+        const discountValue = window.mitnafunPriceCalc.discountValue || window.discountValue || 50;
+        
+        console.log('🔥 Update price breakdown with:', { rentalDays, basePrice, discountType, discountValue });
+        
+        // Only proceed if we have valid rental days
+        if (rentalDays && !isNaN(rentalDays) && basePrice) {
+            // Call the price breakdown function with our values
+            updatePriceBreakdown(basePrice, rentalDays, discountType, discountValue);
+        } else {
+            console.log('🔥 Missing required values for price calculation', { rentalDays, basePrice });
+        }
+    }
+
+    /**
+     * Helper function to parse date strings in DD.MM.YYYY format
+     */
+    function parseDate(dateStr) {
+        if (!dateStr) return null;
+        
+        const parts = dateStr.split('.');
+        if (parts.length !== 3) return null;
+        
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1; // JS months are 0-based
+        const year = parseInt(parts[2], 10);
+        
+        return new Date(year, month, day);
+    }
+
+    /**
+     * Update the price breakdown display based on the selected rental period
+     */
+    function updatePriceBreakdown(basePrice, totalDays, discountType, discountValue) {
+        console.log('Price calculation parameters:', {
+            basePrice, 
+            totalDays, 
+            discountType, 
+            discountValue
+        });
+        
+        if (!basePrice || isNaN(basePrice)) {
+            console.error('Invalid basePrice:', basePrice);
+            // Try to get basePrice from the DOM
+            try {
+                const priceTxt = $('.woocommerce-Price-amount').first().text().trim();
+                basePrice = parseFloat(priceTxt.replace(/[^0-9.,]/g, '').replace(',', '.'));
+                console.log('Retrieved basePrice from DOM:', basePrice);
+            } catch (e) {
+                console.error('Failed to get basePrice from DOM:', e);
+                return;
+            }
+        }
+        
+        const $priceBreakdownList = $('#price-breakdown-list');
+        const $priceBreakdownTotal = $('#price-breakdown-total');
+        
+        // Clear existing list
+        $priceBreakdownList.empty();
+        
+        // Calculate prices
+        let additionalDaysPrice = 0;
+        let savings = 0;
+        let totalPrice = basePrice; // First day is always full price
+        
+        // If more than one day, calculate additional days with discount
+        if (totalDays > 1) {
+            const additionalDays = totalDays - 1;
+            
+            // Calculate based on discount type
+            if (discountType === 'percentage') {
+                // Calculate discounted price for additional days
+                const discountedDailyRate = basePrice * (1 - (discountValue / 100));
+                additionalDaysPrice = discountedDailyRate * additionalDays;
+                
+                // Calculate savings (what full price would have been minus actual price)
+                savings = (basePrice * additionalDays) - additionalDaysPrice;
+            } else {
+                // Fixed discount
+                const discountedDailyRate = Math.max(0, basePrice - discountValue);
+                additionalDaysPrice = discountedDailyRate * additionalDays;
+                
+                // Calculate savings (what full price would have been minus actual price)
+                savings = (basePrice * additionalDays) - additionalDaysPrice;
+            }
+            
+            // Add to total price
+            totalPrice += additionalDaysPrice;
+        }
+        
+        // Ensure values are properly rounded for display
+        totalPrice = Math.round(totalPrice * 100) / 100;
+        additionalDaysPrice = Math.round(additionalDaysPrice * 100) / 100;
+        savings = Math.round(savings * 100) / 100;
+        
+        // Format the discount label
+        const discountLabel = (discountType === 'percentage') 
+            ? discountValue + '% הנחה' 
+            : discountValue + ' ₪ הנחה';
+        
+        // Format price with Hebrew currency formatter
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('he-IL', { 
+                style: 'currency', 
+                currency: 'ILS',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+        
+        // Create a direct HTML insertion with improved styling
+        const directHtml = `
+        <div class="mitnafun-breakdown" style="border: 1px solid #ddd; padding: 15px; margin: 15px 0; background-color: #f9f9f9; border-radius: 4px;">
+            <p style="font-weight: bold; margin-bottom: 10px; font-size: 16px;">פירוט תמחור לתקופת השכירה:</p>
+        </div>
+    </div>
+    `;
+    
+    // Remove any existing direct breakdowns first
+    $('.mitnafun-breakdown').remove();
+    
+    // Insert the price breakdown
+    if ($('.woocommerce-Price-amount').length) {
+        $('.woocommerce-Price-amount').first().closest('.price').after(directHtml);
+    } else if ($('form.cart').length) {
+        $('form.cart').before(directHtml);
+            $('.cart').before(directHtml);
+        }
+        
+        // Also update the cart quantity to match rental days
+        if (totalDays > 0) {
+            $('[name="quantity"]').val(totalDays).trigger('change');
+        }
+        
+        // Set the total price in a hidden field for cart processing
+        if ($('#rental_price').length === 0) {
+            $('<input>').attr({
+                type: 'hidden',
+                id: 'rental_price',
+                name: 'rental_price',
+                value: totalPrice
+            }).appendTo('.cart');
+        } else {
+            $('#rental_price').val(totalPrice);
+        }
+
+        // Return calculated values for potential later use
+        return {
+            totalPrice: totalPrice,
+            savings: savings,
+            additionalDaysPrice: additionalDaysPrice
+        };
+    }
+
+    // Expose functions for external use
+    window.mitnafunUpdatePricing = updatePriceBreakdown;
+    
+    // Initialize on document ready
+    $(document).ready(function() {
+        initPriceCalculator();
+        
+        // Try initializing from product data if available
+        setTimeout(function() {
+            // Force an update once after a delay to catch any dynamic values
+            const baseP = window.mitnafunPriceCalc.basePrice || $('.woocommerce-Price-amount').first().text().trim().replace(/[^0-9.,]/g, '').replace(',', '.');
+            if ($('#rental_dates').val() && baseP) {
+                $('#rental_dates').trigger('change');
+            }
+        }, 1000);
+    });
+
+})(jQuery);

@@ -1,0 +1,376 @@
+/**
+ * Mitnafun Calendar System Styles
+ * Modern implementation with Flatpickr integration
+ * Supports RTL/Hebrew and Airbnb-style date selection
+ */
+
+/* Calendar Container */
+.mitnafun-calendar-container {
+    margin-bottom: 20px;
+    direction: rtl;
+}
+
+/* Flatpickr Overrides */
+.flatpickr-calendar {
+    direction: rtl;
+    font-family: 'Assistant', sans-serif;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+.flatpickr-months {
+    position: relative;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+}
+
+.flatpickr-month {
+    background: transparent;
+    color: #484848;
+    height: 60px;
+}
+
+.flatpickr-current-month {
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.flatpickr-weekdays {
+    background: #f8f8f8;
+    padding: 8px 0;
+}
+
+.flatpickr-weekday {
+    color: #555;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.flatpickr-day {
+    border-radius: 0 !important;
+    transition: all 0.2s ease;
+    margin: 2px 0;
+    height: 38px;
+    line-height: 38px;
+    color: #484848;
+}
+
+.flatpickr-day:hover {
+    background: #f0f0f0;
+}
+
+/* Start date styling */
+.flatpickr-day.selected.startRange {
+    border-radius: 8px 0 0 8px !important;
+    background: linear-gradient(135deg, #5c9ce6, #4a7aff);
+    box-shadow: 0 2px 5px rgba(74, 122, 255, 0.3);
+    color: white;
+    font-weight: bold;
+}
+
+/* End date styling */
+.flatpickr-day.selected.endRange {
+    border-radius: 0 8px 8px 0 !important;
+    background: linear-gradient(135deg, #5c9ce6, #4a7aff);
+    box-shadow: 0 2px 5px rgba(74, 122, 255, 0.3);
+    color: white;
+    font-weight: bold;
+}
+
+/* In-range styling */
+.flatpickr-day.inRange {
+    background-color: rgba(74, 122, 255, 0.2) !important;
+    box-shadow: none !important;
+    color: #333;
+}
+
+/* Disabled dates */
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+    color: #ccc;
+}
+
+.flatpickr-day.flatpickr-disabled.reserved,
+.flatpickr-day.flatpickr-disabled.reserved:hover {
+    background-color: #ffebee;
+    color: #ff5252;
+    text-decoration: line-through;
+}
+
+/* Saturday (Shabbat) styling */
+.flatpickr-day.flatpickr-disabled.shabbat,
+.flatpickr-day.flatpickr-disabled.shabbat:hover {
+    background-color: #f5f5f5;
+    color: #999;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .flatpickr-calendar {
+        max-width: 100%;
+    }
+}
+
+/* Calendar legend */
+.calendar-legend {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    border-radius: 3px;
+}
+
+.legend-color.available {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.legend-color.reserved {
+    background-color: #FF5A5A;
+}
+
+.legend-color.selected {
+    background-color: #4a7aff;
+}
+
+.legend-color.shabbat {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+/* Buttons */
+.mitnafun-calendar-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.reset-dates-btn {
+    background-color: #f5f5f5;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.reset-dates-btn:hover {
+    background-color: #eee;
+}
+
+.confirm-dates-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.confirm-dates-btn:hover {
+    background-color: #3d9140;
+}
+
+/* Validation messages */
+.validation-message {
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+    font-size: 0.95em;
+    position: relative;
+    display: none;
+}
+
+.validation-message.error {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2;
+}
+
+.validation-message.success {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    border: 1px solid #c8e6c9;
+}
+
+.validation-message.info {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #bbdefb;
+}
+
+/* Price breakdown */
+.price-breakdown-container {
+    margin: 20px 0;
+    display: none;
+}
+
+.mitnafun-breakdown {
+    border: 1px solid #e3d0c3;
+    border-radius: 10px;
+    padding: 18px;
+    background-color: #fff8f0;
+}
+
+.mitnafun-breakdown p {
+    margin: 0 0 10px 0;
+}
+
+.mitnafun-breakdown ul {
+    list-style: none;
+    padding-right: 15px;
+    margin: 0 0 15px 0;
+}
+
+.mitnafun-breakdown li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.mitnafun-breakdown .total-price {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 10px 0 0 0;
+    color: #d35400;
+}
+
+/* Fix pickup time styling */
+.pickup-time-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-bottom: 15px;
+}
+
+.pickup-time-wrapper label {
+    z-index: 9;
+    position: relative;
+    background: white;
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+.select2-container {
+    z-index: 11;
+    width: 100% !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 40px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 38px;
+}
+
+.pickup-time-row {
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Return time row styles */
+.return-time-row {
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Return conditions notice */
+.return-conditions-notice {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #fff8e5; 
+    border: 1px solid #ffb74d;
+    border-radius: 6px;
+}
+
+.return-conditions-notice strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #e65100;
+}
+
+.return-conditions-notice ul {
+    margin: 0;
+    padding-right: 20px;
+}
+
+.return-conditions-notice li {
+    margin-bottom: 6px;
+}
+
+/* Fix RTL issues with Select2 */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    left: 1px;
+    right: auto;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    text-align: right;
+}
+
+/* Loading indicator */
+.calendar-loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.calendar-loading svg {
+    width: 40px;
+    height: 40px;
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .mitnafun-calendar-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .confirm-dates-btn {
+        width: 100%;
+    }
+    
+    .reset-dates-btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,202 @@
+ok there are critical issues
+<button type="submit" name="add-to-cart" value="471" class="single_add_to_cart_button btn-redirect btn-default btn-yellow btn-mini disabled" disabled="" aria-disabled="true">הזמן</button>
+ button on the product page does not send to the checkout
+
+
+ on the checkout <div class="shop_table woocommerce-checkout-review-order-table" bis_skin_checked="1">
+    
+                <div class="cart_item" data-cart_item_key="afac6910e76663d58f02ad0f0f80e8cd" data-rental_dates="27.04.2025 - 29.04.2025" bis_skin_checked="1">
+                <!-- <div class="mitnafun-debug-dates" style="color:red;background:#fee;padding:5px;margin-bottom:5px;">
+                    Debug rental_dates: <php echo isset( $cart_item['rental_dates'] ) ? esc_html( $cart_item['rental_dates'] ) : 'none'; >
+                </div> -->
+                <div class="product-name" bis_skin_checked="1">
+                    איירון מן                     <strong class="product-quantity">×&nbsp;1</strong>                    <dl class="variation">
+			<dt class="variation-RentalDates">Rental Dates:</dt>
+		<dd class="variation-RentalDates"><p>27.04.2025 - 29.04.2025</p>
+</dd>
+	</dl>
+                                    </div>
+                <div class="product-total" bis_skin_checked="1">
+                    <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span><div class="mitnafun-breakdown" bis_skin_checked="1"><div class="breakdown-toggle" bis_skin_checked="1">פירוט תמחור <span class="toggle-icon">-</span></div><div class="breakdown-content" style="" bis_skin_checked="1"><p><strong>פירוט תמחור לתקופת השכירות:</strong></p><ul><li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li><li>2 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (50% הנחה)</li></ul><p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p></div></div>                </div>
+            </div>
+                        <div class="cart_item" data-cart_item_key="712a225c352b5c0a8243080512adfda4" data-rental_dates="07.05.2025 - 09.05.2025" bis_skin_checked="1">
+                <!-- <div class="mitnafun-debug-dates" style="color:red;background:#fee;padding:5px;margin-bottom:5px;">
+                    Debug rental_dates: <php echo isset( $cart_item['rental_dates'] ) ? esc_html( $cart_item['rental_dates'] ) : 'none'; >
+                </div> -->
+                <div class="product-name" bis_skin_checked="1">
+                    ספיידרמן                     <strong class="product-quantity">×&nbsp;1</strong>                    <dl class="variation">
+			<dt class="variation-RentalDates">Rental Dates:</dt>
+		<dd class="variation-RentalDates"><p>07.05.2025 - 09.05.2025</p>
+</dd>
+	</dl>
+                                    </div>
+                <div class="product-total" bis_skin_checked="1">
+                    <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span><div class="mitnafun-breakdown" bis_skin_checked="1"><div class="breakdown-toggle" bis_skin_checked="1">פירוט תמחור <span class="toggle-icon">+</span></div><div class="breakdown-content" style="display: none;" bis_skin_checked="1"><p><strong>פירוט תמחור לתקופת השכירות:</strong></p><ul><li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li><li>2 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (50% הנחה)</li></ul><p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p></div></div>                </div>
+            </div>
+                        <div class="cart_item" data-cart_item_key="827e5587c7c20b4bddad23e039e3576d" data-rental_dates="12.05.2025 - 14.05.2025" bis_skin_checked="1">
+                <!-- <div class="mitnafun-debug-dates" style="color:red;background:#fee;padding:5px;margin-bottom:5px;">
+                    Debug rental_dates: <php echo isset( $cart_item['rental_dates'] ) ? esc_html( $cart_item['rental_dates'] ) : 'none'; >
+                </div> -->
+                <div class="product-name" bis_skin_checked="1">
+                    ספיידרמן                     <strong class="product-quantity">×&nbsp;1</strong>                    <dl class="variation">
+			<dt class="variation-RentalDates">Rental Dates:</dt>
+		<dd class="variation-RentalDates"><p>12.05.2025 - 14.05.2025</p>
+</dd>
+	</dl>
+                                    </div>
+                <div class="product-total" bis_skin_checked="1">
+                    <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span><div class="mitnafun-breakdown" bis_skin_checked="1"><div class="breakdown-toggle" bis_skin_checked="1">פירוט תמחור <span class="toggle-icon">+</span></div><div class="breakdown-content" style="display:none;" bis_skin_checked="1"><p><strong>פירוט תמחור לתקופת השכירות:</strong></p><ul><li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li><li>2 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (50% הנחה)</li></ul><p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p></div></div>                </div>
+            </div>
+            
+    
+    <div class="cart-subtotal" bis_skin_checked="1">
+        <div bis_skin_checked="1">סכום ביניים</div>
+        <div bis_skin_checked="1"><span class="woocommerce-Price-amount amount"><bdi>3,300.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></div>
+    </div>
+
+    
+                    
+
+	
+					<ul id="shipping_method" class="woocommerce-shipping-methods">
+									<li>
+						<input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0_local_pickup1" value="local_pickup:1" class="shipping_method">					</li>
+							</ul>
+						
+		
+			
+
+            
+    
+    
+    
+    <div class="order-total" bis_skin_checked="1">
+        <div bis_skin_checked="1">סה"כ</div>
+        <div bis_skin_checked="1"><span class="woocommerce-Price-amount amount"><bdi>3,300.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></div>
+    </div>
+
+    </div>
+
+    this is still orange instead of grey - discount description
+
+    this still jumps in width after expanding the selection
+
+    i still cannot remove items using the remove button *needs to re add it
+
+
+    <ul class="woocommerce-error" role="alert">
+			<li>
+			פג תוקף החיבור. <a href="https://mitnafun.johnmogi.local/shop/" class="wc-backward">חזור לחנות</a>		</li>
+	</ul>
+
+    the scenrio is that the user is inside the checkout and here all products, lets redirect him home without a loop
+
+on l poducts the calendar looks the surname
+<div class="fallback-calendar" bis_skin_checked="1"><div class="month-header" bis_skin_checked="1">
+                <div class="month-year" bis_skin_checked="1">אפריל 2025</div>
+                <button id="prevMonthBtn" class="nav-btn">&lt;</button>
+                <button id="nextMonthBtn" class="nav-btn">&gt;</button>
+            </div><div class="calendar-days-header" bis_skin_checked="1"><div class="day-name" bis_skin_checked="1">א</div><div class="day-name" bis_skin_checked="1">ב</div><div class="day-name" bis_skin_checked="1">ג</div><div class="day-name" bis_skin_checked="1">ד</div><div class="day-name" bis_skin_checked="1">ה</div><div class="day-name" bis_skin_checked="1">ו</div><div class="day-name" bis_skin_checked="1">ש</div></div><div class="calendar-days" bis_skin_checked="1"><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell" data-date="2025-04-01" data-selectable="true" bis_skin_checked="1">1</div><div class="day-cell" data-date="2025-04-02" data-selectable="true" bis_skin_checked="1">2</div><div class="day-cell" data-date="2025-04-03" data-selectable="true" bis_skin_checked="1">3</div><div class="day-cell" data-date="2025-04-04" data-selectable="true" bis_skin_checked="1">4</div><div class="day-cell weekend disabled" data-date="2025-04-05" data-selectable="false" bis_skin_checked="1">5</div><div class="day-cell" data-date="2025-04-06" data-selectable="true" bis_skin_checked="1">6</div><div class="day-cell" data-date="2025-04-07" data-selectable="true" bis_skin_checked="1">7</div><div class="day-cell" data-date="2025-04-08" data-selectable="true" bis_skin_checked="1">8</div><div class="day-cell" data-date="2025-04-09" data-selectable="true" bis_skin_checked="1">9</div><div class="day-cell" data-date="2025-04-10" data-selectable="true" bis_skin_checked="1">10</div><div class="day-cell" data-date="2025-04-11" data-selectable="true" bis_skin_checked="1">11</div><div class="day-cell weekend disabled" data-date="2025-04-12" data-selectable="false" bis_skin_checked="1">12</div><div class="day-cell" data-date="2025-04-13" data-selectable="true" bis_skin_checked="1">13</div><div class="day-cell" data-date="2025-04-14" data-selectable="true" bis_skin_checked="1">14</div><div class="day-cell" data-date="2025-04-15" data-selectable="true" bis_skin_checked="1">15</div><div class="day-cell" data-date="2025-04-16" data-selectable="true" bis_skin_checked="1">16</div><div class="day-cell" data-date="2025-04-17" data-selectable="true" bis_skin_checked="1">17</div><div class="day-cell" data-date="2025-04-18" data-selectable="true" bis_skin_checked="1">18</div><div class="day-cell weekend disabled" data-date="2025-04-19" data-selectable="false" bis_skin_checked="1">19</div><div class="day-cell" data-date="2025-04-20" data-selectable="true" bis_skin_checked="1">20</div><div class="day-cell" data-date="2025-04-21" data-selectable="true" bis_skin_checked="1">21</div><div class="day-cell" data-date="2025-04-22" data-selectable="true" bis_skin_checked="1">22</div><div class="day-cell" data-date="2025-04-23" data-selectable="true" bis_skin_checked="1">23</div><div class="day-cell today disabled" data-date="2025-04-24" data-selectable="false" bis_skin_checked="1">24</div><div class="day-cell early-return-date" data-date="2025-04-25" data-selectable="true" bis_skin_checked="1" data-early-return="true">25</div><div class="day-cell weekend disabled" data-date="2025-04-26" data-selectable="false" bis_skin_checked="1">26</div><div class="day-cell disabled" data-date="2025-04-27" data-selectable="false" bis_skin_checked="1">27</div><div class="day-cell return-date" data-date="2025-04-28" data-selectable="true" bis_skin_checked="1" data-return-date="true">28</div><div class="day-cell" data-date="2025-04-29" data-selectable="true" bis_skin_checked="1">29</div><div class="day-cell early-return-date" data-date="2025-04-30" data-selectable="true" bis_skin_checked="1" data-early-return="true">30</div></div><div class="calendar-legend" bis_skin_checked="1">
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color available"></span> פנוי</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color disabled"></span> תפוס</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color weekend"></span> שבת (סגור)</div>
+            
+                <div class="legend-item" bis_skin_checked="1">
+                    <span class="legend-color early-return"></span> החזרה מוקדמת (עד 09:00)
+                </div>
+            
+                <div class="legend-item" bis_skin_checked="1">
+                    <span class="legend-color return-date"></span> יום החזרה (ניתן להזמין)
+                </div>
+            </div><button class="reload-dates button">טען תאריכים מחדש</button></div>
+
+             JQMIGRATE: Migrate is installed, version 3.4.1
+ 🌍 Global basePrice set to: 700
+ 🌍 Global variables: Object
+ 🔄 Setting global discount values: percentage 50
+ Using fallback calendar system instead of Air Datepicker
+ Document is ready
+ LAST-MINUTE CHECK: Script loaded - running initial check
+ LAST-MINUTE CHECK: Current time is 11:16
+ LAST-MINUTE CHECK: Pickup hour: 13
+ LAST-MINUTE CHECK: Cutoff hour: 11
+ LAST-MINUTE CHECK: Is past cutoff? true
+ LAST-MINUTE CHECK: Adding hook for date selection
+ Calendar initializer running...
+ Initializing fallback calendar system
+ Received dates for initialization: Array(2)
+ Using already formatted dates from rental-dates-handler
+ Container cleared, proceeding with initialization
+ Disabled dates prepared successfully: Array(3)
+ Current hour: 11 / Cutoff hour: 11
+ PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+ Final disabled dates set: Array(3)
+ Generating calendar with month: 3 year: 2025
+ Generating month calendar with month: 3 year: 2025
+ Using local user time: Object
+ Today is PAST cutoff time - disabling
+ Calendar successfully generated
+ Setting up date selection handlers
+ Pickup time field set to 13:00
+ Fallback calendar initialization completed successfully
+ Calendar initialized successfully
+ Calendar test script running...
+ Found datepicker container, initializing test...
+ Initializing Unified Pickup Time Handler
+ Pickup time field not found, skipping initialization
+ Rental Dates Handler loaded
+ Processing rental data for product ID: 584
+ Initial booked dates: Array(2)
+ Processing date ranges: Array(2)
+ Processed dates: Array(7)
+ Formatted dates ready for datepicker: Array(7)
+  Reserved Dates for Calendar:
+ Array(7)
+ Total reserved dates: 7
+ Datepicker container found: true
+ Attempting to use fallback calendar
+ Initializing fallback calendar system
+ Received dates for initialization: Array(7)
+ Using already formatted dates from rental-dates-handler
+ Container cleared, proceeding with initialization
+ Disabled dates prepared successfully: Array(8)
+ Current hour: 11 / Cutoff hour: 11
+ PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+ Final disabled dates set: Array(8)
+ Generating calendar with month: 3 year: 2025
+ Generating month calendar with month: 3 year: 2025
+ Using local user time: Object
+ Today is PAST cutoff time - disabling
+ Calendar successfully generated
+ Setting up date selection handlers
+ Pickup time field set to 13:00
+ Fallback calendar initialization completed successfully
+  Calendar system ready with disabled dates: Array(7)
+  Reserved Date Ranges:
+ Array(2)
+ Total reserved date ranges: 2
+  Individual Reserved Dates:
+ Total individual reserved dates: 7
+early-return-handler.js:7 Early Return Handler loaded
+return-date-handler.js:7 Return Date Handler loaded
+last-minute-booking-check.js:76 LAST-MINUTE CHECK: Running check
+last-minute-booking-check.js:80 LAST-MINUTE CHECK: No dates selected, skipping check
+last-minute-booking-check.js:327 LAST-MINUTE CHECK: Past cutoff time, disabling today's cell
+early-return-handler.js:19 Initializing early return handler
+early-return-handler.js:45 Processing early return dates from booked dates: Array(2)
+early-return-handler.js:79 Identified early return dates: Array(2)
+return-date-handler.js:19 Initializing return date handler
+return-date-handler.js:45 Processing return dates from booked dates: Array(2)
+return-date-handler.js:75 Identified return dates: Array(2)
+pickup-time-handler.js:23 Pickup time field not found, skipping initialization
+actions.js:9 undefined
+rental-dates-handler.js:1111  Reserved Date Ranges:
+rental-dates-handler.js:1112 Array(2)
+rental-dates-handler.js:1113 Total reserved date ranges: 2
+rental-dates-handler.js:1116  Individual Reserved Dates:
+rental-dates-handler.js:1117 Total individual reserved dates: 7
+מגה-סלייד-2-5-מ/:1163 ⏱️ After timeout, global variables: Object
+calendar-test.js:15 SUCCESS: Calendar initialization function found!
+calendar-test.js:21 Calendar system is operational - no reinitialization needed
+
+

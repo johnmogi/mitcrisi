@@ -1,0 +1,1412 @@
+/**
+ * Fallback Calendar System for Mitnafun Rental Booking
+ * Provides a robust alternative when AirDatepicker fails to load
+ */
+(function($) {
+    'use strict';
+    
+    /**
+     * Format date as YYYY-MM-DD (ISO format for data attributes)
+     */
+    function formatDateISO(date) {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+    
+    /**
+     * Format date as DD.MM.YYYY (display format for users)
+     */
+    function formatDate(date) {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+    
+    /**
+     * Calculate rental days excluding Saturdays
+     */
+    function calculateRentalDaysExcludingSaturdays(startDate, endDate) {
+        // Clone the dates to avoid modifying originals
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        
+        // Set to start of day
+        start.setHours(0, 0, 0, 0);
+        end.setHours(0, 0, 0, 0);
+        
+        let totalDays = 0;
+        const currentDate = new Date(start);
+        
+        // Count days excluding Saturdays
+        while (currentDate <= end) {
+            if (currentDate.getDay() !== 6) { // 6 = Saturday
+                totalDays++;
+            }
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        
+        return totalDays;
+    }
+    
+    /**
+     * Check if a date range contains any reserved dates
+     */
+    function rangeContainsReservedDates(startDate, endDate) {
+        if (!startDate || !endDate) return false;
+        if (!window.disabledDates || !Array.isArray(window.disabledDates)) {
+            console.log('No disabled dates available');
+            return false;
+        }
+        
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        
+        console.log('Checking range from', start, 'to', end);
+        console.log('Disabled dates:', window.disabledDates);
+        
+        // Check each day in the range
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+            const dateStr = d.toISOString().split('T')[0];
+            if (window.disabledDates.includes(dateStr)) {
+                console.log('Found reserved date in range:', dateStr);
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Initialize the fallback calendar system
+     */
+    function initializeFallbackCalendar(processedDates) {
+        console.log('Initializing fallback calendar system');
+        
+        // Initialize the selected dates array
+        window.selectedDates = [];
+        
+        // First, check if we have the formatted dates from rental-dates-handler
+        let formattedDates = [];
+        if (typeof window.formattedForDisabling !== 'undefined' && Array.isArray(window.formattedForDisabling)) {
+            console.log('Using already formatted dates from rental-dates-handler');
+            formattedDates = window.formattedForDisabling;
+        } else {
+            // Process dates if they're Date objects
+            console.log('Processing raw dates for calendar:', processedDates);
+            formattedDates = processedDates
+                .filter(date => date instanceof Date && !isNaN(date.getTime()))
+                .map(date => date.toISOString().split('T')[0]);
+        }
+        
+        console.log('Using disabled dates:', formattedDates);
+        
+        // Store globally for the fallback calendar to access
+        window.processedBookedDates = formattedDates;
+        window.disabledDates = formattedDates;
+        
+        // Find container
+        let container = $('#datepicker-container');
+        if (!container.length) {
+            console.error('Datepicker container not found');
+            return;
+        }
+        
+        console.log('Setting up fallback calendar in container:', container);
+        
+        // Add CSS styles for the fallback calendar
+        addCalendarStyles();
+        
+        // Set initial values with today as default
+        const today = new Date();
+        window.selectedDates = [];
+        window.currentCalendarMonth = today.getMonth();
+        window.currentCalendarYear = today.getFullYear();
+        window.formattedDates = formattedDates;
+        window.disabledDates = formattedDates;
+        
+        // Generate the calendar for current month
+        generateMonthCalendar(container, today.getMonth(), today.getFullYear(), formattedDates);
+        
+        // Setup date selection handlers - implement locally to avoid dependency errors
+        setupDateSelectionHandlers();
+        
+        console.log('Fallback calendar initialized successfully');
+        
+        // Remove any existing confirm button on initialization
+        $('#confirm-dates').hide().remove();
+    }
+    
+    /**
+     * Generate month calendar for the fallback system
+     */
+    function generateMonthCalendar(container, month, year, disabledDates) {
+        console.log('Running generateMonthCalendar with month:', month, 'year:', year);
+        
+        // Check if it's past the cutoff time (11 AM) for today's bookings
+        const now = new Date();
+        const currentHour = now.getHours();
+        const isPastCutoff = currentHour >= 11;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        // If it's past cutoff, add today to disabled dates
+        if (isPastCutoff) {
+            const todayIso = formatDateISO(today);
+            console.log('Past cutoff time, adding today to disabled dates:', todayIso);
+            
+            // Add today to disabled dates if not already there
+            if (!disabledDates.includes(todayIso)) {
+                disabledDates.push(todayIso);
+            }
+        }
+        // Clear existing calendar
+        container.find('.fallback-calendar').remove();
+        
+        // Make sure disabledDates is always an array
+        if (!disabledDates || !Array.isArray(disabledDates)) {
+            disabledDates = [];
+        }
+        
+        // Month names in Hebrew
+        const hebrewMonthNames = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+        
+        // Day names in Hebrew (starting from Sunday)
+        const dayNames = ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'];
+        
+        // Create calendar container
+        const calendarHtml = $('<div class="fallback-calendar"></div>');
+        
+        // Create calendar header with month and year
+        const header = $('<div class="calendar-header"></div>');
+        
+        // Add navigation buttons
+        header.append(`
+            <button id="prevMonthBtn" class="nav-btn">&lt;</button>
+            <span class="month-year">${hebrewMonthNames[month]} ${year}</span>
+            <button id="nextMonthBtn" class="nav-btn">&gt;</button>
+        `);
+        
+        // Add days of week header
+        let daysHeader = '<div class="calendar-days-header">';
+        for (let i = 0; i < 7; i++) {
+            daysHeader += `<div class="day-name">${dayNames[i]}</div>`;
+        }
+        daysHeader += '</div>';
+        
+        // Add header to calendar
+        calendarHtml.append(header);
+        calendarHtml.append(daysHeader);
+        
+        // Calculate first day of month
+        const firstDay = new Date(year, month, 1);
+        const startingDay = firstDay.getDay(); // 0 = Sunday
+        
+        // Get number of days in month
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        // Create days grid
+        let daysGrid = '<div class="calendar-days-grid">';
+        
+        // Add empty cells for days before start of month
+        for (let i = 0; i < startingDay; i++) {
+            daysGrid += '<div class="day-cell empty"></div>';
+        }
+        
+        // Add days of the month
+        const currentDay = new Date();
+        currentDay.setHours(0, 0, 0, 0);
+        
+        // Get actual today string for comparison
+        const todayStr = currentDay.toISOString().split('T')[0];
+        
+        for (let day = 1; day <= daysInMonth; day++) {
+            const currentDate = new Date(year, month, day);
+            const dateString = currentDate.toISOString().split('T')[0];
+            const dayOfWeek = currentDate.getDay();
+            
+            let classes = 'day-cell';
+            let isSelectable = true;
+            
+            // Past dates are disabled
+            if (currentDate < today) {
+                classes += ' disabled past';
+                isSelectable = false;
+            }
+            
+            // Saturday (6) is Shabbat - disabled
+            if (dayOfWeek === 6) {
+                classes += ' disabled shabbat';
+                isSelectable = false;
+            }
+            
+            // Reserved dates are disabled - check both local and global arrays
+            const isReserved = disabledDates.includes(dateString) || 
+                              (window.disabledDates && window.disabledDates.includes(dateString)) ||
+                              (window.formattedForDisabling && window.formattedForDisabling.includes(dateString));
+            
+            if (isReserved) {
+                classes += ' disabled reserved';
+                isSelectable = false;
+                console.log('Reserved date found:', dateString);
+            }
+            
+            // Check if this date is in the selected range
+            let isStartDate = false;
+            let isEndDate = false;
+            let isInRange = false;
+            
+            if (window.selectedDates && window.selectedDates.length > 0) {
+                isStartDate = window.selectedDates[0] === dateString;
+                isEndDate = window.selectedDates.length > 1 && window.selectedDates[1] === dateString;
+                
+                // Check if date is between start and end date
+                if (window.selectedDates.length > 1 && !isStartDate && !isEndDate) {
+                    const startDate = new Date(window.selectedDates[0]);
+                    const endDate = new Date(window.selectedDates[1]);
+                    isInRange = currentDate >= startDate && currentDate <= endDate;
+                }
+            }
+            
+            if (isStartDate) {
+                classes += ' selected start-date';
+            } else if (isEndDate) {
+                classes += ' selected end-date';
+            } else if (isInRange) {
+                classes += ' in-range';
+            }
+            
+            // Today's date gets special styling
+            if (dateString === todayStr) {
+                classes += ' today';
+            }
+            
+            // Add the day cell with appropriate classes and data attributes
+            daysGrid += `<div class="${classes}" 
+                data-date="${dateString}" 
+                data-selectable="${isSelectable}">${day}</div>`;
+        }
+        
+        // Add empty cells for days after end of month to complete the grid
+        const lastDay = new Date(year, month, daysInMonth).getDay();
+        const remainingCells = 6 - lastDay;
+        for (let i = 0; i < remainingCells; i++) {
+            daysGrid += '<div class="day-cell empty"></div>';
+        }
+        
+        daysGrid += '</div>';
+        calendarHtml.append(daysGrid);
+        
+        // Add calendar legend
+        calendarHtml.append(`
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <div class="legend-color legend-available"></div>
+                    <span>זמין</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-reserved"></div>
+                    <span>מוזמן</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-selected"></div>
+                    <span>נבחר</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-in-range"></div>
+                    <span>בטווח</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-disabled"></div>
+                    <span>שבת - סגור</span>
+                </div>
+            </div>
+        `);
+        
+        // Add calendar to container
+        container.append(calendarHtml);
+        
+        // Attach navigation handlers
+        addCalendarNavigation(container);
+        
+        // Update the selected range display
+        updateSelectedRangeDisplay();
+    }
+    
+    /**
+     * Add navigation controls to the calendar
+     */
+    function addCalendarNavigation(container) {
+        console.log('Adding navigation controls');
+        
+        // Attach click handler for previous month button
+        $('#prevMonthBtn').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            let newMonth = window.currentCalendarMonth - 1;
+            let newYear = window.currentCalendarYear;
+            
+            if (newMonth < 0) {
+                newMonth = 11;
+                newYear--;
+            }
+            
+            window.currentCalendarMonth = newMonth;
+            window.currentCalendarYear = newYear;
+            
+            generateMonthCalendar(container, newMonth, newYear, window.disabledDates || []);
+        });
+        
+        // Attach click handler for next month button
+        $('#nextMonthBtn').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            let newMonth = window.currentCalendarMonth + 1;
+            let newYear = window.currentCalendarYear;
+            
+            if (newMonth > 11) {
+                newMonth = 0;
+                newYear++;
+            }
+            
+            window.currentCalendarMonth = newMonth;
+            window.currentCalendarYear = newYear;
+            
+            // Generate the updated calendar
+            generateMonthCalendar($('#datepicker-container'), newMonth, newYear, window.disabledDates || []);
+        });
+        
+        // Return success from the setup function
+        return true;
+    }
+    
+    /**
+     * Check if a date range spans a weekend (Friday to Sunday)
+     * Used to show special weekend return notice
+     */
+    function bookingSpansWeekend(startDate, endDate) {
+        // If this is a single day booking, check if it's Friday
+        if (startDate.getTime() === endDate.getTime()) {
+            return startDate.getDay() === 5; // 5 = Friday
+        }
+        
+        // If booking starts on Friday
+        if (startDate.getDay() === 5) {
+            return true;
+        }
+        
+        // Check each day in the range
+        for (let day = new Date(startDate); day <= endDate; day.setDate(day.getDate() + 1)) {
+            // If Sunday (0) is included in the booking
+            if (day.getDay() === 0) {
+                return true;
+            }
+        }
+        
+        // Special case: If rental spans from Thursday to Friday
+        if (startDate.getDay() === 4 && endDate.getDay() === 5) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Confirm the selected date range and process for checkout
+     */
+    function confirmSelectedDates() {
+        if (!window.selectedDates || window.selectedDates.length !== 2) {
+            console.log('No valid date range selected');
+            return;
+        }
+        
+        // Mark dates as confirmed to change display style
+        window.datesConfirmed = true;
+        
+        const startDate = new Date(window.selectedDates[0]);
+        const endDate = new Date(window.selectedDates[1]);
+        
+        // Calculate rental days excluding Saturdays
+        const actualRentalDays = calculateRentalDaysExcludingSaturdays(startDate, endDate);
+        console.log('Rental days:', actualRentalDays);
+        
+        // Format dates for hidden inputs - this uses the actual selected dates
+        const startFormatted = formatDate(startDate);
+        const endFormatted = formatDate(endDate);
+        
+        // For one-day rentals, create the next day display for UI only
+        let displayEndDate, displayEndFormatted;
+        if (startDate.getTime() === endDate.getTime()) {
+            // Create next day date for display only
+            displayEndDate = new Date(startDate);
+            displayEndDate.setDate(displayEndDate.getDate() + 1);
+            displayEndFormatted = formatDate(displayEndDate);
+        } else {
+            displayEndFormatted = endFormatted;
+        }
+        
+        // Show return conditions notice after date confirmation
+        $('#return-conditions-notice').show();
+        
+        // Check if booking spans weekend and show special notice
+        if (bookingSpansWeekend(startDate, endDate)) {
+            $('#weekend-return-notice').show();
+        } else {
+            $('#weekend-return-notice').hide();
+        }
+        
+        // Update validation message with confirmed status
+        updateValidationMessage();
+        
+        // Set hidden inputs for checkout - use actual dates for calculations
+        if ($('#rental_start_date').length) {
+            $('#rental_start_date').val(startFormatted);
+        } else {
+            $('form.cart').append('<input type="hidden" id="rental_start_date" name="rental_start_date" value="' + startFormatted + '">');
+        }
+        
+        if ($('#rental_end_date').length) {
+            $('#rental_end_date').val(endFormatted);
+        } else {
+            $('form.cart').append('<input type="hidden" id="rental_end_date" name="rental_end_date" value="' + endFormatted + '">');
+        }
+        
+        if ($('#rental_days').length) {
+            $('#rental_days').val(actualRentalDays);
+        } else {
+            $('form.cart').append('<input type="hidden" id="rental_days" name="rental_days" value="' + actualRentalDays + '">');
+        }
+        
+        // Apply pricing calculations
+        applyPerDayPricing();
+    }
+    
+    /**
+     * Calculate and apply per-day pricing based on rental duration
+     */
+    function applyPerDayPricing() {
+        // Try to get the base price from page
+        let basePrice = 0;
+        try {
+            const priceText = $('.woocommerce-Price-amount').first().text().trim();
+            // Extract just the number from the price text (remove currency symbol and non-numeric chars)
+            basePrice = parseFloat(priceText.replace(/[^0-9.,]/g, '').replace(',', '.'));
+            console.log('Base price:', basePrice);
+        } catch (e) {
+            console.log('Could not determine base price');
+            return;
+        }
+        
+        if (!window.selectedDates || window.selectedDates.length !== 2 || isNaN(basePrice)) {
+            return;
+        }
+        
+        const startDate = new Date(window.selectedDates[0]);
+        const endDate = new Date(window.selectedDates[1]);
+        
+        // Calculate rental days excluding Saturdays
+        const rentalDays = calculateRentalDaysExcludingSaturdays(startDate, endDate);
+        
+        // First day is full price, additional days are 50% off
+        let totalPrice = basePrice; // First day at full price
+        
+        if (rentalDays > 1) {
+            // Additional days at 50% discount
+            totalPrice += basePrice * 0.5 * (rentalDays - 1);
+        }
+        
+        // Update price display if needed
+        // This is handled server-side in most cases, but we can update a price preview here
+    }
+    
+    // Helper function to update validation message
+    function updateValidationMessage(startFormatted, endFormatted, actualRentalDays) {
+        $('#date-validation-message')
+            .removeClass('error')
+            .addClass('success')
+            .html('התאריכים אושרו בהצלחה: ' + startFormatted + ' - ' + endFormatted + 
+                 ' (' + actualRentalDays + ' ימים לחיוב) ' +
+                 '<a href="#" id="clear-date-selection" style="margin-right:10px; font-size:0.8em;">[שנה בחירה]</a>')
+            .show();
+        
+        // Enable add to cart button
+        $('.single_add_to_cart_button').prop('disabled', false).removeAttr('disabled');
+        
+        // Store the confirmed dates in local storage as a backup
+        try {
+            localStorage.setItem('mitnafun_confirmed_dates', startFormatted + ' - ' + endFormatted);
+            localStorage.setItem('mitnafun_rental_days', actualRentalDays);
+        } catch (e) {
+            console.log('Could not save dates to local storage');
+        }
+        
+        // FORCE THE PICKUP TIME TO ALWAYS BE 13:00
+        $('#custom-pickup-time').val('13');
+        sessionStorage.setItem('custom_pickup_time', '13');
+        localStorage.setItem('custom_pickup_time', '13');
+        
+        // Set pickup time default (will be updated in setupPickupTimeField function)
+        setupPickupTimeField();
+        
+        // Make sure the pickup time displays immediately
+        setTimeout(function() {
+            // Direct DOM manipulation for Select2
+            $('.select2-selection__rendered').text('13:00').removeClass('select2-selection__placeholder');
+        }, 100);
+        
+        // Calculate per-day pricing
+        applyPerDayPricing();
+        
+        // Removed automatic scrolling as per user request
+    }
+    
+    /**
+     * Setup date selection handlers for the calendar
+     * This handles clicking on dates and managing the selection state
+     */
+    function setupDateSelectionHandlers() {
+        // When a date cell is clicked, handle selection
+        $(document).on('click', '.day-cell:not(.disabled)', function() {
+            const dateISO = $(this).data('date');
+            if (!dateISO || !$(this).data('selectable')) return;
+            
+            console.log('Date clicked:', dateISO);
+            window.datesConfirmed = false; // Reset confirmed state on new selection
+            
+            const clickedDate = new Date(dateISO + 'T00:00:00');
+            
+            // Reset the selection if we already have a complete range
+            if (window.selectedDates && window.selectedDates.length === 2) {
+                window.selectedDates = [];
+                $('#return-conditions-notice').hide();
+            }
+            
+            // If no dates selected yet, start a new selection
+            if (!window.selectedDates || window.selectedDates.length === 0) {
+                window.selectedDates = [clickedDate];
+                console.log('Starting new selection with date:', formatDate(clickedDate));
+                updateSelectedRangeDisplay('בחרת את ' + formatDate(clickedDate) + '. אנא בחר תאריך סיום.', 'info');
+            } else {
+                // We have a start date, now selecting end date
+                const startDate = new Date(window.selectedDates[0]);
+                
+                // If clicking the same date, make it a single-day selection
+                if (formatDateISO(clickedDate) === formatDateISO(startDate)) {
+                    window.selectedDates.push(clickedDate);
+                    console.log('Same date selected, making single-day booking');
+                } 
+                // Ensure end date is after or equal to start date
+                else if (clickedDate < startDate) {
+                    // If user selects a date before start, swap them
+                    window.selectedDates = [clickedDate, startDate];
+                    console.log('Selected earlier date, swapping start/end');
+                } else {
+                    window.selectedDates.push(clickedDate);
+                    console.log('Added end date:', formatDate(clickedDate));
+                }
+                
+                // Validate the selection
+                if (!validateDateRange()) {
+                    // If validation fails, reset to just the start date
+                    window.selectedDates = [window.selectedDates[0]];
+                }
+            }
+            
+            // Refresh calendar to show selected dates
+            updateCalendarSelection();
+            
+            // Update display with the validation message
+            updateSelectedRangeDisplay();
+        });
+        
+        // Handle clear selection button
+        $(document).on('click', '#clear-date-selection', function(e) {
+            e.preventDefault();
+            clearDateSelection();
+        });
+        
+        // When confirm button is clicked, process the selection
+        $(document).on('click', '#confirm-dates', function(e) {
+            e.preventDefault();
+            confirmSelectedDates();
+        });
+    }
+    
+    /**
+     * Update calendar to show selected date range
+     */
+    function updateCalendarSelection() {
+        console.log('Updating calendar selection with dates:', window.selectedDates);
+        
+        // First ensure we have the CSS styles in place
+        if (!$('#range-selection-styles').length) {
+        
+    if (rentalDays > 1) {
+        // Additional days at 50% discount
+        totalPrice += basePrice * 0.5 * (rentalDays - 1);
+    }
+        
+    // Update price display if needed
+    // This is handled server-side in most cases, but we can update a price preview here
+}
+        
+// Helper function to update validation message
+function updateValidationMessage(startFormatted, endFormatted, actualRentalDays) {
+    $('#date-validation-message')
+        .removeClass('error')
+        .addClass('success')
+        .html('התאריכים אושרו בהצלחה: ' + startFormatted + ' - ' + endFormatted + 
+             ' (' + actualRentalDays + ' ימים לחיוב) ' +
+             '<a href="#" id="clear-date-selection" style="margin-right:10px; font-size:0.8em;">[שנה בחירה]</a>')
+        .show();
+        
+    // Enable add to cart button
+    $('.single_add_to_cart_button').prop('disabled', false).removeAttr('disabled');
+        
+    // Store the confirmed dates in local storage as a backup
+    try {
+        localStorage.setItem('mitnafun_confirmed_dates', startFormatted + ' - ' + endFormatted);
+        localStorage.setItem('mitnafun_rental_days', actualRentalDays);
+    } catch (e) {
+        console.log('Could not save dates to local storage');
+    }
+        
+    // FORCE THE PICKUP TIME TO ALWAYS BE 13:00
+    $('#custom-pickup-time').val('13');
+    sessionStorage.setItem('custom_pickup_time', '13');
+    localStorage.setItem('custom_pickup_time', '13');
+        
+    // Set pickup time default (will be updated in setupPickupTimeField function)
+    setupPickupTimeField();
+        
+    // Make sure the pickup time displays immediately
+    setTimeout(function() {
+        // Direct DOM manipulation for Select2
+        $('.select2-selection__rendered').text('13:00').removeClass('select2-selection__placeholder');
+    }, 100);
+        
+    // Calculate per-day pricing
+    applyPerDayPricing();
+        
+    // Removed automatic scrolling as per user request
+}
+        
+/**
+ * Setup date selection handlers for the calendar
+ * This handles clicking on dates and managing the selection state
+ */
+function setupDateSelectionHandlers() {
+    // When a date cell is clicked, handle selection
+    $(document).on('click', '.day-cell:not(.disabled)', function() {
+        const dateISO = $(this).data('date');
+        if (!dateISO || !$(this).data('selectable')) return;
+            
+        console.log('Date clicked:', dateISO);
+        window.datesConfirmed = false; // Reset confirmed state on new selection
+            
+        const clickedDate = new Date(dateISO + 'T00:00:00');
+            
+        // Reset the selection if we already have a complete range
+        if (window.selectedDates && window.selectedDates.length === 2) {
+            window.selectedDates = [];
+            $('#return-conditions-notice').hide();
+        }
+            
+        // If no dates selected yet, start a new selection
+        if (!window.selectedDates || window.selectedDates.length === 0) {
+            window.selectedDates = [clickedDate];
+            console.log('Starting new selection with date:', formatDate(clickedDate));
+            updateSelectedRangeDisplay('בחרת את ' + formatDate(clickedDate) + '. אנא בחר תאריך סיום.', 'info');
+            // Mark days in between (including single-day selections)
+            const startTime = startDate.getTime();
+            const endTime = endDate.getTime();
+            
+            // For date cells that exist in the current view
+            $('.day-cell').each(function() {
+                const cellDate = $(this).data('date');
+                if (!cellDate) return;
+                
+                // Mark this day as selectable if it's a valid date
+                if (!$(this).hasClass('disabled') && !$(this).hasClass('weekend')) {
+                    $(this).data('selectable', true);
+                }
+                
+                const cellTime = new Date(cellDate + 'T00:00:00').getTime();
+                // For days in the selected range
+                if (cellTime > startTime && cellTime < endTime) {
+                    $(this).addClass('in-selected-range');
+                }
+            });
+        } else {
+            // If only start date is selected, mark all valid future dates as selectable
+            $('.day-cell').each(function() {
+                const cellDate = $(this).data('date');
+                if (!cellDate) return;
+                
+                if (!$(this).hasClass('disabled') && !$(this).hasClass('weekend')) {
+                    $(this).data('selectable', true);
+                }
+            });
+        }
+        
+        // Apply additional styling based on confirmation state
+        if (window.datesConfirmed && window.selectedDates.length === 2) {
+            $('.selected-start, .selected-end, .in-selected-range').addClass('confirmed');
+        }
+    }
+    
+    /**
+     * Clear the current date selection
+     */
+    function clearDateSelection() {
+        window.selectedDates = [];
+        window.datesConfirmed = false;
+        updateCalendarSelection();
+        $('#date-validation-message').hide();
+        $('#return-conditions-notice').hide();
+        $('#weekend-return-notice').hide();
+        
+        // Remove the green confirmation text
+        $('.confirm-button').hide().remove();
+    }
+    
+    /**
+     * Show the confirmation button for selected dates
+     * Not needed anymore as we use inline confirm button in the message
+     */
+    function showConfirmButton() {
+        // This is handled directly in the updateSelectedRangeDisplay function now
+        return;
+    }
+    
+    /**
+     * Validate the selected date range
+     * Checks for reserved dates and proper date order
+     */
+    function validateDateRange() {
+        if (!window.selectedDates || window.selectedDates.length !== 2) {
+            return false;
+        }
+        
+        const startDate = new Date(window.selectedDates[0]);
+        const endDate = new Date(window.selectedDates[1]);
+        
+        // Check if date range contains any disabled dates
+        const disabled = window.disabledDates || [];
+        let containsDisabled = false;
+        
+        // Check each date in range
+        const currentDate = new Date(startDate);
+        while (currentDate <= endDate) {
+            // Skip checking Saturdays
+            if (currentDate.getDay() !== 6) { // 6 = Saturday
+                const dateISO = formatDateISO(currentDate);
+                if (disabled.includes(dateISO)) {
+                    containsDisabled = true;
+                    break;
+                }
+            }
+            
+            // Move to next day
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        
+        if (containsDisabled) {
+            updateSelectedRangeDisplay('טווח התאריכים שבחרת מכיל תאריכים שכבר הוזמנו. אנא בחר טווח אחר.', 'error');
+            return false;
+        }
+        
+        // Check max rental days (exclude Saturdays)
+        const actualRentalDays = calculateRentalDaysExcludingSaturdays(startDate, endDate);
+        if (actualRentalDays > 7) {
+            updateSelectedRangeDisplay('לא ניתן להשכיר ליותר מ-7 ימים. אנא בחר טווח קצר יותר.', 'error');
+            return false;
+        }
+        
+        // Valid selection
+        updateValidationMessage(
+            formatDate(startDate), 
+            formatDate(endDate), 
+            actualRentalDays
+        );
+        return true;
+    }
+    
+    /**
+     * Update the display of selected date range
+     */
+    function updateSelectedRangeDisplay(message, type) {
+        // Create the message element if it doesn't exist
+        if ($('#date-validation-message').length === 0) {
+            $('#datepicker-container').after('<div id="date-validation-message"></div>');
+        }
+        
+        // Clear any existing messages
+        $('#date-validation-message').hide();
+        
+        if (message) {
+            $('#date-validation-message')
+                .removeClass('error info success')
+                .addClass(type || 'info')
+                .html(message)
+                .show();
+            return;
+        }
+        
+        if (!window.selectedDates || !window.selectedDates.length) {
+            return;
+        }
+        
+        if (window.selectedDates.length === 1) {
+            // Format start date
+            const startDate = new Date(window.selectedDates[0]);
+            const startFormatted = startDate.toLocaleDateString('he-IL');
+            
+            // Show single date message
+            $('#date-validation-message')
+                .removeClass('error')
+                .addClass('info')
+                .html('תאריך התחלה: ' + startFormatted + ' <strong>(בחר תאריך סיום)</strong> <a href="#" id="clear-date-selection" style="margin-right:10px; font-size:0.8em;">[נקה בחירה]</a>')
+                .show();
+                
+            // Hide confirmation-only elements while selection is incomplete
+            $('#return-conditions-notice').hide();
+        } else if (window.selectedDates.length === 2) {
+            // Format dates
+            const startDate = new Date(window.selectedDates[0]);
+            const endDate = new Date(window.selectedDates[1]);
+            
+            if (startDate && endDate) {
+                // Format dates for display
+                const startFormatted = startDate.toLocaleDateString('he-IL');
+                
+                // For one-day rentals, display next day as end date in the UI
+                // but keep actual selected end date for calculations
+                let displayEndDate, displayEndFormatted;
+                
+                if (startDate.getTime() === endDate.getTime()) {
+                    // Create next day date for display only
+                    displayEndDate = new Date(startDate);
+                    displayEndDate.setDate(displayEndDate.getDate() + 1);
+                    displayEndFormatted = displayEndDate.toLocaleDateString('he-IL');
+                } else {
+                    displayEndFormatted = endDate.toLocaleDateString('he-IL');
+                }
+                
+                // Calculate days between
+                const actualRentalDays = calculateRentalDaysExcludingSaturdays(startDate, endDate);
+                
+                // Don't show as confirmed until user clicks confirmation button
+                if (!window.datesConfirmed) {
+                    $('#date-validation-message')
+                        .removeClass('error success')
+                        .addClass('info')
+                        .html('בחרת תאריכים: ' + startFormatted + ' - ' + displayEndFormatted + ' (' + actualRentalDays + ' ימים) <a href="#" id="confirm-dates" class="confirm-button" style="margin-right:10px; background-color: #4CAF50; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none;">אשר בחירה</a> <a href="#" id="clear-date-selection" style="margin-right:10px; font-size:0.8em;">[שנה בחירה]</a>')
+                        .show();
+                } else {
+                    // Show confirmed message
+                    $('#date-validation-message')
+                        .removeClass('error info')
+                        .addClass('success')
+                        .html('התאריכים אושרו בהצלחה: ' + startFormatted + ' - ' + displayEndFormatted + ' (' + actualRentalDays + ' ימים לחיוב) <a href="#" id="clear-date-selection" style="margin-right:10px; font-size:0.8em;">[שנה בחירה]</a>')
+                        .show();
+                }
+            }
+        }
+    }
+    
+    /**
+     * Add CSS styles for the fallback calendar
+     */
+    function addCalendarStyles() {
+        // Remove existing styles to prevent duplication
+        $('#fallback-calendar-styles').remove();
+        
+        // Add required field indicator for dates
+        if ($('.rental-dates-label').length > 0) {
+            $('.rental-dates-label').append(' <span class="required">*</span>');
+        } else {
+            $('#datepicker-container').before('<div class="rental-dates-label">תאריכי השכרה <span class="required">*</span></div>');
+        }
+        
+        // Add new styles
+        $('head').append(`
+            <style id="fallback-calendar-styles">
+                .fallback-calendar {
+                    font-family: Arial, sans-serif;
+                    direction: rtl;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                .calendar-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    position: relative;
+                }
+                .month-year {
+                    font-weight: bold;
+                    font-size: 16px;
+                }
+                .nav-btn {
+                    background: #f1f1f1;
+                    border: 1px solid #ddd;
+                    border-radius: 3px;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                }
+                .calendar-days-header {
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    margin-bottom: 5px;
+                    background-color: #f8f8f8;
+                    padding: 8px 0;
+                    border-radius: 4px;
+                }
+                .day-name {
+                    text-align: center;
+                    font-weight: bold;
+                }
+                .calendar-days-grid {
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    gap: 2px;
+                }
+                .day-cell {
+                    text-align: center;
+                    padding: 8px 2px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    position: relative;
+                }
+                .day-cell:hover:not(.disabled):not(.empty) {
+                    background-color: #f0f9ff;
+                    border-color: #c0d9e9;
+                }
+                .day-cell.empty {
+                    background-color: #f9f9f9;
+                    border: none;
+                }
+                .day-cell.disabled {
+                    color: #aaa;
+                    background-color: #f5f5f5;
+                    cursor: not-allowed;
+                }
+                
+                /* Selected date styling */
+                .day-cell.selected {
+                    background-color: #81d4fa;
+                    color: #000;
+                    font-weight: bold;
+                    border: 1px solid #4fc3f7;
+                    border-radius: 4px;
+                }
+                
+                /* Date range styling */
+                .day-cell.in-range {
+                    background-color: #e1f5fe;
+                    border: 1px solid #b3e5fc;
+                }
+                
+                /* Calendar footer */
+                .calendar-footer {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 15px;
+                    padding-top: 10px;
+                    border-top: 1px solid #eee;
+                    font-size: 12px;
+                }
+                .legend-item {
+                    display: flex;
+                    align-items: center;
+                    margin: 5px;
+                }
+                .legend-color {
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 3px;
+                    margin-left: 5px;
+                }
+                .legend-available {
+                    background-color: white;
+                    border: 1px solid #eee;
+                }
+                .legend-reserved {
+                    background-color: #ffebee;
+                    border: 1px solid #ffcdd2;
+                }
+                .legend-selected {
+                    background-color: #4CAF50;
+                }
+                .legend-in-range {
+                    background-color: #e8f5e9;
+                    border: 1px solid #c8e6c9;
+                }
+                .legend-disabled {
+                    background-color: #f5f5f5;
+                    border: 1px solid #e0e0e0;
+                }
+            </style>
+        `);
+    }
+    
+    // Expose the initialization function to the global scope
+    window.initializeFallbackCalendar = initializeFallbackCalendar;
+    
+    // Auto-initialize if we have booked dates in global scope
+    if (window.processedBookedDates && Array.isArray(window.processedBookedDates)) {
+        console.log("Auto-initializing fallback calendar with stored dates");
+        setTimeout(function() {
+            try {
+                initializeFallbackCalendar(window.processedBookedDates);
+            } catch (err) {
+                console.error('Error initializing fallback calendar:', err);
+                // Show a simple fallback error message
+                $('#datepicker-container').html('<div class="error-message" style="padding: 20px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px; text-align: center;">שגיאה בטעינת לוח השנה - <button id="reloadBtn" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">נסה שוב</button></div>');
+                $('#reloadBtn').on('click', function() {
+                    location.reload();
+                });
+            }
+        }, 100);
+    }
+    
+    // Try to get reserved dates directly from the rental-dates-handler
+    $(document).ready(function() {
+        setTimeout(function() {
+            // Check if we have a direct reference to the formatted dates from rental-dates-handler
+            if (typeof window.formattedForDisabling !== 'undefined' && Array.isArray(window.formattedForDisabling) && window.formattedForDisabling.length > 0) {
+                console.log('Using dates directly from rental-dates-handler:', window.formattedForDisabling);
+                window.disabledDates = window.formattedForDisabling;
+            }
+        }, 500);
+    });
+    
+    /**
+     * Setup pickup time field with default values
+     */
+    function setupPickupTimeField() {
+        if (!window.selectedDates || window.selectedDates.length !== 2) {
+            return;
+        }
+        
+        // Get the product ID
+        const productId = $('input[name="product_id"]').val() || 
+                         $('button.single_add_to_cart_button').val() || 
+                         $('form.cart').data('product_id');
+                         
+        if (!productId) {
+            console.log('Could not determine product ID');
+            return;
+        }
+        
+        // Default pickup time (11:00)
+        let defaultPickupHour = 11;
+        
+        // Check if custom pickup time exists for this product
+        // This requires the product data to be available via data attributes
+        const customPickupOverride = $('#product-' + productId).data('pickup-override') || 
+                                    $('form.cart').data('pickup-override');
+        
+        if (customPickupOverride) {
+            defaultPickupHour = parseInt(customPickupOverride);
+            console.log('Using custom pickup hour from product: ' + defaultPickupHour);
+        }
+        
+        // Get the selected start date
+        const startDate = new Date(window.selectedDates[0]);
+        const formattedStartDate = startDate.toISOString().split('T')[0];
+        
+        // Check for bookings on the previous day
+        const previousDay = new Date(startDate);
+        previousDay.setDate(previousDay.getDate() - 1);
+        const previousDayStr = previousDay.toISOString().split('T')[0];
+        
+        setTimeout(function() {
+            const $pickup = $('#order_comments');
+            if ($pickup.length) {
+                console.log('FORCING pickup time to 13:00');
+                
+                // Force the value to 13:00 for consistency
+                defaultPickupHour = 13;
+                
+                // Update any custom fields that might influence this
+                $('#custom-pickup-time').val('13');
+                
+                // Set the value and trigger change for the field
+                $pickup.val(defaultPickupHour + ':00').trigger('change');
+                
+                // Make sure option exists
+                if (!$('#order_comments option[value="13:00"]').length) {
+                    $pickup.append('<option value="13:00">13:00</option>');
+                }
+                
+                // Set selected attribute
+                $('#order_comments option').removeAttr('selected');
+                $('#order_comments option[value="13:00"]').attr('selected', 'selected');
+                
+                // For Select2 fields - more aggressive approach
+                if ($.fn.select2 && $pickup.data('select2')) {
+                    try {
+                        // Force Select2 to recognize the change
+                        $pickup.select2('destroy');
+                        $pickup.select2();
+                        
+                        // Multiple direct manipulation attempts
+                        setTimeout(function() {
+                            $('.select2-selection__rendered').text('13:00').removeClass('select2-selection__placeholder');
+                        }, 50);
+                        
+                        setTimeout(function() {
+                            $('.select2-selection__rendered').text('13:00').removeClass('select2-selection__placeholder');
+                            if ($('.select2-selection__placeholder').length) {
+                                $('.select2-selection__placeholder').removeClass('select2-selection__placeholder');
+                            }
+                        }, 500);
+                    } catch(e) {
+                        console.error('Select2 manipulation error:', e);
+                    }
+                }
+                
+                // Direct DOM manipulation in case Select2 methods fail
+                $('.select2-selection__rendered').text('13:00').removeClass('select2-selection__placeholder');
+                
+                console.log('Set pickup time to: ' + defaultPickupHour + ':00');
+            }
+        }, 100); // Reduced delay for faster execution
+        
+        // Try again after a short delay
+        setTimeout(function() {
+            $('.select2-selection__rendered').text('13:00').removeClass('select2-selection__placeholder');
+        }, 1000);
+        
+        // Store in all possible storage mechanisms
+        try {
+            // Both session and local storage
+            sessionStorage.setItem('mitnafun_pickup_time', '13:00');
+            localStorage.setItem('mitnafun_pickup_time', '13:00');
+            
+            // Values for custom fix script
+            sessionStorage.setItem('custom_pickup_time', '13');
+            localStorage.setItem('custom_pickup_time', '13');
+            
+            // For the checkout page form
+            if ($('input[name="pickup_time"]').length === 0) {
+                $('form.cart').append('<input type="hidden" name="pickup_time" value="13:00">');
+            } else {
+                $('input[name="pickup_time"]').val('13:00');
+            }
+        } catch(e) {
+            console.error('Storage error:', e);
+        }
+    }
+    
+    /**
+     * Calculate per-day pricing for rentals
+     */
+    function applyPerDayPricing() {
+        if (!window.selectedDates || window.selectedDates.length !== 2) {
+            return;
+        }
+        
+        // Get the product ID
+        const productId = $('input[name="product_id"]').val() || 
+                         $('button.single_add_to_cart_button').val() || 
+                         $('form.cart').data('product_id');
+                         
+        if (!productId) {
+            console.log('Could not determine product ID for pricing');
+            return;
+        }
+        
+        // Calculate rental duration
+        const startDate = new Date(window.selectedDates[0]);
+        const endDate = new Date(window.selectedDates[1]);
+        
+        // Count actual rental days, excluding Saturdays (Shabbat)
+        let actualRentalDays = 0;
+        const msPerDay = 1000 * 60 * 60 * 24;
+        // Loop through each day in the range
+        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+            // Skip Saturdays (day 6 is Saturday)
+            if (d.getDay() !== 6) {
+                // ... (rest of the loop remains the same)
+            }
+        }
+    }
+
+    /**
+     * Apply per-day pricing calculation
+     */
+    function applyPerDayPricing() {
+        // Don't calculate if selection isn't complete
+        if (!window.selectedDates || window.selectedDates.length !== 2) {
+            return;
+        }
+        
+        const productId = $('form.cart').data('product_id') || $('input[name="product_id"]').val() || 0;
+        
+        // Calculate rental days (excluding Saturdays if needed)
+        const startDate = new Date(window.selectedDates[0]);
+        const endDate = new Date(window.selectedDates[1]);
+        const rentalDays = calculateRentalDaysExcludingSaturdays(startDate, endDate);
+        
+        console.log('Rental days: ' + rentalDays);
+        
+        // Multiple ways to get base price - try them all
+        let basePrice = 0;
+        
+        // Method 1: From form data
+        if ($('form.cart').data('price')) {
+            basePrice = parseFloat($('form.cart').data('price'));
+        }
+        // Method 2: From price element text
+        else if ($('.product-price .woocommerce-Price-amount').length) {
+            basePrice = parseFloat($('.product-price .woocommerce-Price-amount').first().text().replace(/[^\d.]/g, ''));
+        } 
+        // Method 3: From hidden input
+        else if ($('input[name="product_base_price"]').length) {
+            basePrice = parseFloat($('input[name="product_base_price"]').val());
+        }
+        // Method 4: From data attribute on product element
+        else if ($('.product').data('base-price')) {
+            basePrice = parseFloat($('.product').data('base-price'));
+        }
+        // Method 5: Hardcoded fallback as last resort
+        else {
+            basePrice = 550; // Default fallback price for equipment rental
+            console.log('Using fallback base price of 550 NIS');
+        }
+        
+        if (isNaN(basePrice) || basePrice <= 0) {
+            console.log('Could not determine base price, using default value');
+            basePrice = 550; // Default hardcoded price if all methods fail
+        }
+        
+        console.log('Base price per day: ' + basePrice);
+        
+        // Calculate price separately for first day and additional days
+        let firstDayPrice = basePrice; // First day at full price
+        let additionalDaysPrice = 0;
+        let totalPrice = basePrice; // Start with first day price
+        let finalPrice = basePrice;
+        
+        // Get discount settings from data attributes
+        const discountType = $('#product-' + productId).data('discount-type') || 
+                             $('form.cart').data('discount-type') || 
+                             $('body').data('discount-type');
+                             
+        const discountValue = $('#product-' + productId).data('discount-value') || 
+                             $('form.cart').data('discount-value') || 
+                             $('body').data('discount-value');
+        
+        // Apply discount if applicable (only for days beyond the first day)
+        if (rentalDays > 1 && discountType && discountValue) {
+            console.log('Applying discount to additional days: ' + discountType + ' / ' + discountValue);
+            
+            // Calculate price for additional days (after first day)
+            const additionalDays = rentalDays - 1;
+            let discountedDayPrice = basePrice;
+            
+            if (discountType === 'אחוז') { // percentage discount
+                const discountPercent = parseFloat(discountValue);
+                discountedDayPrice = basePrice * (1 - (discountPercent / 100));
+            } else { // fixed amount discount
+                const discountAmount = parseFloat(discountValue);
+                discountedDayPrice = Math.max(0, basePrice - discountAmount);
+            }
+            
+            console.log('Discounted day price: ' + discountedDayPrice);
+            additionalDaysPrice = discountedDayPrice * additionalDays;
+            totalPrice = firstDayPrice + additionalDaysPrice;
+            finalPrice = totalPrice;
+        } else {
+            // No discount applied
+            totalPrice = basePrice * rentalDays;
+            finalPrice = totalPrice;
+        }
+        
+        // Ensure price doesn't go below zero
+        finalPrice = Math.max(0, finalPrice);
+        console.log('Final price: ' + finalPrice);
+        
+        // Store the rental details in hidden fields
+        if ($('#rental_days').length === 0) {
+            $('form.cart').append('<input type="hidden" id="rental_days" name="rental_days" value="' + rentalDays + '">');
+        } else {
+            $('#rental_days').val(rentalDays);
+        }
+        
+        if ($('#rental_base_price').length === 0) {
+            $('form.cart').append('<input type="hidden" id="rental_base_price" name="rental_base_price" value="' + basePrice + '">');
+        } else {
+            $('#rental_base_price').val(basePrice);
+        }
+        
+        if ($('#rental_total_price').length === 0) {
+            $('form.cart').append('<input type="hidden" id="rental_total_price" name="rental_total_price" value="' + finalPrice.toFixed(2) + '">');
+        } else {
+            $('#rental_total_price').val(finalPrice.toFixed(2));
+        }
+        
+        // Update price display
+        updatePriceDisplay(basePrice, totalPrice, finalPrice, rentalDays, discountType, discountValue);
+    }
+    
+    /**
+     * Update the price display to show per-day and total pricing
+     */
+    function updatePriceDisplay(basePrice, totalPrice, finalPrice, days, discountType, discountValue) {
+        // First check if our custom price display container exists
+        if ($('.rental-price-breakdown').length === 0) {
+            $('.product-price').after('<div class="rental-price-breakdown"></div>');
+        }
+        
+        let priceHtml = '';
+        
+        // Show base price
+        priceHtml += '<div class="price-line">מחיר ליום: <span class="day-price">' + basePrice.toFixed(2) + ' ₪</span></div>';
+        
+        // Show days count
+        priceHtml += '<div class="price-line">מספר ימים: <span class="days-count">' + days + '</span></div>';
+        
+        // Show total before discount
+        priceHtml += '<div class="price-line">סה"כ לפני הנחה: <span class="total-before-discount">' + totalPrice.toFixed(2) + ' ₪</span></div>';
+        
+        // Show discount if applicable
+        if (finalPrice < totalPrice && discountType && discountValue) {
+            let discountText = '';
+            if (discountType === 'אחוז') {
+                discountText = discountValue + '%';
+            } else {
+                discountText = discountValue + ' ₪';
+            }
+            
+            priceHtml += '<div class="price-line discount-line">הנחה: <span class="discount-amount">' + discountText + '</span></div>';
+        }
+        
+        // Show final price
+        priceHtml += '<div class="price-line final-price">מחיר סופי: <strong>' + finalPrice.toFixed(2) + ' ₪</strong></div>';
+        
+        // Update the display
+        $('.rental-price-breakdown').html(priceHtml);
+        
+        // Update the main product price display
+        if ($('.product-price .amount').length) {
+            // Replace only the amount, preserve currency symbol
+            const currencySymbol = $('.product-price .woocommerce-Price-currencySymbol').text();
+            $('.product-price .amount').html(finalPrice.toFixed(2) + '&nbsp;<span class="woocommerce-Price-currencySymbol">' + currencySymbol + '</span>');
+        }
+        
+        // Add some styling
+        $('<style>.rental-price-breakdown{margin:10px 0;padding:10px;background:#f9f9f9;border:1px solid #eee}.price-line{margin:5px 0}.discount-line{color:#d04848}.final-price{font-size:1.1em;margin-top:10px;border-top:1px solid #ddd;padding-top:5px}</style>').appendTo('head');
+    }
+})(jQuery);

@@ -1,0 +1,285 @@
+<ul class="woocommerce-error" tabindex="-1">
+			<li>
+			<strong>כמות המשתתפים</strong> is a required field.		</li>
+			<li>
+			<strong>Need to accept</strong> is a required field.		</li>
+			<li>
+			<strong>Need to accept</strong> is a required field.		</li>
+			<li data-id="billing_first_name"><a href="#billing_first_name">
+			<strong>חיוב שם פרטי</strong> הוא שדה חובה.		</a></li>
+			<li data-id="billing_last_name"><a href="#billing_last_name">
+			<strong>חיוב שם משפחה</strong> הוא שדה חובה.		</a></li>
+			<li data-id="billing_phone"><a href="#billing_phone">
+			<strong>חיוב טלפון</strong> הוא שדה חובה.		</a></li>
+			<li data-id="billing_email"><a href="#billing_email">
+			<strong>חיוב כתובת אימייל</strong> הוא שדה חובה.		</a></li>
+	</ul>
+
+    translate
+    כמות המשתתפים is a required field.
+Need to accept is a required field.
+Need to accept is a required field.
+
+that was on the review order / checkout page after leaving the fields empty
+
+
+now bak to ouour product page
+ JQMIGRATE: Migrate is installed, version 3.4.1
+ 🌍 Global basePrice set to: 520
+ 🌍 Global variables: Object
+ 🔄 Setting global discount values: percentage 50
+ Using fallback calendar system instead of Air Datepicker
+ 🔎 DEBUG HELPER LOADED (SILENT MODE)
+debug-helper.js:83 Uncaught 
+ [WEEKEND OVERRIDE] Applying weekend booking fixes
+ [WEEKEND OVERRIDE] Weekend booking fixes applied
+  🔍 SCRIPT LOADING CHECK:
+  critical-fixes.js not detected, loading it now
+  Document is ready
+ Document is ready
+ LAST-MINUTE CHECK: Script loaded - running initial check
+ LAST-MINUTE CHECK: Current time is 11:56
+ LAST-MINUTE CHECK: Pickup hour: 13
+ LAST-MINUTE CHECK: Cutoff hour: 11
+ LAST-MINUTE CHECK: Is past cutoff? true
+ LAST-MINUTE CHECK: Adding hook for date selection
+ Calendar initializer running...
+ Initializing fallback calendar system
+ Received dates for initialization: Array(3)
+ Using already formatted dates from rental-dates-handler
+ Container cleared, proceeding with initialization
+ Disabled dates prepared successfully: Array(4)
+ Current hour: 11 / Cutoff hour: 11
+ PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+ Final disabled dates set: Array(4)
+ Generating calendar with month: 3 year: 2025
+ Generating month calendar with month: 3 year: 2025
+ Using local user time: Object
+ Today is PAST cutoff time - disabling
+ Calendar successfully generated
+ Setting up date selection handlers
+ Pickup time field set to 13:00
+ Fallback calendar initialization completed successfully
+ Calendar initialized successfully
+ Calendar test script running...
+ Found datepicker container, initializing test...
+ Initializing Unified Pickup Time Handler
+ Pickup time field not found, skipping initialization
+ Rental Dates Handler loaded
+ Processing rental data for product ID: 463
+ Initial booked dates: Array(0)
+ Processing date ranges: Array(0)
+ No date ranges provided
+ Processed dates: Array(0)
+ Formatted dates ready for datepicker: Array(0)
+  Reserved Dates for Calendar:
+ Array(0)
+ Total reserved dates: 0
+ Datepicker container found: true
+ Attempting to use fallback calendar
+ Initializing fallback calendar system
+ Received dates for initialization: Array(0)
+ Using already formatted dates from rental-dates-handler
+ Container cleared, proceeding with initialization
+ Disabled dates prepared successfully: Array(1)
+ Current hour: 11 / Cutoff hour: 11
+ PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+ Final disabled dates set: Array(1)
+ Generating calendar with month: 3 year: 2025
+ Generating month calendar with month: 3 year: 2025
+ Using local user time: Object
+ Today is PAST cutoff time - disabling
+ Calendar successfully generated
+ Setting up date selection handlers
+ Pickup time field set to 13:00
+ Fallback calendar initialization completed successfully
+  Calendar system ready with disabled dates: Array(0)
+ No reserved dates found for this product
+ Early Return Handler loaded
+ Return Date Handler loaded
+ LAST-MINUTE CHECK: Running check
+ LAST-MINUTE CHECK: No dates selected, skipping check
+ LAST-MINUTE CHECK: Past cutoff time, disabling today's cell
+ Initializing early return handler
+early-return-handler.js:45 Processing early return dates from booked dates: Array(0)
+early-return-handler.js:79 Identified early return dates: Array(0)
+return-date-handler.js:19 Initializing return date handler
+return-date-handler.js:45 Processing return dates from booked dates: Array(0)
+return-date-handler.js:75 Identified return dates: Array(0)
+pickup-time-handler.js:23 Pickup time field not found, skipping initialization
+actions.js:9 undefined
+rental-dates-handler.js:1120 No reserved dates found for this product
+fallback-calendar.js:715 Selected date: 29.04.2025
+fallback-calendar.js:961 Updating calendar selection with dates: Array(0)
+fallback-calendar.js:715 Selected date: 29.04.2025
+fallback-calendar.js:961 Updating calendar selection with dates: Array(0)
+אנה-ואלזה-43-5/:1155 ⏱️ After timeout, global variables: Object
+fallback-calendar.js:428 Generating month calendar with month: 4 year: 2025
+fallback-calendar.js:492 Using local user time: Object
+fallback-calendar.js:594 Calendar successfully generated
+calendar-test.js:15 SUCCESS: Calendar initialization function found!
+calendar-test.js:21 Calendar system is operational - no reinitialization needed
+fallback-calendar.js:715 Selected date: 03.05.2025
+fallback-calendar.js:961 Updating calendar selection with dates: Array(0)
+fallback-calendar.js:715 Selected date: 03.05.2025
+fallback-calendar.js:961 Updating calendar selection with dates: Array(0)
+
+<div class="content" bis_skin_checked="1">
+            
+<div class="slider-wrap" bis_skin_checked="1">
+    <div class="swiper product-slider swiper-initialized swiper-horizontal swiper-pointer-events swiper-rtl swiper-backface-hidden" bis_skin_checked="1">
+        <div class="swiper-wrapper" id="swiper-wrapper-4c4edf954d4c570e" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);" bis_skin_checked="1">
+                        <div class="swiper-slide swiper-slide-active" style="width: 653px;" role="group" aria-label="1 / 1" bis_skin_checked="1">
+                <a href="https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-7.png" data-fancybox="gallery">
+                    <img width="713" height="624" src="https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-7.png" class="attachment-large size-large" alt="" decoding="async" fetchpriority="high" srcset="https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-7.png 713w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-7-600x525.png 600w, https://mitnafun.johnmogi.local/wp-content/uploads/2024/04/img-prod-7-300x263.png 300w" sizes="(max-width: 713px) 100vw, 713px">                </a>
+            </div>
+                        
+        </div>
+        <div class="swiper-button-next product-next product-btn swiper-button-disabled swiper-button-lock" tabindex="-1" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-4c4edf954d4c570e" aria-disabled="true" bis_skin_checked="1"><img src="https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/img/icon-7.svg" alt=""></div>
+        <div class="swiper-button-prev product-prev product-btn swiper-button-disabled swiper-button-lock" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-4c4edf954d4c570e" aria-disabled="true" bis_skin_checked="1"><img src="https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/img/icon-7.svg" alt=""></div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+</div>
+
+
+
+
+
+            <div class="text-wrap" bis_skin_checked="1">
+                <ul class="list-info">
+                    <li>הסדנה 1, כפר סבא</li>
+                </ul>
+
+                <h1 class="product_title entry-title">אנה ואלזה 4X3.5</h1><p class="price"><span class="woocommerce-Price-amount amount"><bdi>520.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span></p>
+<div class="product_meta" bis_skin_checked="1">
+
+	
+	
+	<span class="posted_in">קטגוריה: <a href="https://mitnafun.johnmogi.local/product-category/%d7%9e%d7%aa%d7%a0%d7%a4%d7%97%d7%99%d7%9d-%d7%9c%d7%94%d7%a9%d7%9b%d7%a8%d7%94/" rel="tag">מתנפחים להשכרה</a></span>
+	
+	
+</div>
+
+                <p class="stock in-stock">1 במלאי</p>
+
+                <div class="rental-form-section" bis_skin_checked="1">
+                    <!-- Simple Notice - Always Visible at Top -->
+                    <!-- <div id="simple-notice" class="return-time-notice info" style="margin-bottom: 15px; background-color: #e3f2fd; border: 1px solid #90caf9; padding: 8px; border-radius: 4px;">
+                        <strong style="color: #1565c0;">שימו לב</strong>
+                        <span> - בחרו תאריכי השכרה לקבלת מידע מלא</span>
+                    </div> -->
+                    
+                    <!-- Early discount incentive message - only shown if there's an actual discount -->
+                                        <script>
+                        // Make discount values available globally
+                        window.discountType = 'percentage';
+                        window.discountValue = 50;
+                        console.log('🔄 Setting global discount values:', window.discountType, window.discountValue);
+                    </script>
+                    
+                                                            
+                    <h3>תאריכי השכרה</h3>
+                    <div class="rental-dates-label" bis_skin_checked="1">תאריכי השכרה <span class="required">*</span></div><div id="datepicker-container" bis_skin_checked="1"><div class="fallback-calendar" bis_skin_checked="1"><div class="month-header" bis_skin_checked="1">
+                <div class="month-year" bis_skin_checked="1">מאי 2025</div>
+                <button id="prevMonthBtn" class="nav-btn">&lt;</button>
+                <button id="nextMonthBtn" class="nav-btn">&gt;</button>
+            </div><div class="calendar-days-header" bis_skin_checked="1"><div class="day-name" bis_skin_checked="1">א</div><div class="day-name" bis_skin_checked="1">ב</div><div class="day-name" bis_skin_checked="1">ג</div><div class="day-name" bis_skin_checked="1">ד</div><div class="day-name" bis_skin_checked="1">ה</div><div class="day-name" bis_skin_checked="1">ו</div><div class="day-name" bis_skin_checked="1">ש</div></div><div class="calendar-days" bis_skin_checked="1"><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell" data-date="2025-05-01" data-selectable="true" bis_skin_checked="1">1</div><div class="day-cell" data-date="2025-05-02" data-selectable="true" bis_skin_checked="1">2</div><div class="day-cell weekend disabled" data-date="2025-05-03" data-selectable="false" bis_skin_checked="1">3</div><div class="day-cell" data-date="2025-05-04" data-selectable="true" bis_skin_checked="1">4</div><div class="day-cell" data-date="2025-05-05" data-selectable="true" bis_skin_checked="1">5</div><div class="day-cell" data-date="2025-05-06" data-selectable="true" bis_skin_checked="1">6</div><div class="day-cell" data-date="2025-05-07" data-selectable="true" bis_skin_checked="1">7</div><div class="day-cell" data-date="2025-05-08" data-selectable="true" bis_skin_checked="1">8</div><div class="day-cell" data-date="2025-05-09" data-selectable="true" bis_skin_checked="1">9</div><div class="day-cell weekend disabled" data-date="2025-05-10" data-selectable="false" bis_skin_checked="1">10</div><div class="day-cell" data-date="2025-05-11" data-selectable="true" bis_skin_checked="1">11</div><div class="day-cell" data-date="2025-05-12" data-selectable="true" bis_skin_checked="1">12</div><div class="day-cell" data-date="2025-05-13" data-selectable="true" bis_skin_checked="1">13</div><div class="day-cell" data-date="2025-05-14" data-selectable="true" bis_skin_checked="1">14</div><div class="day-cell" data-date="2025-05-15" data-selectable="true" bis_skin_checked="1">15</div><div class="day-cell" data-date="2025-05-16" data-selectable="true" bis_skin_checked="1">16</div><div class="day-cell weekend disabled" data-date="2025-05-17" data-selectable="false" bis_skin_checked="1">17</div><div class="day-cell" data-date="2025-05-18" data-selectable="true" bis_skin_checked="1">18</div><div class="day-cell" data-date="2025-05-19" data-selectable="true" bis_skin_checked="1">19</div><div class="day-cell" data-date="2025-05-20" data-selectable="true" bis_skin_checked="1">20</div><div class="day-cell" data-date="2025-05-21" data-selectable="true" bis_skin_checked="1">21</div><div class="day-cell" data-date="2025-05-22" data-selectable="true" bis_skin_checked="1">22</div><div class="day-cell" data-date="2025-05-23" data-selectable="true" bis_skin_checked="1">23</div><div class="day-cell weekend disabled" data-date="2025-05-24" data-selectable="false" bis_skin_checked="1">24</div><div class="day-cell" data-date="2025-05-25" data-selectable="true" bis_skin_checked="1">25</div><div class="day-cell" data-date="2025-05-26" data-selectable="true" bis_skin_checked="1">26</div><div class="day-cell" data-date="2025-05-27" data-selectable="true" bis_skin_checked="1">27</div><div class="day-cell" data-date="2025-05-28" data-selectable="true" bis_skin_checked="1">28</div><div class="day-cell" data-date="2025-05-29" data-selectable="true" bis_skin_checked="1">29</div><div class="day-cell" data-date="2025-05-30" data-selectable="true" bis_skin_checked="1">30</div><div class="day-cell weekend disabled" data-date="2025-05-31" data-selectable="false" bis_skin_checked="1">31</div></div><div class="calendar-legend" bis_skin_checked="1">
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color available"></span> פנוי</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color disabled"></span> תפוס</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color weekend"></span> שבת (סגור)</div>
+            </div></div></div>
+                    <div id="date-validation-message" class="validation-message info" style="display: none;" bis_skin_checked="1">תאריך התחלה: 03.05.2025. בחר תאריך סיום.</div>
+                    <!-- Weekend notice moved to more prominent position -->
+                    <div id="weekend-return-notice" style="margin: 15px 0px; padding: 12px; background-color: rgb(255, 248, 229); border: 1px solid rgb(255, 183, 77); border-radius: 4px; display: none;" bis_skin_checked="1">
+                    <strong style="color: #ef6c00;">לתשומת לבכם:</strong> ההחזרה מתוכננת לשעה <strong>10:00</strong>.  
+החזרה באיחור עלולה להוביל לחיוב נוסף לפי תנאי ההשכרה.
+</div>
+
+                    <div id="max-duration-message" class="validation-message info" style="display: none" bis_skin_checked="1">ניתן להזמין עד <span id="max-days">14</span> ימים</div>
+                    
+                    <!-- Price Breakdown Section -->
+                    <div id="price-breakdown-container" class="price-breakdown-container" style="display: none; margin: 15px 0; padding: 15px; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 4px;" bis_skin_checked="1">
+                        <h4 style="margin-top: 0; margin-bottom: 10px; color: #333; font-size: 16px;">פירוט תמחור לתקופת השכירה:</h4>
+                        <ul id="price-breakdown-list" style="margin: 0 0 10px 0; padding-right: 20px;">
+                            <!-- Will be populated by JavaScript -->
+                        </ul>
+                        <p id="price-breakdown-total" style="margin: 5px 0 0; font-weight: bold; color: #333;">
+                            <!-- Will be populated by JavaScript -->
+                        </p>
+                    </div>
+                    
+                    <div id="hours-selection" class="hours-selection" style="display: none" bis_skin_checked="1">
+                        <h4>שעת לקיחה והחזרה</h4>
+                        <div class="pickup-time-row" bis_skin_checked="1">
+                            <div class="pickup-label" bis_skin_checked="1">שעת לקיחה:</div>
+                            <select name="pickup_hour" id="pickup_hour">
+                                <option value="9">9:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                            </select>
+                        </div>
+                        <div class="return-time-row" bis_skin_checked="1">
+                            <div class="return-label" bis_skin_checked="1">שעת החזרה (משוערת):</div>
+                            <select name="return_hour" id="return_hour">
+                                <option value="9">9:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="cart" action="https://mitnafun.johnmogi.local/product/%d7%90%d7%a0%d7%94-%d7%95%d7%90%d7%9c%d7%96%d7%94-43-5/" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="rental_dates" name="rental_dates" class="date-picker-field">
+                    <input type="hidden" id="rental_hours" name="rental_hours">
+                    
+                    <!-- Add initial discount information notice that matches minicart format exactly -->
+                                        
+                    <div style="display: none" bis_skin_checked="1">
+                        <div class="quantity" bis_skin_checked="1">
+		<label class="screen-reader-text" for="quantity_680cd814bd4b2">כמות של אנה ואלזה 4X3.5</label>
+	<input type="number" id="quantity_680cd814bd4b2" class="input-text qty text" name="quantity" value="1" aria-label="כמות המוצר" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+	</div>
+                    </div>
+                    <div class="btn-wrap" bis_skin_checked="1">
+                        <button type="submit" name="add-to-cart" value="463" class="single_add_to_cart_button btn-default btn-blue btn-mini" aria-disabled="false" style="opacity: 1; cursor: pointer;" disabled="">הוסף לסל</button>
+                        <button type="submit" name="add-to-cart" value="463" class="single_add_to_cart_button btn-redirect btn-default btn-yellow btn-mini" aria-disabled="false" style="opacity: 1; cursor: pointer;" disabled="">הזמן</button>
+                    </div>
+                    <input type="hidden" name="redirect" value="1">
+                </form>
+                
+                <!-- Return Conditions - Shown After Date Selection -->
+                <div id="return-conditions-notice" class="return-time-notice warning" style="display: none; margin: 15px 0; background-color: #fff8e5; border: 1px solid #ffb74d; padding: 12px; border-radius: 4px;" bis_skin_checked="1">
+                    <strong style="display: block; margin-bottom: 8px; color: #e65100; font-size: 16px;">תנאי החזרת ציוד - חשוב לקרוא!</strong>
+                    <ul style="margin: 0; padding-right: 20px; font-size: 14px;">
+                        <li style="margin-bottom: 6px;">יש להחזיר את הציוד מקופל וקשור כראוי</li>
+                        <li style="margin-bottom: 6px;">מתקנים מתנפחים יבשים אסור להרטיב</li>
+                        <li style="margin-bottom: 6px;">ציוד שיוחזר פגום יחויב בהתאם</li>
+                    </ul>
+                    <p style="margin: 8px 0 0; font-weight: bold; color: #e65100;">לקוחות שלא יעמדו בתנאים אלו יחויבו בתשלום נוסף!</p>
+                </div>
+                
+                <!-- Return Time Notice -->
+                <div id="return-time-notice" class="return-time-notice info" bis_skin_checked="1">
+                    <strong>שימו לב!</strong> החזרת הציוד מתבצעת עד השעה 10:00 בבוקר.
+                </div>
+                
+                <div id="weekend-return-notice" class="weekend-return-notice info" style="display: none;" bis_skin_checked="1">
+                    <strong>שימו לב!</strong> השכרת הציוד כוללת את סוף השבוע, החזרתו תתבצע ביום ראשון.
+                </div>
+                
+                            </div>
+        </div>
+
+its imposible to place orders without the order buttons those should apear at all times

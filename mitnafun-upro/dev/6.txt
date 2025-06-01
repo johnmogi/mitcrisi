@@ -1,0 +1,124 @@
+troubleshoot the aircalendar
+
+1 behaviour - although small, there is a glitch in the date selection mechanism
+when selecting an end date, there is a small visible shift in the layout, the following day gets selected,
+then a quick fix is applied - all of this is visible and disturbing.
+
+2 month navigation - on first load of the page everything apears to be fine,
+the start and end days of previously reserved bookings throw the right warnings,
+also the discount description is visible.
+
+normal load of the calendar with previsouly selected dates
+<div id="datepicker-container" bis_skin_checked="1"><div class="fallback-calendar" bis_skin_checked="1"><div class="month-header" bis_skin_checked="1">
+                <div class="month-year" bis_skin_checked="1">אפריל 2025</div>
+                <button id="prevMonthBtn" class="nav-btn">&lt;</button>
+                <button id="nextMonthBtn" class="nav-btn">&gt;</button>
+            </div><div class="calendar-days-header" bis_skin_checked="1"><div class="day-name" bis_skin_checked="1">א</div><div class="day-name" bis_skin_checked="1">ב</div><div class="day-name" bis_skin_checked="1">ג</div><div class="day-name" bis_skin_checked="1">ד</div><div class="day-name" bis_skin_checked="1">ה</div><div class="day-name" bis_skin_checked="1">ו</div><div class="day-name" bis_skin_checked="1">ש</div></div><div class="calendar-days" bis_skin_checked="1"><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell" data-date="2025-04-01" data-selectable="true" bis_skin_checked="1">1</div><div class="day-cell" data-date="2025-04-02" data-selectable="true" bis_skin_checked="1">2</div><div class="day-cell" data-date="2025-04-03" data-selectable="true" bis_skin_checked="1">3</div><div class="day-cell" data-date="2025-04-04" data-selectable="true" bis_skin_checked="1">4</div><div class="day-cell weekend" data-date="2025-04-05" data-selectable="true" bis_skin_checked="1">5</div><div class="day-cell" data-date="2025-04-06" data-selectable="true" bis_skin_checked="1">6</div><div class="day-cell" data-date="2025-04-07" data-selectable="true" bis_skin_checked="1">7</div><div class="day-cell" data-date="2025-04-08" data-selectable="true" bis_skin_checked="1">8</div><div class="day-cell" data-date="2025-04-09" data-selectable="true" bis_skin_checked="1">9</div><div class="day-cell" data-date="2025-04-10" data-selectable="true" bis_skin_checked="1">10</div><div class="day-cell" data-date="2025-04-11" data-selectable="true" bis_skin_checked="1">11</div><div class="day-cell weekend" data-date="2025-04-12" data-selectable="true" bis_skin_checked="1">12</div><div class="day-cell" data-date="2025-04-13" data-selectable="true" bis_skin_checked="1">13</div><div class="day-cell" data-date="2025-04-14" data-selectable="true" bis_skin_checked="1">14</div><div class="day-cell" data-date="2025-04-15" data-selectable="true" bis_skin_checked="1">15</div><div class="day-cell" data-date="2025-04-16" data-selectable="true" bis_skin_checked="1">16</div><div class="day-cell" data-date="2025-04-17" data-selectable="true" bis_skin_checked="1">17</div><div class="day-cell" data-date="2025-04-18" data-selectable="true" bis_skin_checked="1">18</div><div class="day-cell weekend" data-date="2025-04-19" data-selectable="true" bis_skin_checked="1">19</div><div class="day-cell" data-date="2025-04-20" data-selectable="true" bis_skin_checked="1">20</div><div class="day-cell" data-date="2025-04-21" data-selectable="true" bis_skin_checked="1">21</div><div class="day-cell" data-date="2025-04-22" data-selectable="true" bis_skin_checked="1">22</div><div class="day-cell" data-date="2025-04-23" data-selectable="true" bis_skin_checked="1">23</div><div class="day-cell" data-date="2025-04-24" data-selectable="true" bis_skin_checked="1">24</div><div class="day-cell today" data-date="2025-04-25" data-selectable="true" bis_skin_checked="1">25</div><div class="day-cell weekend" data-date="2025-04-26" data-selectable="true" bis_skin_checked="1">26</div><div class="day-cell early-return-date" data-date="2025-04-27" data-selectable="true" bis_skin_checked="1" data-early-return="true">27</div><div class="day-cell disabled" data-date="2025-04-28" data-selectable="false" bis_skin_checked="1">28</div><div class="day-cell disabled" data-date="2025-04-29" data-selectable="false" bis_skin_checked="1">29</div><div class="day-cell return-date" data-date="2025-04-30" data-selectable="true" bis_skin_checked="1" data-return-date="true">30</div></div><div class="calendar-legend" bis_skin_checked="1">
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color available"></span> פנוי</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color disabled"></span> תפוס</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color weekend"></span> שבת (סגור)</div>
+            
+                <div class="legend-item" bis_skin_checked="1">
+                    <span class="legend-color early-return"></span> החזרה מוקדמת (עד 09:00)
+                </div>
+            
+                <div class="legend-item" bis_skin_checked="1">
+                    <span class="legend-color return-date"></span> יום החזרה (ניתן להזמין)
+                </div>
+            </div><button class="reload-dates button">טען תאריכים מחדש</button></div></div>
+
+but after a month of navigation the warnings 
+are not visible and the discount description is not visible
+
+how the element looks on the next month - already without 1st and last days indication
+<div class="fallback-calendar" bis_skin_checked="1"><div class="month-header" bis_skin_checked="1">
+                <div class="month-year" bis_skin_checked="1">מאי 2025</div>
+                <button id="prevMonthBtn" class="nav-btn">&lt;</button>
+                <button id="nextMonthBtn" class="nav-btn">&gt;</button>
+            </div><div class="calendar-days-header" bis_skin_checked="1"><div class="day-name" bis_skin_checked="1">א</div><div class="day-name" bis_skin_checked="1">ב</div><div class="day-name" bis_skin_checked="1">ג</div><div class="day-name" bis_skin_checked="1">ד</div><div class="day-name" bis_skin_checked="1">ה</div><div class="day-name" bis_skin_checked="1">ו</div><div class="day-name" bis_skin_checked="1">ש</div></div><div class="calendar-days" bis_skin_checked="1"><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell" data-date="2025-05-01" data-selectable="true" bis_skin_checked="1">1</div><div class="day-cell" data-date="2025-05-02" data-selectable="true" bis_skin_checked="1">2</div><div class="day-cell weekend" data-date="2025-05-03" data-selectable="true" bis_skin_checked="1">3</div><div class="day-cell disabled" data-date="2025-05-04" data-selectable="false" bis_skin_checked="1">4</div><div class="day-cell disabled" data-date="2025-05-05" data-selectable="false" bis_skin_checked="1">5</div><div class="day-cell disabled" data-date="2025-05-06" data-selectable="false" bis_skin_checked="1">6</div><div class="day-cell" data-date="2025-05-07" data-selectable="true" bis_skin_checked="1">7</div><div class="day-cell" data-date="2025-05-08" data-selectable="true" bis_skin_checked="1">8</div><div class="day-cell" data-date="2025-05-09" data-selectable="true" bis_skin_checked="1">9</div><div class="day-cell weekend" data-date="2025-05-10" data-selectable="true" bis_skin_checked="1">10</div><div class="day-cell" data-date="2025-05-11" data-selectable="true" bis_skin_checked="1">11</div><div class="day-cell" data-date="2025-05-12" data-selectable="true" bis_skin_checked="1">12</div><div class="day-cell" data-date="2025-05-13" data-selectable="true" bis_skin_checked="1">13</div><div class="day-cell" data-date="2025-05-14" data-selectable="true" bis_skin_checked="1">14</div><div class="day-cell" data-date="2025-05-15" data-selectable="true" bis_skin_checked="1">15</div><div class="day-cell" data-date="2025-05-16" data-selectable="true" bis_skin_checked="1">16</div><div class="day-cell weekend" data-date="2025-05-17" data-selectable="true" bis_skin_checked="1">17</div><div class="day-cell" data-date="2025-05-18" data-selectable="true" bis_skin_checked="1">18</div><div class="day-cell" data-date="2025-05-19" data-selectable="true" bis_skin_checked="1">19</div><div class="day-cell" data-date="2025-05-20" data-selectable="true" bis_skin_checked="1">20</div><div class="day-cell" data-date="2025-05-21" data-selectable="true" bis_skin_checked="1">21</div><div class="day-cell" data-date="2025-05-22" data-selectable="true" bis_skin_checked="1">22</div><div class="day-cell" data-date="2025-05-23" data-selectable="true" bis_skin_checked="1">23</div><div class="day-cell weekend" data-date="2025-05-24" data-selectable="true" bis_skin_checked="1">24</div><div class="day-cell" data-date="2025-05-25" data-selectable="true" bis_skin_checked="1">25</div><div class="day-cell" data-date="2025-05-26" data-selectable="true" bis_skin_checked="1">26</div><div class="day-cell" data-date="2025-05-27" data-selectable="true" bis_skin_checked="1">27</div><div class="day-cell" data-date="2025-05-28" data-selectable="true" bis_skin_checked="1">28</div><div class="day-cell" data-date="2025-05-29" data-selectable="true" bis_skin_checked="1">29</div><div class="day-cell" data-date="2025-05-30" data-selectable="true" bis_skin_checked="1">30</div><div class="day-cell weekend" data-date="2025-05-31" data-selectable="true" bis_skin_checked="1">31</div></div><div class="calendar-legend" bis_skin_checked="1">
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color available"></span> פנוי</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color disabled"></span> תפוס</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color weekend"></span> שבת (סגור)</div>
+            </div></div>
+
+
+how the bottom part below the calendar should look like
+<div id="date-validation-message" class="validation-message info success" style="display: block;" bis_skin_checked="1">
+                    <strong>תאריכים שנבחרו:</strong> 30.04.2025 - 01.05.2025 
+                    (2 ימים)
+                    <span class="confirm-button-wrapper">
+                        <button id="confirm-dates" class="button" style="background-color: #4CAF50; color: white; font-weight: bold;">אשר תאריכים</button>
+                    </span>
+                    <span id="clear-selection">
+                        <a href="#" id="clear-date-selection" style="margin-right:10px; font-size:0.8em;">[נקה בחירה]</a>
+                    </span>
+                </div>
+
+in that case i even navigated a month and successfully see the date selection and approval box
+however the next detail of the discount is empty until the user approves the selection
+<div id="price-breakdown-container" class="price-breakdown-container" style="display: none; margin: 15px 0; padding: 15px; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 4px;" bis_skin_checked="1">
+                        <h4 style="margin-top: 0; margin-bottom: 10px; color: #333; font-size: 16px;">פירוט תמחור לתקופת השכירה:</h4>
+                        <ul id="price-breakdown-list" style="margin: 0 0 10px 0; padding-right: 20px;">
+                            <!-- Will be populated by JavaScript -->
+                        </ul>
+                        <p id="price-breakdown-total" style="margin: 5px 0 0; font-weight: bold; color: #333;">
+                            <!-- Will be populated by JavaScript -->
+                        </p>
+                    </div>
+
+
+after approval it looks like this
+<div class="mitnafun-breakdown" bis_skin_checked="1">
+          <p><strong>פירוט תמחור לתקופת השכירה:</strong></p>
+          <ul>
+            <li>יום ראשון: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (מחיר מלא)</li>
+            <li>2 ימים נוספים: <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (50% הנחה)</li>
+          </ul>
+          <p><strong>סה"כ: <span class="woocommerce-Price-amount amount"><bdi>1,100.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span> (חסכת <span class="woocommerce-Price-amount amount"><bdi>550.00&nbsp;<span class="woocommerce-Price-currencySymbol">₪</span></bdi></span>)</strong></p>
+        </div>
+
+        wanted behaviour- open it as soon as the user selects the end date.
+
+
+another case - there is no ability to navigate out of a selection and 
+return to the original state as in reset
+
+<div id="datepicker-container" bis_skin_checked="1"><div class="fallback-calendar" bis_skin_checked="1"><div class="month-header" bis_skin_checked="1">
+                <div class="month-year" bis_skin_checked="1">מאי 2025</div>
+                <button id="prevMonthBtn" class="nav-btn">&lt;</button>
+                <button id="nextMonthBtn" class="nav-btn">&gt;</button>
+            </div><div class="calendar-days-header" bis_skin_checked="1"><div class="day-name" bis_skin_checked="1">א</div><div class="day-name" bis_skin_checked="1">ב</div><div class="day-name" bis_skin_checked="1">ג</div><div class="day-name" bis_skin_checked="1">ד</div><div class="day-name" bis_skin_checked="1">ה</div><div class="day-name" bis_skin_checked="1">ו</div><div class="day-name" bis_skin_checked="1">ש</div></div><div class="calendar-days" bis_skin_checked="1"><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell empty" data-selectable="true" bis_skin_checked="1"></div><div class="day-cell" data-date="2025-05-01" data-selectable="true" bis_skin_checked="1">1</div><div class="day-cell" data-date="2025-05-02" data-selectable="true" bis_skin_checked="1">2</div><div class="day-cell weekend" data-date="2025-05-03" data-selectable="true" bis_skin_checked="1">3</div><div class="day-cell disabled" data-date="2025-05-04" data-selectable="false" bis_skin_checked="1">4</div><div class="day-cell disabled" data-date="2025-05-05" data-selectable="false" bis_skin_checked="1">5</div><div class="day-cell disabled" data-date="2025-05-06" data-selectable="false" bis_skin_checked="1">6</div><div class="day-cell" data-date="2025-05-07" data-selectable="true" bis_skin_checked="1">7</div><div class="day-cell selected start-date selected-start" data-date="2025-05-08" data-selectable="true" bis_skin_checked="1" style="background-color: rgb(0, 123, 255); color: white; font-weight: bold; border-radius: 24px; box-shadow: rgb(0, 123, 255) 0px 0px 0px 2px, white 0px 0px 0px 3px; border: 2px solid white; position: relative; z-index: 10; transform: scale(1.1);">8</div><div class="day-cell in-range" data-date="2025-05-09" data-selectable="true" bis_skin_checked="1" style="background-color: rgb(207, 231, 255); color: rgb(0, 123, 255); font-weight: bold; border: 1px solid rgb(0, 86, 179); position: relative; z-index: 5;">9</div><div class="day-cell weekend in-range" data-date="2025-05-10" data-selectable="true" bis_skin_checked="1" style="background-color: rgb(207, 231, 255); color: rgb(0, 123, 255); font-weight: bold; border: 1px solid rgb(0, 86, 179); position: relative; z-index: 5;">10</div><div class="day-cell in-range" data-date="2025-05-11" data-selectable="true" bis_skin_checked="1" style="background-color: rgb(207, 231, 255); color: rgb(0, 123, 255); font-weight: bold; border: 1px solid rgb(0, 86, 179); position: relative; z-index: 5;">11</div><div class="day-cell selected end-date selected-end" data-date="2025-05-12" data-selectable="true" bis_skin_checked="1" style="background-color: rgb(0, 123, 255); color: white; font-weight: bold; border-radius: 24px; box-shadow: rgb(0, 123, 255) 0px 0px 0px 2px, white 0px 0px 0px 3px; border: 2px solid white; position: relative; z-index: 10; transform: scale(1.1);">12</div><div class="day-cell" data-date="2025-05-13" data-selectable="true" bis_skin_checked="1">13</div><div class="day-cell" data-date="2025-05-14" data-selectable="true" bis_skin_checked="1">14</div><div class="day-cell" data-date="2025-05-15" data-selectable="true" bis_skin_checked="1">15</div><div class="day-cell" data-date="2025-05-16" data-selectable="true" bis_skin_checked="1">16</div><div class="day-cell weekend" data-date="2025-05-17" data-selectable="true" bis_skin_checked="1">17</div><div class="day-cell" data-date="2025-05-18" data-selectable="true" bis_skin_checked="1">18</div><div class="day-cell" data-date="2025-05-19" data-selectable="true" bis_skin_checked="1">19</div><div class="day-cell" data-date="2025-05-20" data-selectable="true" bis_skin_checked="1">20</div><div class="day-cell" data-date="2025-05-21" data-selectable="true" bis_skin_checked="1">21</div><div class="day-cell" data-date="2025-05-22" data-selectable="true" bis_skin_checked="1">22</div><div class="day-cell" data-date="2025-05-23" data-selectable="true" bis_skin_checked="1">23</div><div class="day-cell weekend" data-date="2025-05-24" data-selectable="true" bis_skin_checked="1">24</div><div class="day-cell" data-date="2025-05-25" data-selectable="true" bis_skin_checked="1">25</div><div class="day-cell" data-date="2025-05-26" data-selectable="true" bis_skin_checked="1">26</div><div class="day-cell" data-date="2025-05-27" data-selectable="true" bis_skin_checked="1">27</div><div class="day-cell" data-date="2025-05-28" data-selectable="true" bis_skin_checked="1">28</div><div class="day-cell" data-date="2025-05-29" data-selectable="true" bis_skin_checked="1">29</div><div class="day-cell" data-date="2025-05-30" data-selectable="true" bis_skin_checked="1">30</div><div class="day-cell weekend" data-date="2025-05-31" data-selectable="true" bis_skin_checked="1">31</div></div><div class="calendar-legend" bis_skin_checked="1">
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color available"></span> פנוי</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color disabled"></span> תפוס</div>
+                <div class="legend-item" bis_skin_checked="1"><span class="legend-color weekend"></span> שבת (סגור)</div>
+            </div></div>
+                        <div id="return-date-notice" style="margin: 15px 0; padding: 12px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px; color: #856404;" bis_skin_checked="1">
+                            <strong style="color: #856404;">שימו לב:</strong> עבור תאריך זה קיימת החזרה של ציוד בשעות הבוקר.  
+                            זמן האיסוף עשוי להתעכב – מומלץ לתאם איתנו מראש.
+                        </div>
+                    
+                        <div id="early-return-notice" style="margin: 15px 0; padding: 12px; background-color: #e3f2fd; border: 1px solid #90caf9; border-radius: 4px;" bis_skin_checked="1">
+                            <strong style="color: #0d47a1;">שימו לב!</strong> עבור תאריך זה יש הזמנה למחרת.
+                            <div style="margin-top: 5px;" bis_skin_checked="1">יש להחזיר את הציוד <strong>עד השעה 09:00</strong> בבוקר.</div>
+                        </div>
+                    </div>
+
+notice hoe the date selection and clear selection are  gone here is how they look like
+
+<div id="date-validation-message" class="validation-message info success" style="display: block;" bis_skin_checked="1">
+                    <strong>תאריכים שנבחרו:</strong> 30.04.2025 - 01.05.2025 
+                    (2 ימים)
+                    <span class="confirm-button-wrapper">
+                        <button id="confirm-dates" class="button" style="background-color: #4CAF50; color: white; font-weight: bold;">אשר תאריכים</button>
+                    </span>
+                    <span id="clear-selection">
+                        <a href="#" id="clear-date-selection" style="margin-right:10px; font-size:0.8em;">[נקה בחירה]</a>
+                    </span>
+                </div>
+                
+
+funnily there is a button on first load that later disapears
+<button class="reload-dates button">טען תאריכים מחדש</button>
+once you click on it it wipes out the 1st and last day reserve option
+so i guess that it either needs to be removed or fixed
+

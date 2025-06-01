@@ -1,0 +1,153 @@
+looks so much better thanks
+
+i should nt be able to try and order older days
+
+when i select a date range the add to cart and checkout place order should be open for the user to proceed even without additional approval
+
+on the checkout page there seems to be a log error and there are too many proces on that minicart
+jquery-migrate.min.js:2 JQMIGRATE: Migrate is installed, version 3.4.1
+air-datepicker.js:4 Using fallback calendar system instead of Air Datepicker
+checkout/:640 MITNAFUN FRONTEND DEBUG: {key: 'bf22750732d7cb66d1bc9ca10a5d2196', rental_dates: '01.05.2025 - 04.05.2025', price: '1,780.00 ₪\nפירוט תמחור\n+'}
+checkout/:1301 [WEEKEND OVERRIDE] Applying weekend booking fixes
+checkout/:1350 [WEEKEND OVERRIDE] Weekend booking fixes applied
+checkout/:1356  🔍 SCRIPT LOADING CHECK:
+checkout/:1360  critical-fixes.js not detected, loading it now
+checkout/:1369  Document is ready
+checkout/:1036 SUPER PICKUP FIX RUNNING - Checking if pickup time needs to be fixed
+checkout/:1069 FORCING pickup time display to: 11:00
+script.js:2 Document is ready
+script.js:236 Checkout page detected, opening popup
+[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+[Violation] Added non-passive event listener to a scroll-blocking <some> event. Consider marking event handler as 'passive' to make the page more responsive. See <URL>
+jquery.min.js:2 [Violation] 'setTimeout' handler took 50ms
+[Violation] Forced reflow while executing JavaScript took 31ms
+ LAST-MINUTE CHECK: Script loaded - running initial check
+ LAST-MINUTE CHECK: Current time is 19:12
+ LAST-MINUTE CHECK: Pickup hour: 13
+ LAST-MINUTE CHECK: Cutoff hour: 11
+ LAST-MINUTE CHECK: Is past cutoff? true
+ LAST-MINUTE CHECK: Adding hook for date selection
+ Calendar initializer running...
+ Initializing fallback calendar system
+ Received dates for initialization: ['2025-05-02']
+ Using already formatted dates from rental-dates-handler
+ Datepicker container not found, creating it
+initializeFallbackCalendar @ fallback-calendar.js:191
+(anonymous) @ calendar-initializer.js:30
+e @ jquery.min.js:2
+t @ jquery.min.js:2
+setTimeout
+(anonymous) @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+fire @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+ready @ jquery.min.js:2
+P @ jquery.min.js:2
+fallback-calendar.js:203 Container cleared, proceeding with initialization
+fallback-calendar.js:232 Disabled dates prepared successfully: ['2025-05-02']
+fallback-calendar.js:267 Current hour: 19 / Cutoff hour: 11
+fallback-calendar.js:273 PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+fallback-calendar.js:281 Final disabled dates set: (2) ['2025-05-02', '2025-04-26']
+fallback-calendar.js:292 Generating calendar with month: 3 year: 2025
+fallback-calendar.js:433 Generating month calendar with month: 3 year: 2025
+fallback-calendar.js:483 Calendar successfully generated
+fallback-calendar.js:591 Setting up date selection handlers
+fallback-calendar.js:1743 Pickup time field not found, skipping initialization
+fallback-calendar.js:333 Fallback calendar initialization completed successfully
+calendar-initializer.js:31 Calendar initialized successfully
+calendar-test.js:6 Calendar test script running...
+calendar-test.js:10 Found datepicker container, initializing test...
+pickup-time-handler.js:11 Initializing Unified Pickup Time Handler
+jquery.min.js:2 jQuery.Deferred exception: mitnafun_booking_data is not defined ReferenceError: mitnafun_booking_data is not defined
+    at initPickupTimeHandler (https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/js/pickup-time-handler.js:41:44)
+    at HTMLDocument.<anonymous> (https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/js/pickup-time-handler.js:12:9)
+    at e (https://mitnafun.johnmogi.local/wp-includes/js/jquery/jquery.min.js:2:27028)
+    at t (https://mitnafun.johnmogi.local/wp-includes/js/jquery/jquery.min.js:2:27330) undefined
+ce.Deferred.exceptionHook @ jquery.min.js:2
+t @ jquery.min.js:2
+setTimeout
+(anonymous) @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+fire @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+ready @ jquery.min.js:2
+P @ jquery.min.js:2
+checkout-fixes.js:6 Checkout fixes loaded
+jquery.min.js:2 Uncaught ReferenceError: mitnafun_booking_data is not defined
+    at initPickupTimeHandler (pickup-time-handler.js:41:44)
+    at HTMLDocument.<anonymous> (pickup-time-handler.js:12:9)
+    at e (jquery.min.js:2:27028)
+    at t (jquery.min.js:2:27330)
+initPickupTimeHandler @ pickup-time-handler.js:41
+(anonymous) @ pickup-time-handler.js:12
+e @ jquery.min.js:2
+t @ jquery.min.js:2
+setTimeout
+(anonymous) @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+fire @ jquery.min.js:2
+c @ jquery.min.js:2
+fireWith @ jquery.min.js:2
+ready @ jquery.min.js:2
+P @ jquery.min.js:2
+iframe-index.bundle.js:2 [Violation] Avoid using document.write(). https://developers.google.com/web/updates/2016/08/removing-document-write
+uid @ iframe-index.bundle.js:2
+last-minute-booking-check.js:76 LAST-MINUTE CHECK: Running check
+last-minute-booking-check.js:80 LAST-MINUTE CHECK: No dates selected, skipping check
+last-minute-booking-check.js:327 LAST-MINUTE CHECK: Past cutoff time, disabling today's cell
+pickup-time-handler.js:41 Uncaught ReferenceError: mitnafun_booking_data is not defined
+    at initPickupTimeHandler (pickup-time-handler.js:41:44)
+    at pickup-time-handler.js:285:13
+initPickupTimeHandler @ pickup-time-handler.js:41
+(anonymous) @ pickup-time-handler.js:285
+setTimeout
+(anonymous) @ pickup-time-handler.js:284
+dispatch @ jquery.min.js:2
+v.handle @ jquery.min.js:2
+actions.js:9 undefined
+checkout/:1069 FORCING pickup time display to: 11:00
+checkout/:1069 FORCING pickup time display to: 11:00
+script.js:174 Checkbox clicked
+calendar-test.js:15 SUCCESS: Calendar initialization function found!
+calendar-test.js:21 Calendar system is operational - no reinitialization needed
+
+last but not least the custom pickup hour seems not to affect the field at checkout
+<div class="pickup-time-wrapper" bis_skin_checked="1"><select class="select select2-time select2-hidden-accessible" data-placeholder="שעת איסוף" name="order_comments" id="pickup_time" tabindex="-1" aria-hidden="true">
+                                    <option></option>
+                                                                            <option value="08:00-09:00">08:00-09:00</option>
+                                                                            <option value="09:00-10:00">09:00-10:00</option>
+                                                                            <option value="10:00-11:00">10:00-11:00</option>
+                                                                            <option value="13:00-14:00">13:00-14:00</option>
+                                                                            <option value="14:00-15:00">14:00-15:00</option>
+                                                                            <option value="15:00-16:00">15:00-16:00</option>
+                                                                    <option value="11:00" selected="selected">11:00</option></select><span class="select2 select2-container select2-container--default" dir="rtl" style="width: 149.383px;"><span class="selection"><span class="select2-selection select2-selection--single" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-pickup_time-container" role="combobox"><span class="select2-selection__rendered" id="select2-pickup_time-container" role="textbox" aria-readonly="true">11:00</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
+       "key": "field_68015826284d9",
+                "label": "שעת איסוף מותאמת",
+                "name": "pickup_overide",
+                "aria-label": "",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "11:00",
+                "min": "",
+                "max": "",
+                "placeholder": "",
+                "step": "",
+                "prepend": "",
+                "append": ""
+            }

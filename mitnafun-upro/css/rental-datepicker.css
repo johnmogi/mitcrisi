@@ -1,0 +1,31 @@
+.validation-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.validation-message.error {
+    background-color: #ffe6e6;
+    color: #d63031;
+    border: 1px solid #fab1a0;
+}
+
+.validation-message.success {
+    background-color: #e6ffe6;
+    color: #00b894;
+    border: 1px solid #55efc4;
+}
+
+/* Disable Saturday cells */
+.air-datepicker-cell.-weekend- {
+    color: #d63031;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Style booked dates */
+.air-datepicker-cell.-disabled- {
+    text-decoration: line-through;
+    background-color: #ffe6e6;
+}

@@ -1,0 +1,27 @@
+1. Hebrew Character Encoding Fix:
+   - Added `<meta http-equiv="Content-Type" content="text/html; charset=utf-8">` in `header.php` to ensure proper Hebrew display.
+
+2. Add-to-Cart Button Restoration:
+   - Temporarily enabled `forceEnableToday = true` in `fallback-calendar.js` to bypass the cutoff-time disable logic and re‐activate the button.
+
+3. Standardized Cutoff-Time Logic:
+   - Consolidated all time checks to use `window.productPickupTime - 2` hours in `isDateBookable`, `validateDateRange`, and confirmation flows.
+   - Added special handling for same-day bookings with `forceEnableToday` override for testing.
+
+4. Calendar Validation Enhancements:
+   - Introduced unified checks in `fallback-calendar.js` to correctly disable past-cutoff cells and enforce date-range rules.
+   - Added console logging for clear debugging of selection and validation paths.
+
+5. CSS UI Improvements:
+   - Positioned form labels (`.input-wrap label`) above inputs, fixing overlapping labels behind fields.
+   - Styled `.pickup-time-wrapper` and `.select2-container` for proper dropdown width and visibility.
+   - Enhanced `.mitnafun-breakdown` toggle: added colored circle icon, min-height content area, and consistent background.
+   - Ensured Hebrew currency (`₪`) spacing via `.woocommerce-Price-currencySymbol { margin-right: 5px; }`.
+   - Widened floating cart and checkout dropdowns (`min-width: 320px` and `min-width: 200px`).
+
+6. Versioned Documentation Updates (`README.md`):
+   - Documented recent UI improvements and cutoff-time fixes under new sections.
+
+7. Custom Checkout Enhancements:
+   - Overrode default privacy policy text with a Hebrew message and preserved the policy link via `mitnafun_custom_privacy_policy_text()`.
+   - Enabled item removal on the checkout page through AJAX: added remove buttons (`&times;`), server‐side handler, and JS script.

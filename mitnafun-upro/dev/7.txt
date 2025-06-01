@@ -1,0 +1,236 @@
+refector filed we are going into patch mode again
+
+
+there are several resons refractor failed, besides design and too slow progree after 3 hours not even a 1/4 of the tasks was complete.
+
+so we will do what we can now to be decent about into
+
+there are many issues i will list them by priority
+
+MUST:
+
+critical all products are outputting the same reserved date data
+take a look at 2 different products
+
+<div class="bg" bis_skin_checked="1">
+        <img src="https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/img/after-7.svg" alt="">
+    </div>
+
+ JQMIGRATE: Migrate is installed, version 3.4.1
+ 🌍 Global basePrice set to: 550
+ 🌍 Global variables: Object
+ 🔄 Setting global discount values: percentage 50
+ Using fallback calendar system instead of Air Datepicker
+ [WEEKEND OVERRIDE] Applying weekend booking fixes
+ [WEEKEND OVERRIDE] Weekend booking fixes applied
+  🔍 SCRIPT LOADING CHECK:
+  critical-fixes.js not detected, loading it now
+  Document is ready
+ Document is ready
+ LAST-MINUTE CHECK: Script loaded - running initial check
+ LAST-MINUTE CHECK: Current time is 11:34
+ LAST-MINUTE CHECK: Pickup hour: 13
+ LAST-MINUTE CHECK: Cutoff hour: 11
+ LAST-MINUTE CHECK: Is past cutoff? true
+ LAST-MINUTE CHECK: Adding hook for date selection
+ Calendar initializer running...
+ Initializing fallback calendar system
+ Received dates for initialization: Array(2)
+ Using already formatted dates from rental-dates-handler
+ Container cleared, proceeding with initialization
+ Disabled dates prepared successfully: Array(3)
+ Current hour: 11 / Cutoff hour: 11
+ PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+ Final disabled dates set: Array(3)
+ Generating calendar with month: 3 year: 2025
+ Generating month calendar with month: 3 year: 2025
+ Using local user time: Object
+ Today is PAST cutoff time - disabling
+ Calendar successfully generated
+ Setting up date selection handlers
+ Pickup time field set to 13:00
+ Fallback calendar initialization completed successfully
+ Calendar initialized successfully
+ Calendar test script running...
+ Found datepicker container, initializing test...
+ Initializing Unified Pickup Time Handler
+ Pickup time field not found, skipping initialization
+ Rental Dates Handler loaded
+ Processing rental data for product ID: 471
+ Initial booked dates: Array(2)
+ Processing date ranges: Array(2)
+ Processed dates: Array(7)
+ Formatted dates ready for datepicker: Array(7)
+  Reserved Dates for Calendar:
+ Array(7)
+ Total reserved dates: 7
+ Datepicker container found: true
+ Attempting to use fallback calendar
+ Initializing fallback calendar system
+ Received dates for initialization: Array(7)
+ Using already formatted dates from rental-dates-handler
+ Container cleared, proceeding with initialization
+ Disabled dates prepared successfully: Array(8)
+ Current hour: 11 / Cutoff hour: 11
+ PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+ Final disabled dates set: Array(8)
+ Generating calendar with month: 3 year: 2025
+ Generating month calendar with month: 3 year: 2025
+ Using local user time: Object
+fallback-calendar.js:546 Today is PAST cutoff time - disabling
+fallback-calendar.js:594 Calendar successfully generated
+fallback-calendar.js:706 Setting up date selection handlers
+fallback-calendar.js:1862 Pickup time field set to 13:00
+fallback-calendar.js:328 Fallback calendar initialization completed successfully
+rental-dates-handler.js:1012  Calendar system ready with disabled dates: Array(7)
+rental-dates-handler.js:1111  Reserved Date Ranges:
+rental-dates-handler.js:1112 Array(2)
+rental-dates-handler.js:1113 Total reserved date ranges: 2
+rental-dates-handler.js:1116  Individual Reserved Dates:
+rental-dates-handler.js:1117 Total individual reserved dates: 7
+early-return-handler.js:7 Early Return Handler loaded
+return-date-handler.js:7 Return Date Handler loaded
+last-minute-booking-check.js:76 LAST-MINUTE CHECK: Running check
+last-minute-booking-check.js:80 LAST-MINUTE CHECK: No dates selected, skipping check
+last-minute-booking-check.js:327 LAST-MINUTE CHECK: Past cutoff time, disabling today's cell
+early-return-handler.js:19 Initializing early return handler
+early-return-handler.js:45 Processing early return dates from booked dates: Array(2)
+early-return-handler.js:79 Identified early return dates: Array(2)
+return-date-handler.js:19 Initializing return date handler
+return-date-handler.js:45 Processing return dates from booked dates: Array(2)
+return-date-handler.js:75 Identified return dates: Array(2)
+pickup-time-handler.js:23 Pickup time field not found, skipping initialization
+actions.js:9 undefined
+rental-dates-handler.js:1111  Reserved Date Ranges:
+rental-dates-handler.js:1112 Array(2)
+rental-dates-handler.js:1113 Total reserved date ranges: 2
+rental-dates-handler.js:1116  Individual Reserved Dates:
+rental-dates-handler.js:1117 Total individual reserved dates: 7
+ספיידרמן-2/:1112 ⏱️ After timeout, global variables: Object
+calendar-test.js:15 SUCCESS: Calendar initialization function found!
+calendar-test.js:21 Calendar system is operational - no reinitialization needed
+
+
+
+    and 
+    <div class="bg" bis_skin_checked="1">
+        <img src="https://mitnafun.johnmogi.local/wp-content/themes/mitnafun_upro/img/after-7.svg" alt="">
+    </div>
+    jquery-migrate.min.js:2 JQMIGRATE: Migrate is installed, version 3.4.1
+ 🌍 Global basePrice set to: 520
+ 🌍 Global variables: Object
+ 🔄 Setting global discount values: percentage 50
+ Using fallback calendar system instead of Air Datepicker
+אנה-ואלזה-43-5/:1655 [WEEKEND OVERRIDE] Applying weekend booking fixes
+אנה-ואלזה-43-5/:1704 [WEEKEND OVERRIDE] Weekend booking fixes applied
+אנה-ואלזה-43-5/:1710  🔍 SCRIPT LOADING CHECK:
+אנה-ואלזה-43-5/:1714  critical-fixes.js not detected, loading it now
+אנה-ואלזה-43-5/:1723  Document is ready
+script.js:2 Document is ready
+last-minute-booking-check.js:19 LAST-MINUTE CHECK: Script loaded - running initial check
+last-minute-booking-check.js:50 LAST-MINUTE CHECK: Current time is 11:34
+last-minute-booking-check.js:64 LAST-MINUTE CHECK: Pickup hour: 13
+last-minute-booking-check.js:65 LAST-MINUTE CHECK: Cutoff hour: 11
+last-minute-booking-check.js:66 LAST-MINUTE CHECK: Is past cutoff? true
+last-minute-booking-check.js:318 LAST-MINUTE CHECK: Adding hook for date selection
+calendar-initializer.js:6 Calendar initializer running...
+fallback-calendar.js:169 Initializing fallback calendar system
+fallback-calendar.js:173 Received dates for initialization: Array(3)
+fallback-calendar.js:177 Using already formatted dates from rental-dates-handler
+fallback-calendar.js:198 Container cleared, proceeding with initialization
+fallback-calendar.js:227 Disabled dates prepared successfully: Array(4)
+fallback-calendar.js:262 Current hour: 11 / Cutoff hour: 11
+fallback-calendar.js:268 PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+fallback-calendar.js:276 Final disabled dates set: Array(4)
+fallback-calendar.js:287 Generating calendar with month: 3 year: 2025
+fallback-calendar.js:428 Generating month calendar with month: 3 year: 2025
+fallback-calendar.js:492 Using local user time: Object
+fallback-calendar.js:546 Today is PAST cutoff time - disabling
+fallback-calendar.js:594 Calendar successfully generated
+fallback-calendar.js:706 Setting up date selection handlers
+fallback-calendar.js:1862 Pickup time field set to 13:00
+fallback-calendar.js:328 Fallback calendar initialization completed successfully
+calendar-initializer.js:31 Calendar initialized successfully
+calendar-test.js:6 Calendar test script running...
+calendar-test.js:10 Found datepicker container, initializing test...
+pickup-time-handler.js:11 Initializing Unified Pickup Time Handler
+pickup-time-handler.js:23 Pickup time field not found, skipping initialization
+rental-dates-handler.js:6 Rental Dates Handler loaded
+rental-dates-handler.js:15 Processing rental data for product ID: 463
+rental-dates-handler.js:25 Initial booked dates: Array(2)
+rental-dates-handler.js:124 Processing date ranges: Array(2)
+rental-dates-handler.js:39 Processed dates: Array(7)
+rental-dates-handler.js:617 Formatted dates ready for datepicker: Array(7)
+rental-dates-handler.js:620  Reserved Dates for Calendar:
+rental-dates-handler.js:621 Array(7)
+rental-dates-handler.js:629 Total reserved dates: 7
+rental-dates-handler.js:653 Datepicker container found: true
+rental-dates-handler.js:1003 Attempting to use fallback calendar
+fallback-calendar.js:169 Initializing fallback calendar system
+fallback-calendar.js:173 Received dates for initialization: Array(7)
+fallback-calendar.js:177 Using already formatted dates from rental-dates-handler
+fallback-calendar.js:198 Container cleared, proceeding with initialization
+fallback-calendar.js:227 Disabled dates prepared successfully: Array(8)
+fallback-calendar.js:262 Current hour: 11 / Cutoff hour: 11
+fallback-calendar.js:268 PRODUCTION MODE: Added today to disabled dates because it's past cutoff time
+fallback-calendar.js:276 Final disabled dates set: Array(8)
+fallback-calendar.js:287 Generating calendar with month: 3 year: 2025
+fallback-calendar.js:428 Generating month calendar with month: 3 year: 2025
+fallback-calendar.js:492 Using local user time: Object
+fallback-calendar.js:546 Today is PAST cutoff time - disabling
+fallback-calendar.js:594 Calendar successfully generated
+fallback-calendar.js:706 Setting up date selection handlers
+fallback-calendar.js:1862 Pickup time field set to 13:00
+fallback-calendar.js:328 Fallback calendar initialization completed successfully
+rental-dates-handler.js:1012  Calendar system ready with disabled dates: Array(7)
+rental-dates-handler.js:1111  Reserved Date Ranges:
+rental-dates-handler.js:1112 Array(2)
+rental-dates-handler.js:1113 Total reserved date ranges: 2
+rental-dates-handler.js:1116  Individual Reserved Dates:
+rental-dates-handler.js:1117 Total individual reserved dates: 7
+early-return-handler.js:7 Early Return Handler loaded
+return-date-handler.js:7 Return Date Handler loaded
+last-minute-booking-check.js:76 LAST-MINUTE CHECK: Running check
+last-minute-booking-check.js:80 LAST-MINUTE CHECK: No dates selected, skipping check
+last-minute-booking-check.js:327 LAST-MINUTE CHECK: Past cutoff time, disabling today's cell
+early-return-handler.js:19 Initializing early return handler
+early-return-handler.js:45 Processing early return dates from booked dates: Array(2)
+early-return-handler.js:79 Identified early return dates: Array(2)
+return-date-handler.js:19 Initializing return date handler
+return-date-handler.js:45 Processing return dates from booked dates: Array(2)
+return-date-handler.js:75 Identified return dates: Array(2)
+pickup-time-handler.js:23 Pickup time field not found, skipping initialization
+actions.js:9 undefined
+rental-dates-handler.js:1111  Reserved Date Ranges:
+rental-dates-handler.js:1112 Array(2)
+rental-dates-handler.js:1113 Total reserved date ranges: 2
+rental-dates-handler.js:1116  Individual Reserved Dates:
+rental-dates-handler.js:1117 Total individual reserved dates: 7
+ ⏱️ After timeout, global variables: Object
+calendar-test.js:15 SUCCESS: Calendar initialization function found!
+calendar-test.js:21 Calendar system is operational - no reinitialization needed
+last-minute-booking-check.js:76 LAST-MINUTE CHECK: Running check
+last-minute-booking-check.js:80 LAST-MINUTE CHECK: No dates selected, skipping check
+fallback-calendar.js:728 Date cell clicked: 04.04.2025
+fallback-calendar.js:972 Updating calendar selection with dates: Array(1)
+fallback-calendar.js:728 Date cell clicked: 06.04.2025
+fallback-calendar.js:972 Updating calendar selection with dates: Array(2)
+fallback-calendar.js:43 Calculating rental days from Fri Apr 04 2025 00:00:00 GMT-0100 (GMT-01:00‎‎) to Sun Apr 06 2025 00:00:00 GMT-0100 (GMT-01:00‎‎)
+fallback-calendar.js:89 Total rental days (excluding Saturdays): 2
+fallback-calendar.js:1967 Validating date range: 2025-04-04 to 2025-04-06
+fallback-calendar.js:1993 Validation failed: Date in range is a Saturday: 2025-04-05
+
+
+this is impossibly bad
+
+when navigating months the calendar loses the first day / last day of othere reserved dates signal
+
+MINOR -
+
+    when selecting the end date there is a sight visual glitch where the next day gets selected
+    hen corrected the visual glitch the next day gets selected for a little second
+
+    once the user clicks on the same day he gets this notice 
+<div id="return-time-notice" class="return-time-notice info error" bis_skin_checked="1" style="background-color: rgb(255, 242, 242); border: 1px solid rgb(255, 107, 107); color: rgb(204, 0, 0); padding: 10px; margin-bottom: 15px; font-weight: bold;"><strong>שימו לב</strong> - לא ניתן להזמין להיום (אחרי 11:00). אנא צרו קשר בטלפון 050-5544516 להזמנות דחופות</div>
+    which is fine
+    however that message is sticky and does not remove itself from view

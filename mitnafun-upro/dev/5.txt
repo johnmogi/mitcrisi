@@ -1,0 +1,13 @@
+
+the start and end indicators are crude
+
+looking at 2 products they seem to hace the same calendar info
+needs to check so this wont happen and
+ each will have its indivifual data reserved dates etc
+
+
+also on tht cart 
+
+<div id="date-validation-message" class="validation-message error" style="display: block;" bis_skin_checked="1">לא ניתן להזמין לשבת (מערכת סגורה)</div>
+that error shouldnt be there
+
