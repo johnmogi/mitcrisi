@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Datepicker Test</title>
+    <link rel="stylesheet" href="js/vendor/air-datepicker.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            direction: rtl;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .datepicker-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .rental-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 4px;
+        }
+        .price-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .debug-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .debug-panel h3 {
+            margin-top: 0;
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .btn-disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>בדיקת לוח שנה להשכרה</h1>
+        
+        <div class="datepicker-container" id="datepicker-container"></div>
+        
+        <div class="rental-info">
+            <h3>פרטי השכרה</h3>
+            <div id="pickup-info">איסוף: יש לבחור תאריכים</div>
+            <div id="return-info">החזרה: יש לבחור תאריכים</div>
+            
+            <div class="price-display">
+                מחיר: <span id="rental-price">0</span> ₪
+            </div>
+            
+            <input type="hidden" id="rental_dates" name="rental_dates" value="">
+            <input type="hidden" id="pickup_time" name="pickup_time" value="11:00">
+            
+            <div>
+                <label for="pickup-time-select">שעת איסוף:</label>
+                <select id="pickup-time-select">
+                    <option value="10:00">10:00</option>
+                    <option value="11:00" selected>11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                </select>
+            </div>
+            
+            <button id="add-to-cart" class="btn btn-disabled" disabled>הוסף לסל</button>
+        </div>
+        
+        <div class="debug-panel">
+            <h3>Debug Info</h3>
+            <pre id="debug-output">// Debug information will appear here</pre>
+            
+            <h4>Test Controls</h4>
+            <button class="btn" id="test-booked-dates">Add Booked Dates</button>
+            <button class="btn" id="test-weekend">Test Weekend Logic</button>
+            <button class="btn" id="test-fallback">Test Fallback Calendar</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/vendor/air-datepicker.js"></script>
+    <script src="js/vendor/fallback-calendar.js"></script>
+    <script>
+        // Global variables for testing
+        window.bookedDates = [];
+        window.stockQuantity = 1;
+        window.maxRentalDays = 14;
+        window.productPickupTime = 11;
+        window.productReturnTime = '10:00';
+        window.basePrice = 100; // Price per day
+        window.discountType = 'percentage';
+        window.discountValue = 10; // 10% discount for 7+ days
+        
+        // Debug logging
+        function logDebug(message) {
+            const debugOutput = document.getElementById('debug-output');
+            const timestamp = new Date().toLocaleTimeString();
+            debugOutput.textContent += `[${timestamp}] ${message}\n`;
+            console.log(message);
+        }
+        
+        // Date format utilities
+        function formatDateForDisplay(date) {
+            return date.getDate().toString().padStart(2, '0') + '.' + 
+                   (date.getMonth() + 1).toString().padStart(2, '0') + '.' + 
+                   date.getFullYear();
+        }
+        
+        function parseDate(dateString) {
+            var parts = dateString.split('.');
+            if (parts.length === 3) {
+                return new Date(parts[2], parts[1] - 1, parts[0]);
+            }
+            return null;
+        }
+        
+        function isDateInRange(date, startDate, endDate) {
+            return date >= startDate && date <= endDate;
+        }
+        
+        function isDayDisabled(date) {
+            // Skip if it's a weekend (Saturday in this case)
+            if (date.getDay() === 6) {
+                return true;
+            }
+            
+            // If stock quantity > 1, we don't need to check booked dates
+            if (window.stockQuantity > 1) {
+                return false;
+            }
+            
+            // Check if this date is in any booked date range
+            if (window.bookedDates && window.bookedDates.length) {
+                for (var i = 0; i < window.bookedDates.length; i++) {
+                    var dateRange = window.bookedDates[i];
+                    if (dateRange.indexOf(' - ') > -1) {
+                        var rangeParts = dateRange.split(' - ');
+                        var rangeStart = parseDate(rangeParts[0]);
+                        var rangeEnd = parseDate(rangeParts[1]);
+                        
+                        if (rangeStart && rangeEnd && isDateInRange(date, rangeStart, rangeEnd)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        // Price calculation
+        function calculateRentalPrice(startDate, endDate) {
+            if (!startDate || !endDate) {
+                return window.basePrice;
+            }
+            
+            // Calculate days difference
+            var days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+            
+            // Special case for weekend (Friday-Saturday counts as one day)
+            var weekendAdjustment = 0;
+            var currentDate = new Date(startDate);
+            
+            while (currentDate <= endDate) {
+                // Check if the current day is Friday (5)
+                if (currentDate.getDay() === 5) {
+                    // Check if the next day is Saturday and is included in the range
+                    var nextDay = new Date(currentDate);
+                    nextDay.setDate(nextDay.getDate() + 1);
+                    
+                    if (nextDay <= endDate && nextDay.getDay() === 6) {
+                        weekendAdjustment++;
+                    }
+                }
+                
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            // Adjust days (subtract weekend adjustment)
+            var adjustedDays = days - weekendAdjustment;
+            logDebug('Rental days: ' + days + ', Adjusted (weekends combined): ' + adjustedDays);
+            
+            // Calculate base price
+            var totalPrice = window.basePrice * adjustedDays;
+            
+            // Apply discount if applicable
+            if (adjustedDays >= 7 && window.discountValue > 0) {
+                if (window.discountType === 'percentage') {
+                    var discount = totalPrice * (window.discountValue / 100);
+                    totalPrice -= discount;
+                } else if (window.discountType === 'fixed') {
+                    totalPrice -= window.discountValue;
+                }
+            }
+            
+            return totalPrice;
+        }
+        
+        // Update price display
+        function updatePriceDisplay(startDate, endDate) {
+            var price = calculateRentalPrice(startDate, endDate);
+            $('#rental-price').text(price.toFixed(2));
+            logDebug('Updated price: ' + price.toFixed(2) + ' ₪');
+        }
+        
+        // Update pickup and return information
+        function updatePickupReturnInfo(startDate, endDate) {
+            if (!startDate || !endDate) return;
+            
+            var pickupTime = $('#pickup-time-select').val() || window.productPickupTime + ':00';
+            var formattedStartDate = formatDateForDisplay(startDate);
+            var formattedEndDate = formatDateForDisplay(endDate);
+            
+            $('#pickup-info').text('איסוף: ' + formattedStartDate + ' בשעה ' + pickupTime);
+            $('#return-info').text('החזרה: ' + formattedEndDate + ' עד השעה ' + window.productReturnTime);
+            
+            // Set hidden input fields
+            $('#pickup_time').val(pickupTime);
+            
+            logDebug('Pickup: ' + formattedStartDate + ' at ' + pickupTime);
+            logDebug('Return: ' + formattedEndDate + ' by ' + window.productReturnTime);
+        }
+        
+        // Initialize datepicker
+        function initRentalDatepicker() {
+            logDebug('Initializing rental datepicker');
+            
+            // Get the element
+            var datepickerEl = document.getElementById('datepicker-container');
+            
+            // Check if a datepicker is already initialized
+            if (datepickerEl && datepickerEl._datepicker) {
+                logDebug('Datepicker already initialized, destroying');
+                datepickerEl._datepicker.destroy();
+            }
+            
+            try {
+                // Get today and min date (today + 3 days)
+                var today = new Date();
+                
+                // Get booked dates from global variable
+                logDebug('Available stock: ' + window.stockQuantity);
+                if (window.bookedDates && window.bookedDates.length) {
+                    logDebug('Booked date ranges: ' + window.bookedDates.length);
+                    window.bookedDates.forEach(function(range, index) {
+                        logDebug('Range ' + (index + 1) + ': ' + range);
+                    });
+                }
+                
+                // Initialize datepicker
+                var datepicker = new AirDatepicker('#datepicker-container', {
+                    inline: true,
+                    range: true,
+                    multipleDates: false,
+                    minDate: today,
+                    maxDate: new Date(today.getFullYear(), today.getMonth() + 3, today.getDate()),
+                    dateFormat: 'dd.MM.yyyy',
+                    onRenderCell: function(date, cellType) {
+                        if (cellType !== 'day') return;
+                        
+                        var day = date.getDay();
+                        var isWeekend = day === 6; // Saturday
+                        
+                        // Check if it's a booked date
+                        var isBooked = isDayDisabled(date);
+                        
+                        return {
+                            disabled: isWeekend || isBooked,
+                            classes: isWeekend ? 'weekend-date' : isBooked ? 'booked-date' : ''
+                        };
+                    },
+                    locale: {
+                        days: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'],
+                        daysShort: ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'],
+                        daysMin: ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'],
+                        months: ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'],
+                        monthsShort: ['ינו', 'פבר', 'מרץ', 'אפר', 'מאי', 'יוני', 'יולי', 'אוג', 'ספט', 'אוק', 'נוב', 'דצמ'],
+                        today: 'היום',
+                        clear: 'נקה',
+                        firstDay: 0
+                    },
+                    onSelect: function({date, formattedDate, datepicker}) {
+                        var selectedDates = Array.isArray(date) ? date : [date];
+                        
+                        // Ensure we have two dates
+                        if (selectedDates.length !== 2) {
+                            // Clear rental dates input if we don't have both dates
+                            $('#rental_dates').val('');
+                            return;
+                        }
+                        
+                        // Ensure correct order
+                        var startDate = selectedDates[0];
+                        var endDate = selectedDates[1];
+                        
+                        if (startDate > endDate) {
+                            var temp = startDate;
+                            startDate = endDate;
+                            endDate = temp;
+                        }
+                        
+                        // Format dates for display
+                        var formattedStartDate = formatDateForDisplay(startDate);
+                        var formattedEndDate = formatDateForDisplay(endDate);
+                        
+                        // Set rental dates input
+                        $('#rental_dates').val(formattedStartDate + ' - ' + formattedEndDate);
+                        
+                        // Update price display
+                        updatePriceDisplay(startDate, endDate);
+                        
+                        // Update pickup and return info
+                        updatePickupReturnInfo(startDate, endDate);
+                        
+                        // Enable add to cart button
+                        $('#add-to-cart').prop('disabled', false).removeClass('btn-disabled');
+                        
+                        logDebug('Selected dates: ' + formattedStartDate + ' - ' + formattedEndDate);
+                    }
+                });
+                
+                logDebug('Datepicker initialized successfully');
+                
+                // Store datepicker instance for future reference
+                datepickerEl._datepicker = datepicker;
+                window.rentalDatepicker = datepicker;
+                
+                // Add a class to indicate datepicker is loaded
+                $('#datepicker-container').addClass('datepicker-loaded');
+                
+                // Check for pre-selected dates in input field
+                var rentalDatesValue = $('#rental_dates').val();
+                if (rentalDatesValue && rentalDatesValue.indexOf(' - ') > -1) {
+                    var datesParts = rentalDatesValue.split(' - ');
+                    if (datesParts.length === 2) {
+                        try {
+                            var startDate = parseDate(datesParts[0]);
+                            var endDate = parseDate(datesParts[1]);
+                            if (startDate && endDate) {
+                                // Pre-select these dates
+                                datepicker.selectDate([startDate, endDate]);
+                                logDebug('Pre-selected dates from input: ' + datesParts[0] + ' - ' + datesParts[1]);
+                            }
+                        } catch (err) {
+                            logDebug('Could not parse pre-selected dates: ' + err.message);
+                        }
+                    }
+                }
+            } catch(e) {
+                logDebug('Failed to initialize datepicker: ' + e.message);
+                
+                // Try to initialize fallback calendar system
+                if (window.fallbackCalendar && typeof window.fallbackCalendar.init === 'function') {
+                    logDebug('Initializing fallback calendar system');
+                    window.fallbackCalendar.init();
+                } else {
+                    logDebug('Both datepicker and fallback calendar failed to initialize');
+                    $('#datepicker-container').html('<div class="error-message">לא ניתן לטעון את לוח השנה. אנא רענן את הדף או פנה לתמיכה.</div>');
+                }
+            }
+        }
+        
+        // Setup pickup time selection
+        function setupPickupTimeSelection() {
+            $('#pickup-time-select').on('change', function() {
+                var selectedTime = $(this).val();
+                $('#pickup_time').val(selectedTime);
+                
+                // Update pickup info display
+                var rentalDates = $('#rental_dates').val();
+                if (rentalDates) {
+                    var dates = rentalDates.split(' - ');
+                    if (dates.length === 2) {
+                        var startDate = parseDate(dates[0]);
+                        var endDate = parseDate(dates[1]);
+                        if (startDate && endDate) {
+                            updatePickupReturnInfo(startDate, endDate);
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Test controls
+        function setupTestControls() {
+            // Add booked dates test
+            $('#test-booked-dates').on('click', function() {
+                var today = new Date();
+                var nextWeek = new Date(today);
+                nextWeek.setDate(today.getDate() + 7);
+                
+                var twoWeeks = new Date(today);
+                twoWeeks.setDate(today.getDate() + 14);
+                
+                var threeWeeks = new Date(today);
+                threeWeeks.setDate(today.getDate() + 21);
+                
+                window.bookedDates = [
+                    formatDateForDisplay(nextWeek) + ' - ' + formatDateForDisplay(twoWeeks)
+                ];
+                
+                logDebug('Added booked dates: ' + window.bookedDates[0]);
+                initRentalDatepicker(); // Reinitialize with new booked dates
+            });
+            
+            // Test weekend logic
+            $('#test-weekend').on('click', function() {
+                // Find the next Friday
+                var date = new Date();
+                while (date.getDay() !== 5) { // 5 = Friday
+                    date.setDate(date.getDate() + 1);
+                }
+                
+                var friday = new Date(date);
+                var sunday = new Date(date);
+                sunday.setDate(friday.getDate() + 2); // Sunday
+                
+                if (window.rentalDatepicker) {
+                    window.rentalDatepicker.selectDate([friday, sunday]);
+                    logDebug('Testing weekend logic: Friday to Sunday');
+                } else {
+                    logDebug('Datepicker not initialized, cannot test weekend logic');
+                }
+            });
+            
+            // Test fallback calendar
+            $('#test-fallback').on('click', function() {
+                // Force fallback calendar
+                if (window.rentalDatepicker) {
+                    window.rentalDatepicker.destroy();
+                    window.rentalDatepicker = null;
+                }
+                $('#datepicker-container').empty();
+                
+                if (window.fallbackCalendar && typeof window.fallbackCalendar.init === 'function') {
+                    window.fallbackCalendar.init();
+                    logDebug('Initialized fallback calendar');
+                } else {
+                    logDebug('Fallback calendar not available');
+                }
+            });
+        }
+        
+        // Initialize on document ready
+        $(document).ready(function() {
+            logDebug('Document ready, initializing test page');
+            
+            // Initialize datepicker
+            initRentalDatepicker();
+            
+            // Setup pickup time selection
+            setupPickupTimeSelection();
+            
+            // Setup test controls
+            setupTestControls();
+            
+            // Add to cart button
+            $('#add-to-cart').on('click', function() {
+                if ($(this).prop('disabled')) {
+                    return;
+                }
+                
+                var rentalDates = $('#rental_dates').val();
+                var pickupTime = $('#pickup_time').val();
+                
+                logDebug('Add to cart clicked:');
+                logDebug('Rental dates: ' + rentalDates);
+                logDebug('Pickup time: ' + pickupTime);
+                
+                alert('Added to cart: ' + rentalDates + ' at ' + pickupTime);
+            });
+        });
+    </script>
+</body>
+</html>

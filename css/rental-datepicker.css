@@ -1,0 +1,325 @@
+/**
+ * Mitnafun Rental Datepicker Styles
+ * Classic tabular implementation with Air Datepicker integration
+ * Supports RTL/Hebrew and rental date selection
+ */
+
+/* Calendar Container */
+#datepicker-container {
+    max-width: 100%;
+    margin: 0 auto 20px;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Air Datepicker Overrides - Main Container */
+.air-datepicker {
+    font-family: 'Assistant', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    --adp-day-name-color: #ff9a19;
+    --adp-accent-color: #4eb5e6;
+    --adp-background-color-selected: #5cc4ef;
+    --adp-background-color-selected-hover: #45bced;
+    --adp-cell-background-color-in-range: rgba(92, 196, 239, 0.1);
+    --adp-cell-background-color-in-range-hover: rgba(92, 196, 239, 0.2);
+    direction: rtl;
+    text-align: right;
+}
+
+/* Header/Navigation */
+.air-datepicker-nav {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.air-datepicker-nav--title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.air-datepicker-nav--action svg {
+    width: 28px;
+    height: 28px;
+}
+
+.air-datepicker-nav--action path {
+    stroke: #ff9a19;
+    stroke-width: 2.5px;
+}
+
+/* Day names (Sun, Mon, etc) */
+.air-datepicker-body--day-name {
+    color: #ff9a19;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+/* Days cells - tabular layout */
+.air-datepicker-body--cells.-days- {
+    padding: 0;
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+.air-datepicker-body--row {
+    display: table-row;
+}
+
+.air-datepicker-body--day-names {
+    display: table-row;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+.air-datepicker-body--day-name {
+    display: table-cell;
+    padding: 8px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.air-datepicker-cell.-day- {
+    display: table-cell;
+    height: 42px;
+    width: 42px;
+    border-radius: 0;
+    font-size: 15px;
+    color: #333;
+    position: relative;
+    text-align: center;
+    border: 1px solid #eaeaea;
+    padding: 0;
+    vertical-align: middle;
+}
+
+/* Weekend styling */
+.air-datepicker-cell.-weekend- {
+    color: #d63031;
+    background-color: #f8f8f8;
+}
+
+/* Weekend indicator triangle */
+.air-datepicker-cell.-weekend-:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 8px 8px;
+    border-color: transparent transparent #d63031 transparent;
+}
+
+/* Disabled dates */
+.air-datepicker-cell.-disabled- {
+    text-decoration: line-through;
+    background-color: #ffe6e6;
+    opacity: 0.7;
+}
+
+/* Available date styling */
+.air-datepicker-cell.-day-:not(.-disabled-):not(.-weekend-) {
+    background-color: #e8f8e8;
+    border-color: #c5e0c5;
+}
+
+/* Selected dates */
+.air-datepicker-cell.-selected- {
+    background-color: #b8dfff !important;
+    color: #0066cc !important;
+    font-weight: bold;
+    border-color: #7cbcff !important;
+}
+
+.air-datepicker-cell.-selected-:hover {
+    background-color: #a0d0ff !important;
+}
+
+/* Range styling */
+.air-datepicker-cell.-in-range- {
+    background-color: #e6f4ff !important;
+    color: #333;
+    border-color: #b8dfff !important;
+}
+
+.air-datepicker-cell.-range-from- {
+    border-radius: 0;
+}
+
+.air-datepicker-cell.-range-to- {
+    border-radius: 0;
+}
+
+/* Legend items */
+.calendar-legend {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    direction: rtl;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    border-radius: 2px;
+}
+
+.legend-free .legend-color {
+    background-color: #e8f4ff;
+    border: 1px solid #a8d4ff;
+}
+
+.legend-occupied .legend-color {
+    background-color: #ffe6e6;
+    border: 1px solid #ffb8b8;
+}
+
+.legend-saturday .legend-color {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+}
+
+.legend-early-return .legend-color {
+    background-color: #fff2e6;
+    border: 1px solid #ffcc99;
+}
+
+.legend-holiday .legend-color {
+    background-color: #fff9e6;
+    border: 1px solid #ffe680;
+}
+
+/* Status messages */
+.datepicker-validation,
+.datepicker-message {
+    max-width: 405px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    direction: rtl;
+}
+
+.datepicker-validation.info,
+.datepicker-message.info {
+    background-color: #e8f4ff;
+    border: 1px solid #a8d4ff;
+    color: #0066cc;
+}
+
+.datepicker-validation.error {
+    background-color: #fff2f2;
+    border-color: #ffb8b8;
+    color: #ff4444;
+}
+
+.datepicker-validation.success {
+    background-color: #f0fff0;
+    border-color: #b8ffb8;
+    color: #28a745;
+}
+
+.datepicker-message.warning {
+    background-color: #e6f9e6;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.datepicker-message.attention {
+    background-color: #e6f7ff;
+    border: 1px solid #b8e2ff;
+    color: #0070cc;
+}
+
+/* Pickup time select styling */
+.pickup-time-container {
+    margin: 15px 0;
+    direction: rtl;
+}
+
+.pickup-time-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.pickup-time-container select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    direction: rtl;
+    background-color: white;
+}
+
+/* Rental info display */
+.rental-info-container {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    direction: rtl;
+}
+
+.rental-info p {
+    margin: 5px 0;
+    font-size: 15px;
+}
+
+.rental-info strong {
+    color: #0066cc;
+}
+
+/* Add to cart button styling */
+.single_add_to_cart_button {
+    background-color: #4eb5e6 !important;
+    color: white !important;
+    font-weight: bold !important;
+    padding: 12px 20px !important;
+    border-radius: 4px !important;
+    transition: all 0.3s ease !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-top: 15px !important;
+}
+
+.single_add_to_cart_button:hover:not(.disabled) {
+    background-color: #3a9cd0 !important;
+}
+
+.single_add_to_cart_button.disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+}
+
+/* Style booked dates */
+.air-datepicker-cell.-disabled- {
+    text-decoration: line-through;
+    background-color: #ffe6e6;
+}

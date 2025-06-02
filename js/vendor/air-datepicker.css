@@ -1,0 +1,163 @@
+/* Air Datepicker custom styles for Mitnafun */
+
+.air-datepicker {
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 10px;
+    z-index: 1000;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* Navigation */
+.air-datepicker-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 10px;
+}
+
+.air-datepicker-nav--title {
+    font-weight: bold;
+    text-align: center;
+}
+
+.air-datepicker-nav--action {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.air-datepicker-nav--action:hover {
+    background: #f0f0f0;
+}
+
+/* Day names */
+.air-datepicker-body--day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 8px;
+}
+
+.air-datepicker-body--day-name {
+    color: #1a4a6b !important;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* Cells grid */
+.air-datepicker-body--cells {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+/* Individual cell */
+.air-datepicker-cell {
+    border-radius: 4px;
+    text-align: center;
+    padding: 6px;
+    cursor: pointer;
+    position: relative;
+}
+
+.air-datepicker-cell:hover {
+    background-color: #f0f0f0;
+}
+
+/* Current date */
+.air-datepicker-cell.-current- {
+    color: #1a4a6b !important;
+    font-weight: bold;
+}
+
+/* Selected date */
+.air-datepicker-cell.-selected- {
+    background-color: #2196F3 !important;
+    color: #fff !important;
+}
+
+/* In range dates */
+.air-datepicker-cell.-in-range- {
+    background-color: #E3F2FD !important;
+}
+
+/* Disabled dates */
+.air-datepicker-cell.-disabled- {
+    color: #ccc !important;
+    cursor: default;
+    background-color: transparent !important;
+}
+
+/* Other month dates */
+.air-datepicker-cell.-other-month- {
+    color: #aaa;
+}
+
+/* Booked dates */
+.air-datepicker-cell.booked-date {
+    background-color: #ffeeee !important;
+    color: #b00 !important;
+    position: relative;
+}
+
+.air-datepicker-cell.booked-date::after {
+    content: "×";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+
+/* Weekend dates */
+.air-datepicker-cell.weekend-date {
+    background-color: #f0f0f0 !important;
+    color: #999 !important;
+    position: relative;
+}
+
+/* Sunday dates - make them visually appealing and clearly available */
+.air-datepicker-cell.sunday-date {
+    background-color: #f9fff9 !important;
+    color: #333 !important;
+    border: 1px solid #ddf0dd !important;
+}
+
+/* Start date */
+.air-datepicker-cell.start-date {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* End date */
+.air-datepicker-cell.end-date {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Holiday dates */
+.air-datepicker-cell.holiday-date {
+    background-color: #fff0f0 !important;
+    color: #d00 !important;
+}
+
+/* Special dates with custom background */
+.air-datepicker-cell.special-date {
+    background-color: #BBDEFB !important;
+    color: #000 !important;
+    font-weight: 500 !important;
+}

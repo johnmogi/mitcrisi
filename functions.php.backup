@@ -1,0 +1,6 @@
+<?php
+// This is a backup of the original functions.php file created on 2025-06-02
+// Keep this file as a reference in case you need to restore functionality
+
+include_once get_template_directory() . '/mitnafun-upro/functions.php';
+?>
