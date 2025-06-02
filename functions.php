@@ -134,6 +134,22 @@ function load_style_script() {
 }
 add_action('wp_enqueue_scripts', 'load_style_script');
 
+/**
+ * Enqueue product rental fixes script
+ */
+function mitnafun_enqueue_rental_fixes() {
+    if (is_product()) {
+        wp_enqueue_script(
+            'mitnafun-rental-fixes',
+            get_stylesheet_directory_uri() . '/jsail/product-rental-fixes.js',
+            array('jquery'),
+            filemtime(get_stylesheet_directory() . '/jsail/product-rental-fixes.js'),
+            true
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'mitnafun_enqueue_rental_fixes');
+
 // Debug logging function is already defined at the end of this file
 // We don't need to declare it again here
         

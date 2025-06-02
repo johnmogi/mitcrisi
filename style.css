@@ -2,20 +2,50 @@
 Theme Name: Mitnafun 2
 */
 
+/* Product Rental Fixes */
+.quantity-container {
+    display: none !important;
+}
+
+.btn-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-yellow {
+    background-color: #f7d154 !important;
+    color: #333 !important;
+}
+
+.btn-yellow:hover {
+    background-color: #f5c624 !important;
+}
+
+/* Hide proceed to checkout button */
+.wc-proceed-to-checkout {
+    display: none !important;
+}
+
+/* Hide view cart message button */
+.woocommerce-message .button.wc-forward {
+    display: none !important;
+}
+
 /* Custom scroll behavior for date validation message */
 #date-validation-message {
     scroll-margin-top: 100px; /* Space from top when scrolling to this element */
     scroll-behavior: smooth; /* Smooth scrolling */
 }
 
-
-
 .btn-wrap button[disabled] {
     opacity: 0.6;
 }
-.price>.amount>bdi{
-	font-size: 22px;
-	color: #000;
+
+.price>.amount>bdi {
+    font-size: 22px;
+    color: #000;
 }
 
 .category .content .item .text ul .price{
